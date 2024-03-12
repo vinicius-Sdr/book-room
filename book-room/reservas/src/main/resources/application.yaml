@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: @project.name@
+    description: @project.version@
+    version: @project.description@
+  datasource:
+    url: ${BOOK_ROOM_RESERVA_SPRING_DATASOURCE_URL:}
+    username: ${BOOK_ROOM_RESERVA_SPRING_DATASOURCE_USERNAME:}
+    password: ${BOOK_ROOM_RESERVA_SPRING_DATASOURCE_PASSWORD:}
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+
+  profiles:
+    active: ${PROFILE_ENVIRONMENT:dev}
+    include: actuator, springdoc
