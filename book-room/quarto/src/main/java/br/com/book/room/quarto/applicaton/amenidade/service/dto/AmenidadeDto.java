@@ -6,6 +6,10 @@ import br.com.book.room.quarto.infrastructure.database.postgres.entity.Amenidade
 
 public record AmenidadeDto(Long id, String descricao) implements Serializable {
 
+	public AmenidadeDto(String descricao) {
+		this(null, descricao);
+	}
+
 	/**
 	 * @param amenidadeEntity
 	 * @return

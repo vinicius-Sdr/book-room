@@ -12,18 +12,11 @@ spring:
 
 logging:
   level:
-    br:
-      com:
-        book:
-          room:
-            quarto: debug
-    org:
-      hibernate:
-        type: TRACE
-        SQL: DEBUG
-      springframework:
-        security: DEBUG
-
+    br.com.book.room.quarto: debug
+    org.hibernate.type: TRACE
+    org.hibernate.SQL: DEBUG
+    org.springframework.data: DEBUG
+    org.springframework.web: DEBUG
 server:
   error:
     include-stacktrace: always

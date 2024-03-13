@@ -9,7 +9,7 @@ public class AmenidadeCamposObrigatorioImpl implements Validador<AmenidadeDto> {
 
 	@Override
 	public void validar(AmenidadeDto amenidadeDto) throws ValidationException {
-		if (StringUtils.isNotBlank(amenidadeDto.descricao())) {
+		if (StringUtils.isBlank(amenidadeDto.descricao())) {
 			throw new ValidationException("Campo 'descricao' da amenidade é obrigatório");
 		}
 	}
