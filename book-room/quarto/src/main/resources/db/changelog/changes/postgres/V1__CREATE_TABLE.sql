@@ -44,12 +44,12 @@ COMMENT ON COLUMN book_room_quarto.predio.nome IS 'Nome do prédio';
 COMMENT ON COLUMN book_room_quarto.predio.data_inclusao IS 'Data e hora de inclusão do registro';
 COMMENT ON COLUMN book_room_quarto.predio.data_alteracao IS 'Data e hora da última alteração do registro';
 
--- Tabela para armazenar informações sobre os tipo
+-- Tabela para armazenar informações sobre os tipos
 CREATE TABLE book_room_quarto.tipo
 (
     id             SERIAL PRIMARY KEY,                  -- Identificador único
-    nome           VARCHAR(255) NOT NULL,        -- Nome
-    categoria      VARCHAR(255) NOT NULL,        -- categoria
+    nome           VARCHAR(255) NOT NULL,               -- Nome
+    categoria      VARCHAR(255) NOT NULL,               -- categoria
     data_inclusao  TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora de inclusão do registro
     data_alteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora da última alteração do registro
     UNIQUE (nome, categoria)
@@ -93,6 +93,22 @@ COMMENT ON COLUMN book_room_quarto.quarto.quantidade_quartos IS 'Quantidade de q
 COMMENT ON COLUMN book_room_quarto.quarto.data_inclusao IS 'Data e hora de inclusão do registro';
 COMMENT ON COLUMN book_room_quarto.quarto.data_alteracao IS 'Data e hora da última alteração do registro';
 
+-- Tabela para armazenar informações sobre os móveis e itens presentes nos quartos
+CREATE TABLE book_room_quarto.quarto_itens
+(
+    id_quarto  INTEGER REFERENCES book_room_quarto.quarto (id) NOT NULL, -- Identificador do quarto
+    tipo_item  VARCHAR(50)                                     NOT NULL, -- Tipo de item (sofá, poltrona, frigobar, etc.)
+    quantidade INTEGER                                         NOT NULL, -- Quantidade do tipo de item
+    PRIMARY KEY (id_quarto, tipo_item),
+    CONSTRAINT fk_quarto_itens_quarto FOREIGN KEY (id_quarto) REFERENCES book_room_quarto.quarto (id)
+);
+
+COMMENT ON TABLE book_room_quarto.quarto_itens IS 'Tabela para armazenar informações sobre os móveis e itens presentes nos quartos';
+
+COMMENT ON COLUMN book_room_quarto.quarto_itens.id_quarto IS 'Identificador do quarto';
+COMMENT ON COLUMN book_room_quarto.quarto_itens.tipo_item IS 'Tipo de item presente no quarto';
+COMMENT ON COLUMN book_room_quarto.quarto_itens.quantidade IS 'Quantidade do tipo de item presente no quarto';
+
 -- Tabela para armazenar informações sobre as camas nos quartos
 CREATE TABLE book_room_quarto.quarto_camas
 (
@@ -116,7 +132,7 @@ COMMENT ON COLUMN book_room_quarto.quarto_camas.descricao IS 'Descrição adicio
 CREATE TABLE book_room_quarto.amenidades
 (
     id             SERIAL PRIMARY KEY,                  -- Identificador único da amenidade
-    descricao      VARCHAR(255) NOT NULL,               -- Descrição da amenidade
+    descricao      VARCHAR(255) UNIQUE NOT NULL,               -- Descrição da amenidade
     data_inclusao  TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora de inclusão do registro
     data_alteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- Data e hora da última alteração do registro
 );
