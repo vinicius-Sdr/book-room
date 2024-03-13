@@ -48,15 +48,14 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client editUser(Long id, ClientDTO clientDTO) throws Exception {
-//        Optional<Client> userOptional = clientRepository.findById(id);
-//        if (userOptional.isPresent()) {
-//            Client client = mapper.userDTOtoEntity(clientDTO);
-//            client.setId(id);
-//            return clientRepository.save(client);
-//        } else {
-//            throw new Exception("Número de id inválido");
-//        }
-        return null;
+        Optional<Client> userOptional = clientRepository.findById(id);
+        if (userOptional.isPresent()) {
+            Client client = ClientMapper.convertToUsuario(clientDTO);
+            client.setId(id);
+            return clientRepository.save(client);
+        } else {
+            throw new Exception("Número de id inválido");
+        }
     }
 
 

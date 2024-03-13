@@ -4,6 +4,7 @@ import br.com.book.room.clientes.model.DTO.ClientDTO;
 import br.com.book.room.clientes.service.ClientService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +29,12 @@ public class ClientController {
         return ResponseEntity.ok().body(clientService.getAllUsers());
     }
     @GetMapping("/{id}")
-    public ResponseEntity getClientById(@PathVariable(name = "id") @NotBlank Long id) {
+    public ResponseEntity getClientById(@Valid @PathVariable(name = "id") @NotNull Long id) {
         return ResponseEntity.ok().body(clientService.findById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity editClient(@PathVariable(name = "id") @NotBlank Long id,
+    public ResponseEntity editClient(@Valid @PathVariable(name = "id") @NotNull Long id,
                                       @Valid @RequestBody ClientDTO clientDTO) throws Exception {
 
         ResponseEntity<String> BAD_REQUEST = validateNacionality(clientDTO);
@@ -43,7 +44,7 @@ public class ClientController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteClient(@PathVariable Long id){
+    public ResponseEntity deleteClient(@Valid @PathVariable(name = "id") @NotNull Long id){
         return clientService.deleteUser(id);
     }
 

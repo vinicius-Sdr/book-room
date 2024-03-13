@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "client")
+@Entity(name = "CLIENT")
 @Data
 public class Client {
 
@@ -15,21 +15,29 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "CLIENT_NAME")
     private String name;
 
+    @Column(name ="BIRTH_DATE")
     private String birthDate;
 
+    @Column(name ="COUNTRY")
     private String country;
 
     //(obrigatório de Brasileiro)
+    @Column(name ="CPF")
     private String CPF;
     //(obrigatório se estrangeiro)
+    @Column(name ="PASSPORT")
     private String passport;
 
+    @Column(name ="ADDRESS")
     private String address;
 
+    @Column(name ="CELLPHONE")
     private String cellphone;
 
+    @Column(name ="EMAIL")
     private String email;
 
     public Client(String name, String birthDate, String country, String CPF, String passport, String address, String cellphone, String email) {
