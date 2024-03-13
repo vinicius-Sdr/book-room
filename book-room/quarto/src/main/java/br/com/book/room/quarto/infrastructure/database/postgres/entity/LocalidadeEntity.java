@@ -1,5 +1,6 @@
 package br.com.book.room.quarto.infrastructure.database.postgres.entity;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 import jakarta.persistence.Column;
@@ -11,20 +12,28 @@ import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "localidade", schema = "book_room_quarto",
 		indexes = { @Index(name = "localidade_nome_key", columnList = "nome", unique = true) })
-public class LocalidadeEntity {
+public class LocalidadeEntity implements Serializable {
+
+	private static final long serialVersionUID = 8252873982797218714L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
-	private Integer id;
+	private Long id;
 
 	@Size(max = 255)
 	@NotNull

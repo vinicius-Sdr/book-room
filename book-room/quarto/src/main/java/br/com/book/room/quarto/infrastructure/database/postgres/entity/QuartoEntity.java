@@ -1,5 +1,6 @@
 package br.com.book.room.quarto.infrastructure.database.postgres.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
 
@@ -14,25 +15,33 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "quarto", schema = "book_room_quarto",
-		indexes = { @Index(name = "quarto_id_predio_tipo_key", columnList = "id_predio, tipoEntity", unique = true) })
-public class Quarto {
+		indexes = { @Index(name = "quarto_id_predio_tipo_key", columnList = "id_predio, tipo", unique = true) })
+public class QuartoEntity implements Serializable {
+
+	private static final long serialVersionUID = -2853837012401991599L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
-	private Integer id;
+	private Long id;
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "id_predio", nullable = false)
-	private Predio predio;
+	private PredioEntity predio;
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -45,7 +54,7 @@ public class Quarto {
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "tipoEntity", nullable = false)
+	@JoinColumn(name = "tipo", nullable = false)
 	private TipoEntity tipo;
 
 	@NotNull

@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:book-room-quarto-test-db
+    username: root
+    password: root
+    driver-class-name: org.h2.Driver
+  jpa:
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+
+    hibernate:
+      ddl-auto: create-drop
+    #  utilizar apenas em desenvolviemento
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace

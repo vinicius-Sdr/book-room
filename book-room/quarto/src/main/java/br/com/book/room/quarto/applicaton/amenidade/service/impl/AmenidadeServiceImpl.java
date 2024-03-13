@@ -18,9 +18,9 @@ public class AmenidadeServiceImpl implements AmenidadeService {
 
 	private final AmenidadeRepository amenidadeRepository;
 
-	private final List<Validador> validadores;
+	private final List<Validador<AmenidadeDto>> validadores;
 
-	public AmenidadeServiceImpl(AmenidadeRepository amenidadeRepository, List<Validador> validadores) {
+	public AmenidadeServiceImpl(AmenidadeRepository amenidadeRepository, List<Validador<AmenidadeDto>> validadores) {
 		this.amenidadeRepository = amenidadeRepository;
 		this.validadores = validadores;
 	}

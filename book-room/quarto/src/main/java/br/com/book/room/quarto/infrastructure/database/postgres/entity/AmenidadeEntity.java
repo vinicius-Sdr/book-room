@@ -1,5 +1,6 @@
 package br.com.book.room.quarto.infrastructure.database.postgres.entity;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 import jakarta.persistence.Column;
@@ -15,18 +16,19 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "amenidades", schema = "book_room_quarto",
 		indexes = { @Index(name = "amenidades_descricao_key", columnList = "descricao", unique = true) })
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder(toBuilder = true)
-public class AmenidadeEntity {
+public class AmenidadeEntity implements Serializable {
+
+	private static final long serialVersionUID = 2918156029573710229L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,10 +46,7 @@ public class AmenidadeEntity {
 	@Column(name = "data_alteracao")
 	private Instant dataAlteracao;
 
-	/**
-	 * @param descricao
-	 */
-	public void altualizarDadosAmidade(@NonNull String descricao) {
+	public void altualizarDadosAmidade(@NotNull String descricao) {
 		this.descricao = descricao;
 	}
 
