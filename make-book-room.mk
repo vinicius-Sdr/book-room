@@ -81,3 +81,13 @@ docker_build_reservas: java_build
 		--build-arg JAR_FILE=$(DIR)/reservas/target/reservas-1.0-SNAPSHOT.jar \
 		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):$(DOCKER_VERSION_LABEL_IMAGE) \
 		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):latest .
+
+# subir container postgres book-room quarto
+docker_run_postgres_quarto:
+	@echo "Running build of the book-room quarto (postgres) docker image..."
+	cd $(DIR)/docker &&  docker-compose -f docker-compose-postgres.yaml -p book-room-quarto-db --env-file env/.env-book-room-quarto-db up -d --force-recreate --remove-orphans
+
+#parar container postgres book-room quarto
+docker_stop_postgres_quarto:
+	@echo "Running build of the book-room quarto (postgres) docker image..."
+	cd $(DIR)/docker &&  docker-compose -f docker-compose-postgres.yaml -p book-room-quarto-db --env-file env/.env-book-room-quarto-db down --remove-orphans
