@@ -47,10 +47,12 @@ public interface AmenidadeControllerSwagger {
 
 	@Operation(summary = "Excluir amenidade por ID", description = "Exclui uma amenidade com base no ID fornecido.",
 			responses = { @ApiResponse(responseCode = "204", description = "Amenidade excluída com sucesso"),
-					@ApiResponse(responseCode = "404", description = "Amenidade não encontrada",content = @Content(mediaType = "application/json",
-							schema = @Schema(implementation = ErrorMessage.class))),
-					@ApiResponse(responseCode = "500", description = "Erro interno no servidor",content = @Content(mediaType = "application/json",
-							schema = @Schema(implementation = ErrorMessage.class))) })
+					@ApiResponse(responseCode = "404", description = "Amenidade não encontrada",
+							content = @Content(mediaType = "application/json",
+									schema = @Schema(implementation = ErrorMessage.class))),
+					@ApiResponse(responseCode = "500", description = "Erro interno no servidor",
+							content = @Content(mediaType = "application/json",
+									schema = @Schema(implementation = ErrorMessage.class))) })
 	ResponseEntity<AmenidadeResponse> excluiAmenidade(
 			@Parameter(description = "ID da amenidade a ser excluída", required = true) Long id);
 

@@ -5,6 +5,7 @@ import br.com.book.room.quarto.presentation.amenidade.controller.swagger.Amenida
 import br.com.book.room.quarto.presentation.amenidade.dto.request.AmenidadeRequest;
 import br.com.book.room.quarto.presentation.amenidade.dto.response.AmenidadeResponse;
 import br.com.book.room.quarto.presentation.validation.CreateInfo;
+import br.com.book.room.quarto.presentation.validation.UpdateInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -32,8 +33,9 @@ public class AmenidadeController implements AmenidadeControllerSwagger {
 
 	@PostMapping
 	@Override
-	public ResponseEntity<AmenidadeResponse> cadastrar(@Validated(CreateInfo.class) @RequestBody AmenidadeRequest request,
-													   UriComponentsBuilder uriComponentsBuilder) {
+	public ResponseEntity<AmenidadeResponse> cadastrar(
+			@Validated(CreateInfo.class) @RequestBody AmenidadeRequest request,
+			UriComponentsBuilder uriComponentsBuilder) {
 		log.info("Cadastrando amenidade");
 
 		var amenidade = amenidadeService.cadastrarAmenidade(request.fromAmenidadeDto());
@@ -56,7 +58,7 @@ public class AmenidadeController implements AmenidadeControllerSwagger {
 	@Override
 	public ResponseEntity<AmenidadeResponse> consultarAmenidadePorId(@PathVariable Long id) {
 		log.info("Buscando amenidade por id");
-		var amenidadeDto	 = amenidadeService.consultarAmenidadePorId(id);
+		var amenidadeDto = amenidadeService.consultarAmenidadePorId(id);
 
 		return ResponseEntity.ok(AmenidadeResponse.fromAmenidadeResponse(amenidadeDto));
 	}
@@ -70,13 +72,14 @@ public class AmenidadeController implements AmenidadeControllerSwagger {
 		return ResponseEntity.noContent().build();
 	}
 
-
 	@PatchMapping("/{id}")
 	@Override
-	public ResponseEntity<AmenidadeResponse> alterarAmenidade(@PathVariable Long id, @RequestBody AmenidadeRequest request) {
+	public ResponseEntity<AmenidadeResponse> alterarAmenidade(@PathVariable Long id,
+			@Validated(UpdateInfo.class) @RequestBody AmenidadeRequest request) {
 		log.info("Alterando amenidade");
-		var amenidade = amenidadeService.alterarAmenidade(id,request.fromAmenidadeDto());
+		var amenidade = amenidadeService.alterarAmenidade(id, request.fromAmenidadeDto());
 
 		return ResponseEntity.ok(AmenidadeResponse.fromAmenidadeResponse(amenidade));
 	}
+
 }
