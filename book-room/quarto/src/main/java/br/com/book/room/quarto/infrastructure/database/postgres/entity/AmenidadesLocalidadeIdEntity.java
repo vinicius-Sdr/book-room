@@ -13,17 +13,17 @@ import org.hibernate.Hibernate;
 @Getter
 @Setter
 @Embeddable
-public class QuartoCamaId implements Serializable {
+public class AmenidadesLocalidadeIdEntity implements Serializable {
 
-	private static final long serialVersionUID = -7423807174463110466L;
-
-	@NotNull
-	@Column(name = "id_quarto", nullable = false)
-	private Integer idQuarto;
+	private static final long serialVersionUID = 7203746101749645661L;
 
 	@NotNull
-	@Column(name = "tipo_cama", nullable = false)
-	private Integer tipoCama;
+	@Column(name = "id_localidade", nullable = false)
+	private Integer idLocalidade;
+
+	@NotNull
+	@Column(name = "id_amenidade", nullable = false)
+	private Integer idAmenidade;
 
 	@Override
 	public boolean equals(Object o) {
@@ -31,13 +31,14 @@ public class QuartoCamaId implements Serializable {
 			return true;
 		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
 			return false;
-		QuartoCamaId entity = (QuartoCamaId) o;
-		return Objects.equals(this.tipoCama, entity.tipoCama) && Objects.equals(this.idQuarto, entity.idQuarto);
+		AmenidadesLocalidadeIdEntity entity = (AmenidadesLocalidadeIdEntity) o;
+		return Objects.equals(this.idLocalidade, entity.idLocalidade)
+				&& Objects.equals(this.idAmenidade, entity.idAmenidade);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(tipoCama, idQuarto);
+		return Objects.hash(idLocalidade, idAmenidade);
 	}
 
 }

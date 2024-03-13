@@ -21,7 +21,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "quarto", schema = "book_room_quarto",
-		indexes = { @Index(name = "quarto_id_predio_tipo_key", columnList = "id_predio, tipo", unique = true) })
+		indexes = { @Index(name = "quarto_id_predio_tipo_key", columnList = "id_predio, tipoEntity", unique = true) })
 public class Quarto {
 
 	@Id
@@ -32,12 +32,12 @@ public class Quarto {
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "id_predio", nullable = false)
-	private Predio idPredio;
+	private Predio predio;
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "id_localidade", nullable = false)
-	private Localidade idLocalidade;
+	private LocalidadeEntity localidade;
 
 	@NotNull
 	@Column(name = "total_pessoas", nullable = false)
@@ -45,8 +45,8 @@ public class Quarto {
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "tipo", nullable = false)
-	private Tipo tipo;
+	@JoinColumn(name = "tipoEntity", nullable = false)
+	private TipoEntity tipo;
 
 	@NotNull
 	@Column(name = "valor_diaria", nullable = false, precision = 10, scale = 2)

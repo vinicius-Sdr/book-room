@@ -6,6 +6,7 @@ import java.util.Objects;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
@@ -13,17 +14,18 @@ import org.hibernate.Hibernate;
 @Getter
 @Setter
 @Embeddable
-public class AmenidadesLocalidadeId implements Serializable {
+public class QuartoItemIdEntity implements Serializable {
 
-	private static final long serialVersionUID = 7203746101749645661L;
-
-	@NotNull
-	@Column(name = "id_localidade", nullable = false)
-	private Integer idLocalidade;
+	private static final long serialVersionUID = -2786936631005598338L;
 
 	@NotNull
-	@Column(name = "id_amenidade", nullable = false)
-	private Integer idAmenidade;
+	@Column(name = "id_quarto", nullable = false)
+	private Integer idQuarto;
+
+	@Size(max = 50)
+	@NotNull
+	@Column(name = "tipo_item", nullable = false, length = 50)
+	private String tipoItem;
 
 	@Override
 	public boolean equals(Object o) {
@@ -31,14 +33,13 @@ public class AmenidadesLocalidadeId implements Serializable {
 			return true;
 		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
 			return false;
-		AmenidadesLocalidadeId entity = (AmenidadesLocalidadeId) o;
-		return Objects.equals(this.idLocalidade, entity.idLocalidade)
-				&& Objects.equals(this.idAmenidade, entity.idAmenidade);
+		QuartoItemIdEntity entity = (QuartoItemIdEntity) o;
+		return Objects.equals(this.tipoItem, entity.tipoItem) && Objects.equals(this.idQuarto, entity.idQuarto);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idLocalidade, idAmenidade);
+		return Objects.hash(tipoItem, idQuarto);
 	}
 
 }

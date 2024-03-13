@@ -1,5 +1,7 @@
 package br.com.book.room.quarto.infrastructure.database.postgres.entity;
 
+import java.time.Instant;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -15,27 +17,30 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "quarto_camas", schema = "book_room_quarto")
-public class QuartoCama {
+@Table(name = "amenidades_localidade", schema = "book_room_quarto")
+public class AmenidadesLocalidadeEntity {
 
 	@EmbeddedId
-	private QuartoCamaId id;
+	private AmenidadesLocalidadeIdEntity id;
 
-	@MapsId("idQuarto")
+	@MapsId("idLocalidadeEntity")
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "id_quarto", nullable = false)
-	private Quarto idQuarto;
+	@JoinColumn(name = "id_localidade", nullable = false)
+	private LocalidadeEntity localidade;
 
-	@MapsId("tipoCama")
+	@MapsId("idAmenidadeEntity")
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "tipo_cama", nullable = false)
-	private Tipo tipoCama;
+	@JoinColumn(name = "id_amenidade", nullable = false)
+	private AmenidadeEntity amenidade;
 
 	@NotNull
 	@Column(name = "quantidade", nullable = false)
 	private Integer quantidade;
 
-	@Column(name = "descricao", length = Integer.MAX_VALUE)
-	private String descricao;
+	@Column(name = "data_inclusao")
+	private Instant dataInclusao;
+
+	@Column(name = "data_alteracao")
+	private Instant dataAlteracao;
 
 }

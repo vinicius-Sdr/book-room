@@ -15,19 +15,27 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "quarto_itens", schema = "book_room_quarto")
-public class QuartoIten {
+@Table(name = "quarto_camas", schema = "book_room_quarto")
+public class QuartoCamaEntity {
 
 	@EmbeddedId
-	private QuartoItenId id;
+	private QuartoCamaIdEntity id;
 
 	@MapsId("idQuarto")
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "id_quarto", nullable = false)
 	private Quarto idQuarto;
 
+	@MapsId("tipoEntityCama")
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "tipo_cama", nullable = false)
+	private TipoEntity tipo;
+
 	@NotNull
 	@Column(name = "quantidade", nullable = false)
 	private Integer quantidade;
+
+	@Column(name = "descricao", length = Integer.MAX_VALUE)
+	private String descricao;
 
 }

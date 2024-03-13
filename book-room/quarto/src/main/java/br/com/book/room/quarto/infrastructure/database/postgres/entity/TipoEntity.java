@@ -17,9 +17,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "amenidades", schema = "book_room_quarto",
-		indexes = { @Index(name = "amenidades_descricao_key", columnList = "descricao", unique = true) })
-public class Amenidade {
+@Table(name = "tipo", schema = "book_room_quarto",
+		indexes = { @Index(name = "tipo_nome_categoria_key", columnList = "nome, categoria", unique = true) })
+public class TipoEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +28,13 @@ public class Amenidade {
 
 	@Size(max = 255)
 	@NotNull
-	@Column(name = "descricao", nullable = false)
-	private String descricao;
+	@Column(name = "nome", nullable = false)
+	private String nome;
+
+	@Size(max = 255)
+	@NotNull
+	@Column(name = "categoria", nullable = false)
+	private String categoria;
 
 	@Column(name = "data_inclusao")
 	private Instant dataInclusao;

@@ -1,7 +1,5 @@
 package br.com.book.room.quarto.infrastructure.database.postgres.entity;
 
-import java.time.Instant;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -17,30 +15,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "amenidades_localidade", schema = "book_room_quarto")
-public class AmenidadesLocalidade {
+@Table(name = "quarto_itens", schema = "book_room_quarto")
+public class QuartoItemEntity {
 
 	@EmbeddedId
-	private AmenidadesLocalidadeId id;
+	private QuartoItemIdEntity id;
 
-	@MapsId("idLocalidade")
+	@MapsId("idQuarto")
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "id_localidade", nullable = false)
-	private Localidade idLocalidade;
-
-	@MapsId("idAmenidade")
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "id_amenidade", nullable = false)
-	private Amenidade idAmenidade;
+	@JoinColumn(name = "id_quarto", nullable = false)
+	private Quarto quarto;
 
 	@NotNull
 	@Column(name = "quantidade", nullable = false)
 	private Integer quantidade;
-
-	@Column(name = "data_inclusao")
-	private Instant dataInclusao;
-
-	@Column(name = "data_alteracao")
-	private Instant dataAlteracao;
 
 }

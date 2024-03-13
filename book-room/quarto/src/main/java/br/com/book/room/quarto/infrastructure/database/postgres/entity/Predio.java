@@ -32,7 +32,7 @@ public class Predio {
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "id_localidade", nullable = false)
-	private Localidade idLocalidade;
+	private LocalidadeEntity localidade;
 
 	@Size(max = 255)
 	@NotNull
