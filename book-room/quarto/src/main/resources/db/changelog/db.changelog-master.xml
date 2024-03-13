@@ -6,4 +6,5 @@
 https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
 
     <includeAll path="/db/changelog/changes/postgres/"/>
+    <include file="db/changelog/2024/03/13-01-changelog.xml"/>
 </databaseChangeLog>

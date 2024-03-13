@@ -9,7 +9,7 @@ O arquivo `docker-compose-postgres.yaml` foi configurado de forma genérica para
 
 Você pode encontrar o arquivo `docker-compose-postgres.yaml` [aqui](docker-compose-postgres.yaml).
 
-- Exemplo de como criar o arquivo [`env/.env-book-room-quarto-db`](env/.env-wells-usuario-db) para iniciar  o `docker-compose-postgres.yaml` .
+- Exemplo de como criar o arquivo [`env/.env-book-room-quarto-db`](env/.env-book-room-db) para iniciar  o `docker-compose-postgres.yaml` .
 
 ```text
 POSTGRES_DB=book-room-quarto
