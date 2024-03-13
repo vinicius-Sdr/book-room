@@ -54,9 +54,9 @@ public class AmenidadeServiceImpl implements AmenidadeService {
 	}
 
 	@Override
-	public AmenidadeDto alterarAmenidade(AmenidadeDto amenidadeDto) {
+	public AmenidadeDto alterarAmenidade(Long id, AmenidadeDto amenidadeDto) {
 		validadores.forEach(validador -> validador.validar(amenidadeDto));
-		var amenidade = Optional.of(amenidadeRepository.getReferenceById(amenidadeDto.id()))
+		var amenidade = Optional.of(amenidadeRepository.getReferenceById(id))
 			.orElseThrow(() -> new EntityNotFoundException("Amenidade não encontrada"));
 
 		amenidade.altualizarDadosAmidade(amenidadeDto.descricao());

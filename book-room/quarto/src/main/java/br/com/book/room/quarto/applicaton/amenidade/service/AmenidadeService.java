@@ -30,9 +30,10 @@ public interface AmenidadeService {
 	void deletarAmenidade(Long id);
 
 	/**
+	 * @param id
 	 * @param amenidadeDto
 	 * @return
 	 */
-	AmenidadeDto alterarAmenidade(AmenidadeDto amenidadeDto);
+	AmenidadeDto alterarAmenidade(Long id, AmenidadeDto amenidadeDto);
 
 }
