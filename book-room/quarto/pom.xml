@@ -40,6 +40,13 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
@@ -106,7 +113,7 @@
 		<!-- cucumber -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-java</artifactId>
+			<artifactId>cucumber-spring</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -114,6 +121,17 @@
 			<artifactId>cucumber-junit-platform-engine</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<scope>test</scope>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>io.cucumber</groupId>-->
+<!--			<artifactId>cucumber-junit-platform-engine</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-suite</artifactId>

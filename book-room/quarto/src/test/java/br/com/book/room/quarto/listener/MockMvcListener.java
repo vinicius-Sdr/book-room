@@ -9,23 +9,24 @@ import org.springframework.test.web.servlet.ResultHandler;
 
 public class MockMvcListener implements TestWatcher {
 
-    @Override
-    public void testFailed(ExtensionContext context, Throwable cause) {
-        MvcResult mvcResult = getMvcResultFromContext(context);
-        try {
-            printRequestResponse(mvcResult);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+	@Override
+	public void testFailed(ExtensionContext context, Throwable cause) {
+		MvcResult mvcResult = getMvcResultFromContext(context);
+		try {
+			printRequestResponse(mvcResult);
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-    private MvcResult getMvcResultFromContext(ExtensionContext context) {
-        return (MvcResult) context.getStore(ExtensionContext.Namespace.create(getClass()))
-                .get("mvcResult");
-    }
+	private MvcResult getMvcResultFromContext(ExtensionContext context) {
+		return (MvcResult) context.getStore(ExtensionContext.Namespace.create(getClass())).get("mvcResult");
+	}
 
-    private void printRequestResponse(MvcResult mvcResult) throws Exception {
-        ResultHandler resultHandler = print();
-        resultHandler.handle(mvcResult);
-    }
+	private void printRequestResponse(MvcResult mvcResult) throws Exception {
+		ResultHandler resultHandler = print();
+		resultHandler.handle(mvcResult);
+	}
+
 }

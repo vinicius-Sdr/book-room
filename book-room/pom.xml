@@ -94,6 +94,13 @@
             <!-- cucumber -->
             <dependency>
                 <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-bom</artifactId>
+                <version>${cucumber-java.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
                 <artifactId>cucumber-java</artifactId>
                 <version>${cucumber-java.version}</version>
             </dependency>
@@ -107,7 +114,7 @@
                 <artifactId>junit-platform-suite</artifactId>
                 <version>${junit-platform-suite.version}</version>
             </dependency>
-            
+
             <!--rest-assured -->
             <dependency>
                 <groupId>io.rest-assured</groupId>

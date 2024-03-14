@@ -15,22 +15,18 @@ import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class RestApiApplicationIT {
 
-    @LocalServerPort
-    private int port;
+	@LocalServerPort
+	private int port;
 
-    @BeforeEach
-    public void setup() throws Exception {
-        RestAssured.port = port;
-        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-    }
+	@BeforeEach
+	public void setup() throws Exception {
+		RestAssured.port = port;
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+	}
 
-    @Test
-    void deveApliacaoIniciarCorretamente() {
-        given()
-                .when()
-                .get("/actuator/health")
-                .then()
-                .statusCode(HttpStatus.OK.value())
-                .body("status", equalTo("UP"));
-    }
+	@Test
+	void deveApliacaoIniciarCorretamente() {
+		given().when().get("/actuator/health").then().statusCode(HttpStatus.OK.value()).body("status", equalTo("UP"));
+	}
+
 }
