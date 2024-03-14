@@ -3,6 +3,7 @@ package br.com.book.room.quarto.presentation.exception;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.book.room.quarto.presentation.exception.swagger.ErrorMessageSwagger;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;

@@ -1,0 +1,7 @@
+
+app:
+  swagger:
+    application:
+      title: ${spring.application.name}
+      description: ${spring.application.description}
+      version: ${spring.application.version}

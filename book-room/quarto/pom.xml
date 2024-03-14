@@ -11,7 +11,7 @@
 
 	<artifactId>quarto</artifactId>
 	<name>quarto</name>
-	<description>quarto</description>
+	<description>Api de Gestao de Quartos</description>
 	<packaging>jar</packaging>
 
 

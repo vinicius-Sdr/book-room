@@ -1,4 +1,4 @@
-package br.com.book.room.quarto.infrastructure.spring.config.core;
+package br.com.book.room.quarto.infrastructure.config.spring.core;
 
 import java.util.List;
 

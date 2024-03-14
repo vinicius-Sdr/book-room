@@ -20,6 +20,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
 
 @Builder
 @AllArgsConstructor
@@ -65,9 +67,11 @@ public class QuartoEntity implements Serializable {
 	@Column(name = "quantidade_quartos", nullable = false)
 	private Integer quantidadeQuartos;
 
+	@CreatedBy
 	@Column(name = "data_inclusao")
 	private Instant dataInclusao;
 
+	@LastModifiedBy
 	@Column(name = "data_alteracao")
 	private Instant dataAlteracao;
 

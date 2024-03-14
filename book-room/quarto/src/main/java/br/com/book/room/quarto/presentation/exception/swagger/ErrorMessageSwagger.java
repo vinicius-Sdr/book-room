@@ -1,4 +1,4 @@
-package br.com.book.room.quarto.presentation.exception;
+package br.com.book.room.quarto.presentation.exception.swagger;
 
 import java.util.Map;
 
@@ -24,5 +24,5 @@ public interface ErrorMessageSwagger {
 
 	@Schema(description = "Mapa de erros de validação do objeto")
 	Map<String, String> getErrors();
-}
 
+}

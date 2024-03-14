@@ -3,8 +3,8 @@ server:
 spring:
   application:
     name: @project.name@
-    description: @project.version@
-    version: @project.description@
+    description: @project.description@
+    version: @project.version@
   datasource:
     url: ${BOOK_ROOM_QUARTO_SPRING_DATASOURCE_URL:}
     username: ${BOOK_ROOM_QUARTO_SPRING_DATASOURCE_USERNAME:}
@@ -24,4 +24,4 @@ spring:
 
   profiles:
     active: ${PROFILE_ENVIRONMENT:dev}
-    include: actuator, springdoc
+    include: actuator, springdoc, app

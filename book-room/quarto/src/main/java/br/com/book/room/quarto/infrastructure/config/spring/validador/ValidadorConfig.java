@@ -1,4 +1,4 @@
-package br.com.book.room.quarto.infrastructure.spring.config.validador;
+package br.com.book.room.quarto.infrastructure.config.spring.validador;
 
 import br.com.book.room.quarto.applicaton.amenidade.service.impl.AmenidadeCamposObrigatorioImpl;
 import br.com.book.room.quarto.applicaton.validacao.Validador;

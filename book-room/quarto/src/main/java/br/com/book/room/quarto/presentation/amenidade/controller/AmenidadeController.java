@@ -1,6 +1,7 @@
 package br.com.book.room.quarto.presentation.amenidade.controller;
 
 import br.com.book.room.quarto.applicaton.amenidade.service.AmenidadeService;
+import br.com.book.room.quarto.infrastructure.config.spring.api.ApiRoutes;
 import br.com.book.room.quarto.presentation.amenidade.controller.swagger.AmenidadeControllerSwagger;
 import br.com.book.room.quarto.presentation.amenidade.dto.request.AmenidadeRequest;
 import br.com.book.room.quarto.presentation.amenidade.dto.response.AmenidadeResponse;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/api/v1/amenidade")
+@RequestMapping(ApiRoutes.AMENIDADE_URI)
 
 @Slf4j
 @RequiredArgsConstructor
@@ -40,7 +41,7 @@ public class AmenidadeController implements AmenidadeControllerSwagger {
 
 		var amenidade = amenidadeService.cadastrarAmenidade(request.fromAmenidadeDto());
 
-		var uri = uriComponentsBuilder.path("/api/v1/amenidade/{id}").buildAndExpand(amenidade.id()).toUri();
+		var uri = ApiRoutes.construirUriAmenidadePorId(amenidade.id());
 
 		return ResponseEntity.created(uri).body(AmenidadeResponse.fromAmenidadeResponse(amenidade));
 	}

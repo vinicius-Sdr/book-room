@@ -17,6 +17,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
 
 @Builder
 @AllArgsConstructor
@@ -46,9 +48,11 @@ public class AmenidadesLocalidadeEntity implements Serializable {
 	@Column(name = "quantidade", nullable = false)
 	private Integer quantidade;
 
+	@CreatedBy
 	@Column(name = "data_inclusao")
 	private Instant dataInclusao;
 
+	@LastModifiedBy
 	@Column(name = "data_alteracao")
 	private Instant dataAlteracao;
 
