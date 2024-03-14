@@ -11,4 +11,5 @@ public class BookRoomEntityNotFoundException extends RuntimeException {
 	public BookRoomEntityNotFoundException(String message, EntityNotFoundException e) {
 		super(message, e);
 	}
+
 }

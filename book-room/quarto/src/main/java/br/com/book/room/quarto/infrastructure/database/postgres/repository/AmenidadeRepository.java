@@ -40,7 +40,7 @@ public interface AmenidadeRepository extends JpaRepository<AmenidadeEntity, Long
 	}
 
 	default void deleteAmenidadeById(Long id) {
-		var amenidade	 = findAmenidadeById(id);
+		var amenidade = findAmenidadeById(id);
 		deleteById(amenidade.id());
 
 	}

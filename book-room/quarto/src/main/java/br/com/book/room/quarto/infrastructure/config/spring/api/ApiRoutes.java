@@ -15,11 +15,17 @@ public final class ApiRoutes {
 	// URI para as amenidades
 	public static final String AMENIDADE_URI = API + VERSAO + "/amenidades";
 
+	public static final String LOCALIDADE_URI = API + VERSAO + "/localidades";
+
 	private ApiRoutes() {
 	}
 
 	public static URI construirUriAmenidadePorId(Long id) {
 		return construirUriPorId(AMENIDADE_URI, id);
+	}
+
+	public static URI construirUriLocalidadePorId(Long id) {
+		return construirUriPorId(LOCALIDADE_URI, id);
 	}
 
 	private static URI construirUriPorId(String recurso, Long id) {

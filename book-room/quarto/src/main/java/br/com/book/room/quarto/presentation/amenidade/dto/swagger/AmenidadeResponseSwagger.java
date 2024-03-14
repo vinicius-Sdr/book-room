@@ -1,4 +1,4 @@
-package br.com.book.room.quarto.presentation.amenidade.dto.response.swagger;
+package br.com.book.room.quarto.presentation.amenidade.dto.swagger;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

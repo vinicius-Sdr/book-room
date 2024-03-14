@@ -1,4 +1,4 @@
-package br.com.book.room.quarto.applicaton.amenidade.service.impl;
+package br.com.book.room.quarto.applicaton.amenidade.service;
 
 import br.com.book.room.quarto.applicaton.amenidade.service.AmenidadeService;
 import br.com.book.room.quarto.domain.core.amenidade.Amenidade;

@@ -20,7 +20,7 @@ public class ApiExceptionHandler {
 
 	private static final String MSG_ERROR = "[Error ] - ";
 
-	@ExceptionHandler({ BookRoomEntityNotFoundException.class, ValidationException.class})
+	@ExceptionHandler({ BookRoomEntityNotFoundException.class, ValidationException.class })
 	public ResponseEntity<ErrorMessage> entityNotFoundException(RuntimeException ex, HttpServletRequest request) {
 		log.error(MSG_ERROR, ex);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -50,10 +50,9 @@ public class ApiExceptionHandler {
 	@ExceptionHandler(BookRoomUniqueViolationException.class)
 	public ResponseEntity<ErrorMessage> uniqueViolationException(RuntimeException ex, HttpServletRequest request) {
 		log.error("Api Error - ", ex);
-		return ResponseEntity
-				.status(HttpStatus.CONFLICT)
-				.contentType(MediaType.APPLICATION_JSON)
-				.body(new ErrorMessage(request, HttpStatus.CONFLICT, ex.getMessage()));
+		return ResponseEntity.status(HttpStatus.CONFLICT)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(new ErrorMessage(request, HttpStatus.CONFLICT, ex.getMessage()));
 	}
 
 }

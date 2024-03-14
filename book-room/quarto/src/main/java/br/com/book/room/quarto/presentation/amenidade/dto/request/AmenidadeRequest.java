@@ -1,7 +1,7 @@
 package br.com.book.room.quarto.presentation.amenidade.dto.request;
 
 import br.com.book.room.quarto.domain.core.amenidade.Amenidade;
-import br.com.book.room.quarto.presentation.amenidade.dto.response.swagger.AmenidadeRequestSwagger;
+import br.com.book.room.quarto.presentation.amenidade.dto.swagger.AmenidadeRequestSwagger;
 import br.com.book.room.quarto.presentation.validation.CreateInfo;
 import br.com.book.room.quarto.presentation.validation.UpdateInfo;
 import jakarta.validation.constraints.NotEmpty;
