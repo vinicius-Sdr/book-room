@@ -1,6 +1,6 @@
 package br.com.book.room.quarto.applicaton.amenidade.service;
 
-import br.com.book.room.quarto.applicaton.amenidade.service.dto.AmenidadeDto;
+import br.com.book.room.quarto.domain.core.amenidade.Amenidade;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -10,19 +10,19 @@ public interface AmenidadeService {
 	 * @param pageable
 	 * @return
 	 */
-	Page<AmenidadeDto> consultarAmenidades(Pageable pageable);
+	Page<Amenidade> consultarAmenidades(Pageable pageable);
 
 	/**
 	 * @param id
 	 * @return
 	 */
-	AmenidadeDto consultarAmenidadePorId(Long id);
+	Amenidade consultarAmenidadePorId(Long id);
 
 	/**
-	 * @param amenidadeDto
+	 * @param amenidade
 	 * @return
 	 */
-	AmenidadeDto cadastrarAmenidade(AmenidadeDto amenidadeDto);
+	Amenidade cadastrarAmenidade(Amenidade amenidade);
 
 	/**
 	 * @param id
@@ -31,9 +31,9 @@ public interface AmenidadeService {
 
 	/**
 	 * @param id
-	 * @param amenidadeDto
+	 * @param amenidade
 	 * @return
 	 */
-	AmenidadeDto alterarAmenidade(Long id, AmenidadeDto amenidadeDto);
+	Amenidade alterarAmenidade(Long id, Amenidade amenidade);
 
 }

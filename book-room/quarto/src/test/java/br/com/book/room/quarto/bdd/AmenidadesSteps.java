@@ -36,12 +36,12 @@ public class AmenidadesSteps {
 
 	@Então("deve ser retornado o status code {int}")
 	public void deve_ser_retornado_o_status_code(Integer statusCode) {
-	//	assertEquals(statusCode, response.getStatusCode());
+		// assertEquals(statusCode, response.getStatusCode());
 	}
 
 	@Então("deve ser retornado todas as amenidades cadastradas")
 	public void deve_ser_retornado_todas_as_amenidades_cadastradas() {
-	//	assertEquals(200, response.getStatusCode());
+		// assertEquals(200, response.getStatusCode());
 	}
 
 }

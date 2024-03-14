@@ -1,6 +1,6 @@
 package br.com.book.room.quarto.presentation.amenidade.dto.request;
 
-import br.com.book.room.quarto.applicaton.amenidade.service.dto.AmenidadeDto;
+import br.com.book.room.quarto.domain.core.amenidade.Amenidade;
 import br.com.book.room.quarto.presentation.amenidade.dto.response.swagger.AmenidadeRequestSwagger;
 import br.com.book.room.quarto.presentation.validation.CreateInfo;
 import br.com.book.room.quarto.presentation.validation.UpdateInfo;
@@ -17,7 +17,7 @@ public record AmenidadeRequest(@NotEmpty(groups = {
 	/**
 	 * @return
 	 */
-	public AmenidadeDto fromAmenidadeDto() {
-		return new AmenidadeDto(this.descricao());
+	public Amenidade fromAmenidadeDto() {
+		return new Amenidade(this.descricao());
 	}
 }

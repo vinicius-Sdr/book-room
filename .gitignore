@@ -13,6 +13,7 @@
 .idea/**/shelf
 **/.idea/**
 
+**/allure-results/**
 # AWS User-specific
 .idea/**/aws.xml
 

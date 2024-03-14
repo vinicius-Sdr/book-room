@@ -1,67 +1,44 @@
 package br.com.book.room.quarto.applicaton.amenidade.service.impl;
 
-import java.util.List;
-import java.util.Optional;
-
 import br.com.book.room.quarto.applicaton.amenidade.service.AmenidadeService;
-import br.com.book.room.quarto.applicaton.amenidade.service.dto.AmenidadeDto;
-import br.com.book.room.quarto.applicaton.exception.EntityNotFoundException;
-import br.com.book.room.quarto.applicaton.validacao.Validador;
-import br.com.book.room.quarto.infrastructure.database.postgres.repository.AmenidadeRepository;
+import br.com.book.room.quarto.domain.core.amenidade.Amenidade;
+import br.com.book.room.quarto.domain.core.amenidade.AmenidadeRepositoryPort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-/**
- * @see AmenidadeService
- */
 public class AmenidadeServiceImpl implements AmenidadeService {
 
-	private final AmenidadeRepository amenidadeRepository;
+	private final AmenidadeRepositoryPort amenidadeRepository;
 
-	private final List<Validador<AmenidadeDto>> validadores;
-
-	public AmenidadeServiceImpl(AmenidadeRepository amenidadeRepository, List<Validador<AmenidadeDto>> validadores) {
+	public AmenidadeServiceImpl(AmenidadeRepositoryPort amenidadeRepository) {
 		this.amenidadeRepository = amenidadeRepository;
-		this.validadores = validadores;
 	}
 
 	@Override
-	public Page<AmenidadeDto> consultarAmenidades(Pageable pageable) {
-
-		return amenidadeRepository.findAll(pageable).map(AmenidadeDto::fromEntity);
+	public Page<Amenidade> consultarAmenidades(Pageable pageable) {
+		return amenidadeRepository.findAllAmenidades(pageable);
 	}
 
 	@Override
-	public AmenidadeDto consultarAmenidadePorId(Long id) {
-
-		return amenidadeRepository.findById(id)
-			.map(AmenidadeDto::fromEntity)
-			.orElseThrow(() -> new EntityNotFoundException("Amenidade não encontrada"));
+	public Amenidade consultarAmenidadePorId(Long id) {
+		return amenidadeRepository.findAmenidadeById(id);
 	}
 
 	@Override
-	public AmenidadeDto cadastrarAmenidade(AmenidadeDto amenidadeDto) {
-		validadores.forEach(validador -> validador.validar(amenidadeDto));
+	public Amenidade cadastrarAmenidade(Amenidade amenidade) {
 
-		var amSalva = amenidadeRepository.save(amenidadeDto.toEntity());
-
-		return new AmenidadeDto(amSalva.getId(), amSalva.getDescricao());
+		return amenidadeRepository.saveAmenidade(amenidade);
 	}
 
 	@Override
 	public void deletarAmenidade(Long id) {
-		amenidadeRepository.deleteById(id);
+		amenidadeRepository.deleteAmenidadeById(id);
 	}
 
 	@Override
-	public AmenidadeDto alterarAmenidade(Long id, AmenidadeDto amenidadeDto) {
-		validadores.forEach(validador -> validador.validar(amenidadeDto));
-		var amenidade = Optional.of(amenidadeRepository.getReferenceById(id))
-			.orElseThrow(() -> new EntityNotFoundException("Amenidade não encontrada"));
+	public Amenidade alterarAmenidade(Long id, Amenidade amenidade) {
 
-		amenidade.altualizarDadosAmidade(amenidadeDto.descricao());
-
-		return AmenidadeDto.fromEntity(amenidadeRepository.save(amenidade));
+		return amenidadeRepository.alterarAmenidade(id, amenidade);
 	}
 
 }

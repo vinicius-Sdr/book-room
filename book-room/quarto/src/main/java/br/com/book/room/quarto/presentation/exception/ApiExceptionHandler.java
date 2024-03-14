@@ -1,6 +1,7 @@
 package br.com.book.room.quarto.presentation.exception;
 
-import br.com.book.room.quarto.applicaton.exception.EntityNotFoundException;
+import br.com.book.room.quarto.applicaton.exception.BookRoomUniqueViolationException;
+import br.com.book.room.quarto.applicaton.exception.BookRoomEntityNotFoundException;
 import br.com.book.room.quarto.applicaton.validacao.exception.ValidationException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ public class ApiExceptionHandler {
 
 	private static final String MSG_ERROR = "[Error ] - ";
 
-	@ExceptionHandler({ EntityNotFoundException.class, ValidationException.class })
+	@ExceptionHandler({ BookRoomEntityNotFoundException.class, ValidationException.class})
 	public ResponseEntity<ErrorMessage> entityNotFoundException(RuntimeException ex, HttpServletRequest request) {
 		log.error(MSG_ERROR, ex);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -44,6 +45,15 @@ public class ApiExceptionHandler {
 			.contentType(MediaType.APPLICATION_JSON)
 			.body(new ErrorMessage(request, HttpStatus.BAD_REQUEST,
 					"Erro de leitura JSON: " + ex.getMostSpecificCause().getMessage()));
+	}
+
+	@ExceptionHandler(BookRoomUniqueViolationException.class)
+	public ResponseEntity<ErrorMessage> uniqueViolationException(RuntimeException ex, HttpServletRequest request) {
+		log.error("Api Error - ", ex);
+		return ResponseEntity
+				.status(HttpStatus.CONFLICT)
+				.contentType(MediaType.APPLICATION_JSON)
+				.body(new ErrorMessage(request, HttpStatus.CONFLICT, ex.getMessage()));
 	}
 
 }
