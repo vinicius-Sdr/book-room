@@ -22,13 +22,16 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-
         <!-- version libs -->
-        <junit.version>5.10.2</junit.version>
-        <assertj-core.version>3.25.3</assertj-core.version>
         <springdoc.version>2.3.0</springdoc.version>
         <postgresql.version>42.3.9</postgresql.version>
+
+        <!-- test -->
         <mockito.version>5.11.0</mockito.version>
+        <assertj-core.version>3.25.3</assertj-core.version>
+        <junit.version>5.10.2</junit.version>
+        <cucumber-java.version>7.15.0</cucumber-java.version>
+        <junit-platform-suite.version>1.10.1</junit-platform-suite.version>
     </properties>
 
     <modules>
@@ -55,6 +58,51 @@
                 <version>${postgresql.version}</version>
             </dependency>
 
+            <!--  Test -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj-core.version}</version>
+            </dependency>
+
+            <!-- cucumber -->
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>${cucumber-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-junit-platform-engine</artifactId>
+                <version>${cucumber-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-suite</artifactId>
+                <version>${junit-platform-suite.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

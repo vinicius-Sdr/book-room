@@ -23,5 +23,5 @@ spring:
     database: postgresql
 
   profiles:
-    active: ${PROFILE_ENVIRONMENT:dev}
+    active: ${PROFILE_ENVIRONMENT:}
     include: actuator, springdoc, app

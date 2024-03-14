@@ -17,6 +17,7 @@ logging:
     org.hibernate.SQL: DEBUG
     org.springframework.data: DEBUG
     org.springframework.web: DEBUG
+    liquibase : info
 server:
   error:
     include-stacktrace: always
