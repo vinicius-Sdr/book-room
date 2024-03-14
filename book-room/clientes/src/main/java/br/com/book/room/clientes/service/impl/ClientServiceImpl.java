@@ -57,6 +57,4 @@ public class ClientServiceImpl implements ClientService {
             throw new Exception("Número de id inválido");
         }
     }
-
-
 }
