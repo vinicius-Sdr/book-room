@@ -110,10 +110,10 @@ A implementação da Clean Architecture no Projeto Wells segue a seguinte estrut
 
 ## Módulos
 
-- [cliente](cliente/README.md#descrição-do-projeto)
-    - [quarto](quarto/README.md)
-    - [reservas](reservas/README.md)
-    - [serviço-opcional](servico-opcionais/README.md)
+- [cliente](cliente/README.md)
+- [quarto](quarto/README.md)
+- [reservas](reservas/README.md)
+- [serviço-opcional](servico-opcionais/README.md)
 
 ## Referência Bibliográfica
 
