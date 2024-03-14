@@ -1,0 +1,10 @@
+spring:
+  config:
+    activate:
+      on-profile: springdoc
+
+springdoc:
+  swagger-ui:
+    path: /docs-${spring.application.name}.html
+  api-docs:
+    path: /docs-${spring.application.name}
