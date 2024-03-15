@@ -7,10 +7,13 @@ import br.com.book.room.quarto.infrastructure.config.spring.api.ApiRoutes;
 import br.com.book.room.quarto.presentation.localidade.controller.swagger.LocalidadeControllerSwagger;
 import br.com.book.room.quarto.presentation.localidade.dto.request.LocalidadeRequest;
 import br.com.book.room.quarto.presentation.localidade.dto.response.LocalidadeResponse;
+import br.com.book.room.quarto.presentation.validation.CreateInfo;
+import br.com.book.room.quarto.presentation.validation.UpdateInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +37,7 @@ public class LocalidadeController implements LocalidadeControllerSwagger {
 
 	@PostMapping
 	@Override
-	public ResponseEntity<LocalidadeResponse> cadastrar(@RequestBody LocalidadeRequest request,
+	public ResponseEntity<LocalidadeResponse> cadastrar(@Validated(CreateInfo.class) @RequestBody LocalidadeRequest request,
 			UriComponentsBuilder uriComponentsBuilder) {
 		log.info("Cadastrando localidade");
 		var localidade = localidadeService.cadastrarLocalidade(request.toDomain());
@@ -71,7 +74,7 @@ public class LocalidadeController implements LocalidadeControllerSwagger {
 	@PutMapping("/{id}")
 	@Override
 	public ResponseEntity<LocalidadeResponse> alterarLocalidade(@PathVariable Long id,
-			@RequestBody LocalidadeRequest request) {
+																@Validated(UpdateInfo.class) @RequestBody LocalidadeRequest request) {
 		log.info("Alterando localidade por id");
 		var localidade = localidadeService.alterarLocalidade(id, request.toDomain());
 		return ResponseEntity.ok(LocalidadeResponse.fromResponse(localidade));

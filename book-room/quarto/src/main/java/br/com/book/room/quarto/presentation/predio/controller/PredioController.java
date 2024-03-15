@@ -5,9 +5,12 @@ import br.com.book.room.quarto.infrastructure.config.spring.api.ApiRoutes;
 import br.com.book.room.quarto.presentation.predio.controller.swagger.PredioControllerSwagger;
 import br.com.book.room.quarto.presentation.predio.dto.request.PredioRequest;
 import br.com.book.room.quarto.presentation.predio.dto.response.PredioResponse;
+import br.com.book.room.quarto.presentation.validation.CreateInfo;
+import br.com.book.room.quarto.presentation.validation.UpdateInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -23,7 +26,9 @@ public class PredioController implements PredioControllerSwagger {
 
 	@PostMapping
 	@Override
-	public ResponseEntity<PredioResponse> cadastrar(PredioRequest request, UriComponentsBuilder uriComponentsBuilder) {
+	public ResponseEntity<PredioResponse> cadastrar(
+			@Validated(CreateInfo.class) @RequestBody
+			PredioRequest request, UriComponentsBuilder uriComponentsBuilder) {
 		var predio = predioService.cadastrarPredio(request.toDomain());
 		var uri = ApiRoutes.construirUriPredioPorId(predio.id());
 		return ResponseEntity.created(uri).body(PredioResponse.fromDomain(predio));
@@ -52,7 +57,7 @@ public class PredioController implements PredioControllerSwagger {
 
 	@PutMapping("/{id}")
 	@Override
-	public ResponseEntity<PredioResponse> alterarPredio(Long id, PredioRequest request) {
+	public ResponseEntity<PredioResponse> alterarPredio(Long id, @Validated(UpdateInfo.class) @RequestBody PredioRequest request) {
 		var predio = predioService.alterarPredio(id, request.toDomain());
 		return ResponseEntity.ok(PredioResponse.fromDomain(predio));
 	}
