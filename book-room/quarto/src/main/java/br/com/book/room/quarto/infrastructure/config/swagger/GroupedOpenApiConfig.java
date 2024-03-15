@@ -40,4 +40,5 @@ public class GroupedOpenApiConfig {
 		String[] paths = { String.format("/%s%s", ApiRoutes.QUARTO_CAMA_URI, PATH_POSFIXO) };
 		return GroupedOpenApi.builder().group("QuartoCama").pathsToMatch(paths).build();
 	}
+
 }
