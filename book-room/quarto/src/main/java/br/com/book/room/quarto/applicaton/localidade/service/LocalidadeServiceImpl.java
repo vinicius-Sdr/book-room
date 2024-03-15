@@ -7,7 +7,6 @@ import br.com.book.room.quarto.domain.core.amenidadelocalidade.AmenidadesLocalid
 import br.com.book.room.quarto.domain.core.amenidadelocalidade.AmenidadesLocalidadeRepositoryPort;
 import br.com.book.room.quarto.domain.core.localidade.Localidade;
 import br.com.book.room.quarto.domain.core.localidade.LocalidadeRepositoryPort;
-import br.com.book.room.quarto.infrastructure.database.postgres.entity.AmenidadesLocalidadeEntityId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -64,36 +63,30 @@ public class LocalidadeServiceImpl implements LocalidadeService {
 		// Atualizar os campos da localidade existente
 		existingLocalidade.atualizarLocalidade(localidade);
 
-		var amenidadesLocalidadeInseridas = new HashSet<AmenidadesLocalidade>();
-		for (AmenidadesLocalidade amenidadeLocalidade : amenidadesLocalidade) {
+		var amenidadesExistente = existingLocalidade.amenidades();
 
-			// adiciona o id da localidade
-			amenidadeLocalidade.inserirIdLocalide(idLocalidade);
+		// Criar um conjunto de amenidades para remover
+		Set<AmenidadesLocalidade> amenidadesParaRemover = new HashSet<>(amenidadesExistente);
+		amenidadesParaRemover.removeAll(amenidadesLocalidade);
 
-			var idAmenidadeLocalidade = new AmenidadesLocalidadeEntityId(existingLocalidade.id(),
-					amenidadeLocalidade.id().idAmenidade());
+		// Remover amenidades que não estão na nova lista
+		for (AmenidadesLocalidade amenidade : amenidadesParaRemover) {
+			amenidadesLocalidadeRepository.deleteAmenidadesLocalidadeById(amenidade.id().idLocalidade(),
+					amenidade.id().idAmenidade());
+		}
 
-			var existingAmenidadeLocalidade = amenidadesLocalidadeRepository
-				.findAmenidadesLocalidadeById(idAmenidadeLocalidade);
+		// Criar um conjunto de amenidades para adicionar
+		Set<AmenidadesLocalidade> amenidadesParaAdicionar = new HashSet<>(amenidadesLocalidade);
+		amenidadesParaAdicionar.removeAll(amenidadesExistente);
 
-			AmenidadesLocalidade amenidadeSalva = null;
-
-			if (existingAmenidadeLocalidade != null) {
-				amenidadeSalva = amenidadesLocalidadeRepository
-					.atualizarQuantidadePorId(existingAmenidadeLocalidade.id(), amenidadeLocalidade.quantidade());
-			}
-			else {
-				amenidadeSalva = amenidadesLocalidadeRepository.saveAmenidadesLocalidade(amenidadeLocalidade);
-			}
-
-			amenidadesLocalidadeInseridas.add(amenidadeSalva);
+		// Adicionar novas amenidades
+		for (AmenidadesLocalidade amenidade : amenidadesParaAdicionar) {
+			amenidadesLocalidadeRepository.saveAmenidadesLocalidade(amenidade.inserirIdLocalide(idLocalidade));
 		}
 
 		// Salvar a localidade atualizada no banco de dados
-		var updatedLocalidade = localidadeRepository.saveLocalidade(existingLocalidade);
-		updatedLocalidade.addAmenidades(amenidadesLocalidadeInseridas);
 
-		return updatedLocalidade;
+        return localidadeRepository.saveLocalidade(existingLocalidade);
 	}
 
 }

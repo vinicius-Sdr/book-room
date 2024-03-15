@@ -1,13 +1,13 @@
 package br.com.book.room.quarto.infrastructure.database.postgres.entity;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import br.com.book.room.quarto.infrastructure.database.postgres.anotacao.FormatarString;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,8 +21,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Builder(toBuilder = true)
 @AllArgsConstructor
@@ -32,6 +33,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 @Entity
 @Table(name = "localidade", schema = "book_room_quarto",
 		indexes = { @Index(name = "localidade_nome_key", columnList = "nome", unique = true) })
+@EntityListeners(AuditingEntityListener.class)
 public class LocalidadeEntity implements Serializable {
 
 	private static final long serialVersionUID = 8252873982797218714L;
@@ -44,13 +46,11 @@ public class LocalidadeEntity implements Serializable {
 	@Size(max = 255)
 	@NotNull
 	@Column(name = "nome", nullable = false)
-	@FormatarString
 	private String nome;
 
 	@Size(max = 255)
 	@NotNull
 	@Column(name = "rua_av", nullable = false)
-	@FormatarString
 	private String ruaAv;
 
 	@Size(max = 5)
@@ -65,26 +65,24 @@ public class LocalidadeEntity implements Serializable {
 	@Size(max = 100)
 	@NotNull
 	@Column(name = "cidade", nullable = false, length = 100)
-	@FormatarString
 	private String cidade;
 
 	@Size(max = 100)
 	@NotNull
 	@Column(name = "estado", nullable = false, length = 100)
-	@FormatarString
 	private String estado;
 
 	@Builder.Default
 	@OneToMany(mappedBy = "localidade", orphanRemoval = true)
 	private Set<AmenidadesLocalidadeEntity> amenidades = new HashSet<>();
 
-	@CreatedBy
+	@CreatedDate
 	@Column(name = "data_inclusao")
-	private Instant dataInclusao;
+	private LocalDateTime dataInclusao;
 
-	@LastModifiedBy
+	@LastModifiedDate
 	@Column(name = "data_alteracao")
-	private Instant dataAlteracao;
+	private LocalDateTime dataAlteracao;
 
 	public LocalidadeEntity(Long id) {
 		this.id = id;

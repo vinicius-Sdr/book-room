@@ -1,11 +1,11 @@
 package br.com.book.room.quarto.infrastructure.database.postgres.entity;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
-import br.com.book.room.quarto.infrastructure.database.postgres.anotacao.FormatarString;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,8 +21,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Builder
 @AllArgsConstructor
@@ -32,6 +33,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 @Entity
 @Table(name = "predio", schema = "book_room_quarto",
 		indexes = { @Index(name = "predio_id_localidade_nome_key", columnList = "id_localidade, nome", unique = true) })
+@EntityListeners(AuditingEntityListener.class)
 public class PredioEntity implements Serializable {
 
 	private static final long serialVersionUID = -717537128904236628L;
@@ -49,15 +51,14 @@ public class PredioEntity implements Serializable {
 	@Size(max = 255)
 	@NotNull
 	@Column(name = "nome", nullable = false)
-	@FormatarString
 	private String nome;
 
-	@CreatedBy
+	@CreatedDate
 	@Column(name = "data_inclusao")
-	private Instant dataInclusao;
+	private LocalDateTime dataInclusao;
 
-	@LastModifiedBy
+	@LastModifiedDate
 	@Column(name = "data_alteracao")
-	private Instant dataAlteracao;
+	private LocalDateTime dataAlteracao;
 
 }

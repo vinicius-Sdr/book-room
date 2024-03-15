@@ -2,10 +2,11 @@ package br.com.book.room.quarto.infrastructure.database.postgres.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,8 +21,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Builder
 @AllArgsConstructor
@@ -31,6 +33,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 @Entity
 @Table(name = "quarto", schema = "book_room_quarto",
 		indexes = { @Index(name = "quarto_id_predio_tipo_key", columnList = "id_predio, tipo", unique = true) })
+@EntityListeners(AuditingEntityListener.class)
 public class QuartoEntity implements Serializable {
 
 	private static final long serialVersionUID = -2853837012401991599L;
@@ -67,12 +70,12 @@ public class QuartoEntity implements Serializable {
 	@Column(name = "quantidade_quartos", nullable = false)
 	private Integer quantidadeQuartos;
 
-	@CreatedBy
+	@CreatedDate
 	@Column(name = "data_inclusao")
-	private Instant dataInclusao;
+	private LocalDateTime dataInclusao;
 
-	@LastModifiedBy
+	@LastModifiedDate
 	@Column(name = "data_alteracao")
-	private Instant dataAlteracao;
+	private LocalDateTime dataAlteracao;
 
 }

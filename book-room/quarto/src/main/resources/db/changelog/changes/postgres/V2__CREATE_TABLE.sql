@@ -99,6 +99,8 @@ CREATE TABLE book_room_quarto.quarto_itens
     id_quarto  INTEGER REFERENCES book_room_quarto.quarto (id) NOT NULL, -- Identificador do quarto
     tipo_item  VARCHAR(50)                                     NOT NULL, -- TipoEntity de item (sofá, poltrona, frigobar, etc.)
     quantidade INTEGER                                         NOT NULL, -- Quantidade do tipo de item
+    data_inclusao  TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora de inclusão do registro
+    data_alteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora da última alteração do registro
     PRIMARY KEY (id_quarto, tipo_item),
     CONSTRAINT fk_quarto_itens_quarto FOREIGN KEY (id_quarto) REFERENCES book_room_quarto.quarto (id)
 );
@@ -116,6 +118,8 @@ CREATE TABLE book_room_quarto.quarto_camas
     tipo_cama  INTEGER REFERENCES book_room_quarto.tipo (id)   NOT NULL, -- TipoEntity de cama
     quantidade INTEGER                                         NOT NULL, -- Quantidade de camas do mesmo tipo no quarto
     descricao  TEXT,                                                     -- Descrição adicional das camas
+    data_inclusao  TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora de inclusão do registro
+    data_alteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora da última alteração do registro
     PRIMARY KEY (id_quarto, tipo_cama),                                  -- Chave primária composta
     CONSTRAINT fk_quarto_camas FOREIGN KEY (id_quarto) REFERENCES book_room_quarto.quarto (id),
     UNIQUE (id_quarto, tipo_cama)                                        -- Garante que cada tipo de cama seja único dentro de um quarto
