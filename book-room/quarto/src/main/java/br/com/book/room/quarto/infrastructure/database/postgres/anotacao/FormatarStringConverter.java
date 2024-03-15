@@ -9,7 +9,7 @@ public class FormatarStringConverter implements AttributeConverter<String, Strin
 
 	@Override
 	public String convertToDatabaseColumn(String attribute) {
-		return StringUtil.trim(StringUtil.formatString(attribute));
+		return StringUtil.trim(StringUtil.capitalizeWords(attribute));
 	}
 
 	@Override
