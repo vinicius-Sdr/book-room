@@ -86,7 +86,7 @@ public class LocalidadeServiceImpl implements LocalidadeService {
 
 		// Salvar a localidade atualizada no banco de dados
 
-        return localidadeRepository.saveLocalidade(existingLocalidade);
+		return localidadeRepository.saveLocalidade(existingLocalidade);
 	}
 
 }
