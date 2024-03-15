@@ -34,4 +34,5 @@ public class GroupedOpenApiConfig {
 		String[] paths = { String.format("/%s%s", ApiRoutes.TIPO_URI, PATH_POSFIXO) };
 		return GroupedOpenApi.builder().group("Tipo").pathsToMatch(paths).build();
 	}
+
 }

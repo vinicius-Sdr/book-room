@@ -1,8 +1,8 @@
 package br.com.book.room.quarto.presentation.tipo.controller.swagger;
 
+import br.com.book.room.quarto.presentation.exception.ErrorMessage;
 import br.com.book.room.quarto.presentation.tipo.dto.request.TipoRequest;
 import br.com.book.room.quarto.presentation.tipo.dto.response.TipoResponse;
-import br.com.book.room.quarto.presentation.exception.ErrorMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -19,7 +19,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Tag(name = "Tipo", description = "Recurso para Cadastro de Tipos.")
 public interface TipoControllerSwagger {
 
-	@Operation(summary = "Criar Tipo", description = "Recurso para criar um novo Tipo.",
+	@Operation(summary = "Criar Tipo",
+			description = "Recurso para criar um novo Tipo. Os valores possíveis para 'nome' são: 'Standard Simples', 'Standard Duplo', 'Luxo Simples', 'Luxo Duplo', 'Premium Simples', 'Premium Duplo', 'Simples', 'Luxo', 'Premium', 'Queen Size', 'Solteiro', 'King Size'. Os valores possíveis para 'categoria' são: 'Quarto', 'Banheiro', 'Cama'.",
 			responses = { @ApiResponse(responseCode = "201", description = "Recurso criado com sucesso",
 					content = @Content(mediaType = "application/json",
 							schema = @Schema(implementation = TipoResponse.class))) })
@@ -53,7 +54,8 @@ public interface TipoControllerSwagger {
 									schema = @Schema(implementation = ErrorMessage.class))) })
 	ResponseEntity<Void> excluirTipo(Long id);
 
-	@Operation(summary = "Alterar tipo por ID", description = "Altera um tipo existente com base no ID fornecido.",
+	@Operation(summary = "Alterar tipo por ID",
+			description = "Altera um tipo existente com base no ID fornecido. Os valores possíveis para 'nome' são: 'Standard Simples', 'Standard Duplo', 'Luxo Simples', 'Luxo Duplo', 'Premium Simples', 'Premium Duplo', 'Simples', 'Luxo', 'Premium', 'Queen Size', 'Solteiro', 'King Size'. Os valores possíveis para 'categoria' são: 'Quarto', 'Banheiro', 'Cama'.",
 			responses = {
 					@ApiResponse(responseCode = "200", description = "Tipo alterado com sucesso",
 							content = @Content(mediaType = "application/json",
