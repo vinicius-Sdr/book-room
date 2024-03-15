@@ -21,6 +21,8 @@ public final class ApiRoutes {
 
 	public static final String TIPO_URI = API + VERSAO + "/tipos";
 
+	public static final String QUARTO_CAMA_URI = API + VERSAO + "/quarto-camas";
+
 	private ApiRoutes() {
 	}
 
@@ -38,6 +40,10 @@ public final class ApiRoutes {
 
 	public static URI construirUriTipoPorId(Long id) {
 		return construirUriPorId(TIPO_URI, id);
+	}
+
+	public static URI construirUriQuartoCamaPorId(Long id) {
+		return construirUriPorId(QUARTO_CAMA_URI, id);
 	}
 
 	private static URI construirUriPorId(String recurso, Long id) {
