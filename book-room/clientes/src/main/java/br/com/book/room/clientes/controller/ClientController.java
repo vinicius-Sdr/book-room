@@ -21,12 +21,12 @@ public class ClientController {
     public ResponseEntity saveClient(@Valid @RequestBody ClientDTO clientDTO) {
         ResponseEntity<String> BAD_REQUEST = validateNacionality(clientDTO);
         if (BAD_REQUEST != null) return BAD_REQUEST;
-        return new ResponseEntity<>(clientService.createUser(clientDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(clientService.createClient(clientDTO), HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity getAllClients() {
-        return ResponseEntity.ok().body(clientService.getAllUsers());
+        return ResponseEntity.ok().body(clientService.getAllClients());
     }
     @GetMapping("/{id}")
     public ResponseEntity getClientById(@Valid @PathVariable(name = "id") @NotNull Long id) {
@@ -39,13 +39,13 @@ public class ClientController {
 
         ResponseEntity<String> BAD_REQUEST = validateNacionality(clientDTO);
         if (BAD_REQUEST != null) return BAD_REQUEST;
-        return new ResponseEntity<>(clientService.createUser(clientDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(clientService.editClient(id , clientDTO), HttpStatus.CREATED);
 
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteClient(@Valid @PathVariable(name = "id") @NotNull Long id){
-        return clientService.deleteUser(id);
+        return clientService.deleteClient(id);
     }
 
     private static ResponseEntity<String> validateNacionality(ClientDTO clientDTO) {

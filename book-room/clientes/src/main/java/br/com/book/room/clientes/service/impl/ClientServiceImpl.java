@@ -21,14 +21,14 @@ public class ClientServiceImpl implements ClientService {
     private ClientRepository clientRepository;
 
     @Override
-    public Client createUser(ClientDTO clientDTO) {
+    public Client createClient(ClientDTO clientDTO) {
 
     Client client = ClientMapper.convertToUsuario(clientDTO);
         return clientRepository.save(client);
     }
 
     @Override
-    public List<Client> getAllUsers() {
+    public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
 
@@ -38,7 +38,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ResponseEntity deleteUser(Long id) {
+    public ResponseEntity deleteClient(Long id) {
         if (clientRepository.findById(id).isPresent()) {
             clientRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).build();
@@ -47,9 +47,9 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client editUser(Long id, ClientDTO clientDTO) throws Exception {
-        Optional<Client> userOptional = clientRepository.findById(id);
-        if (userOptional.isPresent()) {
+    public Client editClient(Long id, ClientDTO clientDTO) throws Exception {
+        Optional<Client> ClientOptional = clientRepository.findById(id);
+        if (ClientOptional.isPresent()) {
             Client client = ClientMapper.convertToUsuario(clientDTO);
             client.setId(id);
             return clientRepository.save(client);

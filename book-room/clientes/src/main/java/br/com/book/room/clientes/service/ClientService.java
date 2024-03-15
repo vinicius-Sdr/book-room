@@ -9,14 +9,14 @@ import java.util.List;
 
 public interface ClientService {
 
-    Client createUser(ClientDTO clientDTO);
+    Client createClient(ClientDTO clientDTO);
 
-    List<Client> getAllUsers();
+    List<Client> getAllClients();
 
     Client findById(Long id);
 
-    ResponseEntity deleteUser(Long id);
+    ResponseEntity deleteClient(Long id);
 
-    Client editUser(Long id, ClientDTO clientDTO) throws Exception;
+    Client editClient(Long id, ClientDTO clientDTO) throws Exception;
 
 }

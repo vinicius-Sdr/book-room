@@ -3,9 +3,9 @@ spring:
     activate:
       on-profile: dev
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true

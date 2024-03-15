@@ -10,7 +10,7 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   liquibase:
-    enabled: true
+    enabled: false
     change-log: classpath:/db/changelog/db.changelog-master.xml
 
   jpa:
@@ -21,3 +21,6 @@ spring:
   profiles:
     active: ${PROFILE_ENVIRONMENT:dev}
     include: actuator, springdoc
+
+server:
+  port: ${PORT:}
