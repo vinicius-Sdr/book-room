@@ -1,7 +1,9 @@
 package br.com.book.room.quarto.presentation.localidade.dto.request;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import br.com.book.room.quarto.domain.core.amenidadelocalidade.AmenidadesLocalidade;
 import br.com.book.room.quarto.domain.core.localidade.Localidade;
 import br.com.book.room.quarto.presentation.localidade.dto.swagger.LocalidadeRequestSwagger;
 import br.com.book.room.quarto.presentation.validation.CreateInfo;
@@ -25,7 +27,17 @@ public record LocalidadeRequest(@NotEmpty(groups = {
 		implements
 			LocalidadeRequestSwagger{
 
+	public Set<AmenidadesLocalidade> toAminenidadesToDomain() {
+
+		return amenidades.stream().map(AmenidadesLocalidadeRequest::toDomain).collect(Collectors.toSet());
+
+	}
+
 	public Localidade toDomain() {
-		return new Localidade(null, nome, ruaAv, numero, cep, cidade, estado);
+		Set<AmenidadesLocalidade> amenidadesLocalidade = amenidades.stream()
+			.map(AmenidadesLocalidadeRequest::toDomain)
+			.collect(Collectors.toSet());
+
+		return new Localidade(null, nome, ruaAv, numero, cep, cidade, estado, amenidadesLocalidade);
 	}
 }

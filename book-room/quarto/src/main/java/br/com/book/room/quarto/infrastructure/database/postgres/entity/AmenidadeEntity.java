@@ -52,6 +52,10 @@ public class AmenidadeEntity implements Serializable {
 	@Column(name = "data_alteracao")
 	private Instant dataAlteracao;
 
+	public AmenidadeEntity(Long id) {
+		this.id = id;
+	}
+
 	public void altualizarDadosAmidade(@NotNull String descricao) {
 		this.descricao = descricao;
 	}

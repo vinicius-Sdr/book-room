@@ -41,9 +41,9 @@ public class LocalidadeController implements LocalidadeControllerSwagger {
 			@Validated(CreateInfo.class) @RequestBody LocalidadeRequest request,
 			UriComponentsBuilder uriComponentsBuilder) {
 		log.info("Cadastrando localidade");
-		System.out.println(request
-				.amenidades());
-		var localidade = localidadeService.cadastrarLocalidade(request.toDomain());
+
+		var localidade = localidadeService.cadastrarLocalidade(request.toDomain(), request.toAminenidadesToDomain());
+
 		var uri = ApiRoutes.construirUriLocalidadePorId(localidade.id());
 
 		return ResponseEntity.created(uri).body(LocalidadeResponse.fromResponse(localidade));
@@ -79,7 +79,7 @@ public class LocalidadeController implements LocalidadeControllerSwagger {
 	public ResponseEntity<LocalidadeResponse> alterarLocalidade(@PathVariable Long id,
 			@Validated(UpdateInfo.class) @RequestBody LocalidadeRequest request) {
 		log.info("Alterando localidade por id");
-		var localidade = localidadeService.alterarLocalidade(id, request.toDomain());
+		var localidade = localidadeService.alterarLocalidade(id, request.toDomain(), request.toAminenidadesToDomain());
 		return ResponseEntity.ok(LocalidadeResponse.fromResponse(localidade));
 	}
 

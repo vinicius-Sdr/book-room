@@ -9,6 +9,7 @@ import br.com.book.room.quarto.applicaton.predio.service.PredioServiceImpl;
 import br.com.book.room.quarto.applicaton.tipo.service.TipoService;
 import br.com.book.room.quarto.applicaton.tipo.service.TipoServiceImpl;
 import br.com.book.room.quarto.domain.core.amenidade.AmenidadeRepositoryPort;
+import br.com.book.room.quarto.domain.core.amenidadelocalidade.AmenidadesLocalidadeRepositoryPort;
 import br.com.book.room.quarto.domain.core.localidade.LocalidadeRepositoryPort;
 import br.com.book.room.quarto.domain.core.predio.PredioRepositoryPort;
 import br.com.book.room.quarto.domain.core.tipo.TipoRepositoryPort;
@@ -32,8 +33,9 @@ public class CoreConfig {
 	 * @return
 	 */
 	@Bean
-	LocalidadeService localidadeService(LocalidadeRepositoryPort localidadeRepositoryPort) {
-		return new LocalidadeServiceImpl(localidadeRepositoryPort);
+	LocalidadeService localidadeService(LocalidadeRepositoryPort localidadeRepositoryPort,
+			AmenidadesLocalidadeRepositoryPort amenidadesLocalidadeRepository) {
+		return new LocalidadeServiceImpl(localidadeRepositoryPort, amenidadesLocalidadeRepository);
 	}
 
 	/**

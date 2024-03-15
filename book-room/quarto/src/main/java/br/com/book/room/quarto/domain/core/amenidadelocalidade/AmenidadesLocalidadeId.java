@@ -1,4 +1,4 @@
-package br.com.book.room.quarto.domain.core.amenidade;
+package br.com.book.room.quarto.domain.core.amenidadelocalidade;
 
 import java.io.Serializable;
 

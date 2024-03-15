@@ -11,9 +11,8 @@ import br.com.book.room.quarto.infrastructure.database.postgres.entity.Localidad
 import br.com.book.room.quarto.infrastructure.database.postgres.mapper.LocalidadeMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LocalidadeRepository extends JpaRepository<LocalidadeEntity, Long>, LocalidadeRepositoryPort {
 

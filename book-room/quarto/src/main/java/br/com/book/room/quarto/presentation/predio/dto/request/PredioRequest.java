@@ -16,7 +16,7 @@ public record PredioRequest(@NotNull(groups = {
 		implements
 			PredioRequestSwagger{
 	public Predio toDomain() {
-		Localidade localidade = new Localidade(localidadeId, null, null, null, null, null, null);
+		Localidade localidade = new Localidade(localidadeId, null, null, null, null, null, null, null);
 		return new Predio(null, localidade, nome);
 	}
 }

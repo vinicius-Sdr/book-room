@@ -6,4 +6,8 @@ public class BookRoomUniqueViolationException extends RuntimeException {
 		super(message, e);
 	}
 
+	public BookRoomUniqueViolationException(String message) {
+		super(message);
+	}
+
 }

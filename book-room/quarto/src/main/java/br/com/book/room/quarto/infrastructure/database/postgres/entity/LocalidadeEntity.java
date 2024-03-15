@@ -2,6 +2,8 @@ package br.com.book.room.quarto.infrastructure.database.postgres.entity;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import br.com.book.room.quarto.infrastructure.database.postgres.anotacao.FormatarString;
 import jakarta.persistence.Column;
@@ -10,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -71,6 +74,10 @@ public class LocalidadeEntity implements Serializable {
 	@FormatarString
 	private String estado;
 
+	@Builder.Default
+	@OneToMany(mappedBy = "localidade", orphanRemoval = true)
+	private Set<AmenidadesLocalidadeEntity> amenidades = new HashSet<>();
+
 	@CreatedBy
 	@Column(name = "data_inclusao")
 	private Instant dataInclusao;
@@ -78,5 +85,9 @@ public class LocalidadeEntity implements Serializable {
 	@LastModifiedBy
 	@Column(name = "data_alteracao")
 	private Instant dataAlteracao;
+
+	public LocalidadeEntity(Long id) {
+		this.id = id;
+	}
 
 }
