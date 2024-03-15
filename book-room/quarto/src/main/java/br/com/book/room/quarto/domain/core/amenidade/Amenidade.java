@@ -8,6 +8,10 @@ public record Amenidade(Long id, String descricao) implements Serializable {
 		this(null, descricao);
 	}
 
+	public Amenidade(Long idAmenidade) {
+		this(idAmenidade, null);
+	}
+
 	/**
 	 * Retorna uma nova instância de Amenidade com a descrição atualizada.
 	 * @param novaDescricao a nova descrição

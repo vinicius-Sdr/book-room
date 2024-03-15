@@ -41,6 +41,8 @@ public class LocalidadeController implements LocalidadeControllerSwagger {
 			@Validated(CreateInfo.class) @RequestBody LocalidadeRequest request,
 			UriComponentsBuilder uriComponentsBuilder) {
 		log.info("Cadastrando localidade");
+		System.out.println(request
+				.amenidades());
 		var localidade = localidadeService.cadastrarLocalidade(request.toDomain());
 		var uri = ApiRoutes.construirUriLocalidadePorId(localidade.id());
 
