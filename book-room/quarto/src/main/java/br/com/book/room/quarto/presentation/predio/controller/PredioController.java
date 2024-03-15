@@ -1,6 +1,7 @@
 package br.com.book.room.quarto.presentation.predio.controller;
 
 import br.com.book.room.quarto.applicaton.predio.service.PredioService;
+import br.com.book.room.quarto.infrastructure.config.spring.api.ApiRoutes;
 import br.com.book.room.quarto.presentation.predio.controller.swagger.PredioControllerSwagger;
 import br.com.book.room.quarto.presentation.predio.dto.request.PredioRequest;
 import br.com.book.room.quarto.presentation.predio.dto.response.PredioResponse;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/predios")
+@RequestMapping(ApiRoutes.PREDIO_URI)
 public class PredioController implements PredioControllerSwagger {
 
 	private final PredioService predioService;
