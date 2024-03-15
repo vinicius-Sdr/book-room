@@ -16,6 +16,10 @@ import org.springframework.data.domain.Pageable;
 
 public interface LocalidadeRepository extends JpaRepository<LocalidadeEntity, Long>, LocalidadeRepositoryPort {
 
+	String LOCALIDADE_NAO_ENCONTRADA = "Localidade não encontrada";
+
+	String LOCALIDADE_JA_CADASTRADA = "Localidade já cadastrada";
+
 	default Page<Localidade> findAllLocalidades(Pageable pageable) {
 		Page<LocalidadeEntity> entities = findAll(pageable);
 		return entities.map(LocalidadeMapper::toDomain);
@@ -24,7 +28,7 @@ public interface LocalidadeRepository extends JpaRepository<LocalidadeEntity, Lo
 	default Localidade findLocalidadeById(Long id) {
 		Optional<LocalidadeEntity> entity = findById(id);
 		return entity.map(LocalidadeMapper::toDomain)
-			.orElseThrow(() -> new BookRoomEntityNotFoundException("Localidade não encontrada"));
+			.orElseThrow(() -> new BookRoomEntityNotFoundException(LOCALIDADE_NAO_ENCONTRADA));
 	}
 
 	default Localidade saveLocalidade(Localidade localidade) {
@@ -34,7 +38,7 @@ public interface LocalidadeRepository extends JpaRepository<LocalidadeEntity, Lo
 			savedEntity = save(entity);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new BookRoomUniqueViolationException("Localidade já cadastrada", e);
+			throw new BookRoomUniqueViolationException(LOCALIDADE_JA_CADASTRADA, e);
 		}
 		return LocalidadeMapper.toDomain(savedEntity);
 	}
@@ -49,7 +53,9 @@ public interface LocalidadeRepository extends JpaRepository<LocalidadeEntity, Lo
 		LocalidadeEntity savedEntity = null;
 		try {
 			entity = getReferenceById(id);
-			entity.setNome(localidade.nome());
+			if (!entity.getNome().equalsIgnoreCase(localidade.nome())) {
+				entity.setNome(localidade.nome());
+			}
 			entity.setRuaAv(localidade.ruaAv());
 			entity.setNumero(localidade.numero());
 			entity.setCep(localidade.cep());
@@ -58,7 +64,10 @@ public interface LocalidadeRepository extends JpaRepository<LocalidadeEntity, Lo
 			savedEntity = save(entity);
 		}
 		catch (jakarta.persistence.EntityNotFoundException e) {
-			throw new BookRoomEntityNotFoundException("Localidade não encontrada", e);
+			throw new BookRoomEntityNotFoundException(LOCALIDADE_NAO_ENCONTRADA, e);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new BookRoomUniqueViolationException(LOCALIDADE_JA_CADASTRADA, e);
 		}
 		return LocalidadeMapper.toDomain(savedEntity);
 	}

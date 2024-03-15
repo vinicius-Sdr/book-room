@@ -17,4 +17,10 @@ public class GroupedOpenApiConfig {
 		return GroupedOpenApi.builder().group("Amenidade").pathsToMatch(paths).build();
 	}
 
+	@Bean
+	public GroupedOpenApi localidadeOpenApi() {
+		String[] paths = { String.format("/%s%s", ApiRoutes.LOCALIDADE_URI, PATH_POSFIXO) };
+		return GroupedOpenApi.builder().group("Localidade").pathsToMatch(paths).build();
+	}
+
 }

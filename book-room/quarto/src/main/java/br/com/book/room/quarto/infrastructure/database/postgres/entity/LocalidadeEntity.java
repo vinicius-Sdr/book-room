@@ -3,6 +3,7 @@ package br.com.book.room.quarto.infrastructure.database.postgres.entity;
 import java.io.Serializable;
 import java.time.Instant;
 
+import br.com.book.room.quarto.infrastructure.database.postgres.anotacao.FormatarString;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,11 +41,13 @@ public class LocalidadeEntity implements Serializable {
 	@Size(max = 255)
 	@NotNull
 	@Column(name = "nome", nullable = false)
+	@FormatarString
 	private String nome;
 
 	@Size(max = 255)
 	@NotNull
 	@Column(name = "rua_av", nullable = false)
+	@FormatarString
 	private String ruaAv;
 
 	@Size(max = 5)
@@ -59,11 +62,13 @@ public class LocalidadeEntity implements Serializable {
 	@Size(max = 100)
 	@NotNull
 	@Column(name = "cidade", nullable = false, length = 100)
+	@FormatarString
 	private String cidade;
 
 	@Size(max = 100)
 	@NotNull
 	@Column(name = "estado", nullable = false, length = 100)
+	@FormatarString
 	private String estado;
 
 	@CreatedBy

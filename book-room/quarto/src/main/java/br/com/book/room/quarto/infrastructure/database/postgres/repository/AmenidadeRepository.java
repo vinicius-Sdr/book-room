@@ -15,6 +15,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AmenidadeRepository extends JpaRepository<AmenidadeEntity, Long>, AmenidadeRepositoryPort {
 
+	String AMENIDADE_JA_CADASTRADA = "Amenidade já cadastrada";
+
+	String AMENIDADE_NAO_ENCONTRADA = "Amenidade não encontrada";
+
 	default Page<Amenidade> findAllAmenidades(Pageable pageable) {
 		Page<AmenidadeEntity> entities = findAll(pageable);
 		return entities.map(AmenidadeMapper::toDomain);
@@ -23,7 +27,7 @@ public interface AmenidadeRepository extends JpaRepository<AmenidadeEntity, Long
 	default Amenidade findAmenidadeById(Long id) {
 		Optional<AmenidadeEntity> entity = findById(id);
 		return entity.map(AmenidadeMapper::toDomain)
-			.orElseThrow(() -> new BookRoomEntityNotFoundException("Amenidade não encontrada"));
+			.orElseThrow(() -> new BookRoomEntityNotFoundException(AMENIDADE_NAO_ENCONTRADA));
 	}
 
 	default Amenidade saveAmenidade(Amenidade amenidade) {
@@ -34,7 +38,7 @@ public interface AmenidadeRepository extends JpaRepository<AmenidadeEntity, Long
 
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new BookRoomUniqueViolationException("Amenidade já cadastrada", e);
+			throw new BookRoomUniqueViolationException(AMENIDADE_JA_CADASTRADA, e);
 		}
 		return AmenidadeMapper.toDomain(savedEntity);
 	}
@@ -47,17 +51,22 @@ public interface AmenidadeRepository extends JpaRepository<AmenidadeEntity, Long
 
 	default Amenidade alterarAmenidade(Long id, Amenidade amenidade) {
 		AmenidadeEntity entity = null;
-		AmenidadeEntity savedEntity = null;
 		try {
 
 			entity = getReferenceById(id);
-			entity.setDescricao(amenidade.descricao());
-			savedEntity = save(entity);
+			if (!entity.getDescricao().equalsIgnoreCase(amenidade.descricao())) {
+				entity.setDescricao(amenidade.descricao());
+				entity = save(entity);
+			}
+
 		}
 		catch (jakarta.persistence.EntityNotFoundException e) {
-			throw new BookRoomEntityNotFoundException("Amenidade não encontrada", e);
+			throw new BookRoomEntityNotFoundException(AMENIDADE_NAO_ENCONTRADA, e);
 		}
-		return AmenidadeMapper.toDomain(savedEntity);
+		catch (DataIntegrityViolationException e) {
+			throw new BookRoomUniqueViolationException(AMENIDADE_JA_CADASTRADA, e);
+		}
+		return AmenidadeMapper.toDomain(entity);
 	}
 
 }

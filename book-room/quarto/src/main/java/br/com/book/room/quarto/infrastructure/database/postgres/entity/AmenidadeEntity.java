@@ -3,6 +3,7 @@ package br.com.book.room.quarto.infrastructure.database.postgres.entity;
 import java.io.Serializable;
 import java.time.Instant;
 
+import br.com.book.room.quarto.infrastructure.database.postgres.anotacao.FormatarString;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,6 +41,7 @@ public class AmenidadeEntity implements Serializable {
 	@Size(max = 255)
 	@NotNull
 	@Column(name = "descricao", nullable = false)
+	@FormatarString
 	private String descricao;
 
 	@CreatedBy
