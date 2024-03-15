@@ -29,4 +29,9 @@ public class GroupedOpenApiConfig {
 		return GroupedOpenApi.builder().group("Predio").pathsToMatch(paths).build();
 	}
 
+	@Bean
+	public GroupedOpenApi tipoOpenApi() {
+		String[] paths = { String.format("/%s%s", ApiRoutes.TIPO_URI, PATH_POSFIXO) };
+		return GroupedOpenApi.builder().group("Tipo").pathsToMatch(paths).build();
+	}
 }
