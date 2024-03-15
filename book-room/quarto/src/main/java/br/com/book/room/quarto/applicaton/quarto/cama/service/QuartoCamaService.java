@@ -8,12 +8,12 @@ public interface QuartoCamaService {
 
 	Page<QuartoCama> consultarQuartosCama(Pageable pageable);
 
-	QuartoCama consultarQuartoCamaPorId(Long id);
+	QuartoCama consultarQuartoCamaPorId(Long idQuarto, Long idTipoCama);
 
 	QuartoCama cadastrarQuartoCama(QuartoCama quartoCama);
 
-	void deletarQuartoCama(Long id);
+	void deletarQuartoCama(Long idQuarto, Long idTipoCama);
 
-	QuartoCama alterarQuartoCama(Long id, QuartoCama quartoCama);
+	QuartoCama alterarQuartoCama(Long idQuarto, Long idTipoCama, QuartoCama quartoCama);
 
 }

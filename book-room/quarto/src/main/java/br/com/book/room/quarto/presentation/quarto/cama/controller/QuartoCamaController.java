@@ -43,7 +43,7 @@ public class QuartoCamaController implements QuartoCamaControllerSwagger {
 		var quartoCama = quartoCamaService.cadastrarQuartoCama(request.fromQuartoCamaDto());
 
 		var uri = ApiRoutes.construirUriQuartoCamaPorId(
-				Map.of("idQuarto", quartoCama.id().id(), "idTipo", quartoCama.id().tipoCama()));
+				Map.of("idQuarto", quartoCama.id().id(), "idTipoCama", quartoCama.id().tipoCama()));
 
 		return ResponseEntity.created(uri).body(QuartoCamaResponse.fromQuartoCamaResponse(quartoCama));
 	}
@@ -57,30 +57,31 @@ public class QuartoCamaController implements QuartoCamaControllerSwagger {
 		return ResponseEntity.ok(page);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{idQuarto}/{idTipoCama}")
 	@Override
-	public ResponseEntity<QuartoCamaResponse> consultarQuartoCamaPorId(@PathVariable Long id) {
+	public ResponseEntity<QuartoCamaResponse> consultarQuartoCamaPorId(@PathVariable Long idQuarto,
+			@PathVariable Long idTipoCama) {
 		log.info("Buscando quarto cama por id");
-		var quartoCamaDto = quartoCamaService.consultarQuartoCamaPorId(id);
+		var quartoCamaDto = quartoCamaService.consultarQuartoCamaPorId(idQuarto, idTipoCama);
 
 		return ResponseEntity.ok(QuartoCamaResponse.fromQuartoCamaResponse(quartoCamaDto));
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{idQuarto}/{idTipoCama}")
 	@Override
-	public ResponseEntity<Void> excluiQuartoCama(@PathVariable Long id) {
+	public ResponseEntity<Void> excluiQuartoCama(@PathVariable Long idQuarto, @PathVariable Long idTipoCama) {
 		log.info("Excluindo quarto cama");
-		quartoCamaService.deletarQuartoCama(id);
+		quartoCamaService.deletarQuartoCama(idQuarto, idTipoCama);
 
 		return ResponseEntity.noContent().build();
 	}
 
-	@PatchMapping("/{id}")
+	@PatchMapping("/{idQuarto}/{idTipoCama}")
 	@Override
-	public ResponseEntity<QuartoCamaResponse> alterarQuartoCama(@PathVariable Long id,
-			@Validated(UpdateInfo.class) @RequestBody QuartoCamaRequest request) {
+	public ResponseEntity<QuartoCamaResponse> alterarQuartoCama(@PathVariable Long idQuarto,
+			@PathVariable Long idTipoCama, @Validated(UpdateInfo.class) @RequestBody QuartoCamaRequest request) {
 		log.info("Alterando quarto cama");
-		var quartoCama = quartoCamaService.alterarQuartoCama(id, request.fromQuartoCamaDto());
+		var quartoCama = quartoCamaService.alterarQuartoCama(idQuarto, idTipoCama, request.fromQuartoCamaDto());
 
 		return ResponseEntity.ok(QuartoCamaResponse.fromQuartoCamaResponse(quartoCama));
 	}

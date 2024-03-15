@@ -1,8 +1,8 @@
 package br.com.book.room.quarto.presentation.quarto.cama.controller.swagger;
 
+import br.com.book.room.quarto.presentation.exception.ErrorMessage;
 import br.com.book.room.quarto.presentation.quarto.cama.dto.request.QuartoCamaRequest;
 import br.com.book.room.quarto.presentation.quarto.cama.dto.response.QuartoCamaResponse;
-import br.com.book.room.quarto.presentation.exception.ErrorMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -43,7 +43,8 @@ public interface QuartoCamaControllerSwagger {
 							content = @Content(mediaType = "application/json",
 									schema = @Schema(implementation = ErrorMessage.class))) })
 	ResponseEntity<QuartoCamaResponse> consultarQuartoCamaPorId(
-			@Parameter(description = "ID do QuartoCama a ser buscado", required = true) Long id);
+			@Parameter(description = "ID do QuartoCama a ser buscado", required = true) Long idQuarto,
+			@Parameter(description = "ID do QuartoCama a ser buscado", required = true) Long idTipoCama);
 
 	@Operation(summary = "Excluir QuartoCama por ID", description = "Exclui um QuartoCama com base no ID fornecido.",
 			responses = { @ApiResponse(responseCode = "204", description = "QuartoCama excluído com sucesso"),
@@ -54,7 +55,8 @@ public interface QuartoCamaControllerSwagger {
 							content = @Content(mediaType = "application/json",
 									schema = @Schema(implementation = ErrorMessage.class))) })
 	ResponseEntity<Void> excluiQuartoCama(
-			@Parameter(description = "ID do QuartoCama a ser excluído", required = true) Long id);
+			@Parameter(description = "ID do QuartoCama a ser excluído", required = true) Long idQuarto,
+			@Parameter(description = "ID do QuartoCama a ser excluído", required = true) Long idTipoCama);
 
 	@Operation(summary = "Alterar QuartoCama por ID",
 			description = "Altera um QuartoCama existente com base no ID fornecido.",
@@ -72,7 +74,8 @@ public interface QuartoCamaControllerSwagger {
 							content = @Content(mediaType = "application/json",
 									schema = @Schema(implementation = ErrorMessage.class))) })
 	ResponseEntity<QuartoCamaResponse> alterarQuartoCama(
-			@Parameter(description = "ID do QuartoCama a ser alterado", required = true) Long id,
+			@Parameter(description = "ID do QuartoCama a ser alterado", required = true) Long idQuarto,
+			@Parameter(description = "ID do QuartoCama a ser alterado", required = true) Long idTipoCama,
 			@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Dados do QuartoCama para atualização",
 					required = true) QuartoCamaRequest request);
 

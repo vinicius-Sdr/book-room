@@ -19,8 +19,8 @@ public class QuartoCamaServiceImpl implements QuartoCamaService {
 	}
 
 	@Override
-	public QuartoCama consultarQuartoCamaPorId(Long id) {
-		return quartoCamaRepository.findQuartoCamaById(id);
+	public QuartoCama consultarQuartoCamaPorId(Long idQuarto, Long idTipoCama) {
+		return quartoCamaRepository.findQuartoCamaById(idQuarto, idTipoCama);
 	}
 
 	@Override
@@ -29,13 +29,13 @@ public class QuartoCamaServiceImpl implements QuartoCamaService {
 	}
 
 	@Override
-	public void deletarQuartoCama(Long id) {
-		quartoCamaRepository.deleteQuartoCamaById(id);
+	public void deletarQuartoCama(Long idQuarto, Long idTipoCama) {
+		quartoCamaRepository.deleteQuartoCamaById(idQuarto, idTipoCama);
 	}
 
 	@Override
-	public QuartoCama alterarQuartoCama(Long id, QuartoCama quartoCama) {
-		return quartoCamaRepository.alterarQuartoCama(id, quartoCama);
+	public QuartoCama alterarQuartoCama(Long idQuarto, Long idTipoCama, QuartoCama quartoCama) {
+		return quartoCamaRepository.alterarQuartoCama(idQuarto, idTipoCama, quartoCama);
 	}
 
 }

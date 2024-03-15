@@ -7,12 +7,12 @@ public interface QuartoCamaRepositoryPort {
 
 	Page<QuartoCama> findAllQuartosCama(Pageable pageable);
 
-	QuartoCama findQuartoCamaById(Long id);
+	QuartoCama findQuartoCamaById(Long idQuarto, Long idTipoCama);
 
 	QuartoCama saveQuartoCama(QuartoCama quartoCama);
 
-	void deleteQuartoCamaById(Long id);
+	void deleteQuartoCamaById(Long idQuarto, Long idTipoCama);
 
-	QuartoCama alterarQuartoCama(Long id, QuartoCama quartoCama);
+	QuartoCama alterarQuartoCama(Long idQuarto, Long idTipoCama, QuartoCama quartoCama);
 
 }

@@ -33,11 +33,6 @@ public class QuartoCamaEntity implements Serializable {
 	@EmbeddedId
 	private QuartoCamaEntityId id;
 
-	// @MapsId("idQuarto")
-	// @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	// @JoinColumn(name = "id_quarto", nullable = false)
-	// private QuartoEntity quarto;
-
 	@NotNull
 	@Column(name = "quantidade", nullable = false)
 	private Integer quantidade;
