@@ -19,6 +19,8 @@ public final class ApiRoutes {
 
 	public static final String PREDIO_URI = API + VERSAO + "/predios";
 
+	public static final String TIPO_URI = API + VERSAO + "/tipos";
+
 	private ApiRoutes() {
 	}
 
@@ -32,6 +34,10 @@ public final class ApiRoutes {
 
 	public static URI construirUriPredioPorId(Long id) {
 		return construirUriPorId(PREDIO_URI, id);
+	}
+
+	public static URI construirUriTipoPorId(Long id) {
+		return construirUriPorId(TIPO_URI, id);
 	}
 
 	private static URI construirUriPorId(String recurso, Long id) {

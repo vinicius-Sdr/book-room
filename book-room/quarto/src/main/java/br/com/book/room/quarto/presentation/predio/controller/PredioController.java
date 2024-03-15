@@ -25,7 +25,7 @@ public class PredioController implements PredioControllerSwagger {
 	@Override
 	public ResponseEntity<PredioResponse> cadastrar(PredioRequest request, UriComponentsBuilder uriComponentsBuilder) {
 		var predio = predioService.cadastrarPredio(request.toDomain());
-		var uri = uriComponentsBuilder.path("/predios/{id}").buildAndExpand(predio.id()).toUri();
+		var uri = ApiRoutes.construirUriPredioPorId(predio.id());
 		return ResponseEntity.created(uri).body(PredioResponse.fromDomain(predio));
 	}
 
