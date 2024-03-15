@@ -6,6 +6,7 @@ import br.com.book.room.quarto.applicaton.quarto.cama.service.QuartoCamaService;
 import br.com.book.room.quarto.infrastructure.config.spring.api.ApiRoutes;
 import br.com.book.room.quarto.presentation.quarto.cama.controller.swagger.QuartoCamaControllerSwagger;
 import br.com.book.room.quarto.presentation.quarto.cama.dto.request.QuartoCamaRequest;
+import br.com.book.room.quarto.presentation.quarto.cama.dto.request.QuartoCamaUpdateRequest;
 import br.com.book.room.quarto.presentation.quarto.cama.dto.response.QuartoCamaResponse;
 import br.com.book.room.quarto.presentation.validation.CreateInfo;
 import br.com.book.room.quarto.presentation.validation.UpdateInfo;
@@ -79,7 +80,7 @@ public class QuartoCamaController implements QuartoCamaControllerSwagger {
 	@PatchMapping("/{idQuarto}/{idTipoCama}")
 	@Override
 	public ResponseEntity<QuartoCamaResponse> alterarQuartoCama(@PathVariable Long idQuarto,
-			@PathVariable Long idTipoCama, @Validated(UpdateInfo.class) @RequestBody QuartoCamaRequest request) {
+			@PathVariable Long idTipoCama, @Validated(UpdateInfo.class) @RequestBody QuartoCamaUpdateRequest request) {
 		log.info("Alterando quarto cama");
 		var quartoCama = quartoCamaService.alterarQuartoCama(idQuarto, idTipoCama, request.fromQuartoCamaDto());
 

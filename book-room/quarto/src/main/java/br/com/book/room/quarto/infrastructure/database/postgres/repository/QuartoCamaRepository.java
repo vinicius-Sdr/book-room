@@ -1,5 +1,7 @@
 package br.com.book.room.quarto.infrastructure.database.postgres.repository;
 
+import br.com.book.room.quarto.applicaton.exception.BookRoomEntityNotFoundException;
+import br.com.book.room.quarto.applicaton.exception.BookRoomUniqueViolationException;
 import br.com.book.room.quarto.domain.core.quarto.cama.QuartoCama;
 import br.com.book.room.quarto.domain.core.quarto.cama.QuartoCamaRepositoryPort;
 import br.com.book.room.quarto.infrastructure.database.postgres.entity.QuartoCamaEntity;
@@ -24,7 +26,7 @@ public interface QuartoCamaRepository
 
 	default QuartoCama findQuartoCamaById(Long idQuarto, Long idTipoCama) {
 		var id = new QuartoCamaEntityId(idQuarto, idTipoCama);
-		QuartoCamaEntity entity = findById(id).orElseThrow(() -> new RuntimeException(QUARTO_CAMA_NAO_ENCONTRADO));
+		QuartoCamaEntity entity = findById(id).orElseThrow(() -> new BookRoomEntityNotFoundException(QUARTO_CAMA_NAO_ENCONTRADO));
 		return QuartoCamaMapper.toDomain(entity);
 	}
 
@@ -35,7 +37,7 @@ public interface QuartoCamaRepository
 			savedEntity = save(entity);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new RuntimeException(QUARTO_CAMA_JA_CADASTRADO, e);
+			throw new BookRoomUniqueViolationException(QUARTO_CAMA_JA_CADASTRADO, e);
 		}
 		return QuartoCamaMapper.toDomain(savedEntity);
 	}
@@ -46,21 +48,24 @@ public interface QuartoCamaRepository
 			deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new RuntimeException("QuartoCama não pode ser excluído pois está vinculado a outras tabelas", e);
+			throw new BookRoomUniqueViolationException("QuartoCama não pode ser excluído pois está vinculado a outras tabelas", e);
 		}
 	}
 
 	default QuartoCama alterarQuartoCama(Long idQuarto, Long idTipoCama, QuartoCama quartoCama) {
 		var id = new QuartoCamaEntityId(idQuarto, idTipoCama);
 
-		QuartoCamaEntity entity = findById(id).orElseThrow(() -> new RuntimeException(QUARTO_CAMA_NAO_ENCONTRADO));
+		QuartoCamaEntity entity = findById(id).orElseThrow(() -> new BookRoomEntityNotFoundException(QUARTO_CAMA_NAO_ENCONTRADO));
 		try {
 			entity = QuartoCamaMapper.updateEntityFromDomain(quartoCama, entity);
 			QuartoCamaEntity savedEntity = save(entity);
 			return QuartoCamaMapper.toDomain(savedEntity);
 		}
+		catch (jakarta.persistence.EntityNotFoundException e) {
+			throw new BookRoomEntityNotFoundException(QUARTO_CAMA_NAO_ENCONTRADO, e);
+		}
 		catch (DataIntegrityViolationException e) {
-			throw new RuntimeException(QUARTO_CAMA_JA_CADASTRADO, e);
+			throw new BookRoomUniqueViolationException(QUARTO_CAMA_JA_CADASTRADO, e);
 		}
 	}
 

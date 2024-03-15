@@ -2,6 +2,7 @@ package br.com.book.room.quarto.presentation.quarto.cama.controller.swagger;
 
 import br.com.book.room.quarto.presentation.exception.ErrorMessage;
 import br.com.book.room.quarto.presentation.quarto.cama.dto.request.QuartoCamaRequest;
+import br.com.book.room.quarto.presentation.quarto.cama.dto.request.QuartoCamaUpdateRequest;
 import br.com.book.room.quarto.presentation.quarto.cama.dto.response.QuartoCamaResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -77,6 +78,6 @@ public interface QuartoCamaControllerSwagger {
 			@Parameter(description = "ID do QuartoCama a ser alterado", required = true) Long idQuarto,
 			@Parameter(description = "ID do QuartoCama a ser alterado", required = true) Long idTipoCama,
 			@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Dados do QuartoCama para atualização",
-					required = true) QuartoCamaRequest request);
+					required = true) QuartoCamaUpdateRequest request);
 
 }

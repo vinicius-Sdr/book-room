@@ -30,6 +30,7 @@ public final class QuartoCamaMapper {
 	}
 
 	public static QuartoCamaEntity updateEntityFromDomain(QuartoCama quartoCama, QuartoCamaEntity entity) {
+		entity.setQuantidade(quartoCama.quantidade());
 		entity.setDescricao(quartoCama.descricao());
 		return entity;
 	}

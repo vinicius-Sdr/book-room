@@ -12,4 +12,8 @@ public record QuartoCama(QuartoCamaId id, Integer quantidade, String descricao) 
 	public QuartoCama(QuartoCamaEntityId id, String descricao) {
 		this(null, null, descricao);
 	}
+
+	public QuartoCama(Integer quantidade, String descricao) {
+		this(null, quantidade, descricao);
+	}
 }
