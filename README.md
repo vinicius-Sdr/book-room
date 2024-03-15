@@ -10,11 +10,11 @@
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/fsales/fiap-tech-chalenge-fase5)
 
 <p align="center">
- <img src="https://img.shields.io/static/v1?label=GitHub&message=@Wells-store&color=8257E5&labelColor=000000" alt="@wells-store" />
- <img src="https://img.shields.io/static/v1?label=Tipo&message=Tech%20Chalenge&color=8257E5&labelColor=000000" alt="Tech Chalenge" />
+ <img src="https://img.shields.io/static/v1?label=GitHub&message=@book-room&color=8257E5&labelColor=000000" alt="@book-room" />
+ <img src="https://img.shields.io/static/v1?label=Tipo&message=Hackaton&color=8257E5&labelColor=000000" alt="Tech Chalenge" />
 </p>
 
-- [:bookmark\_tabs: Tech Chalenge](#bookmark_tabs-tech-chalenge)
+- [:bookmark\_tabs: Hackaton](#bookmark_tabs-tech-chalenge)
     - [🛠️ Linguagem e ferramentas](#️-linguagem-e-ferramentas)
     - [🏫 Dados Acadêmicos](#-dados-acadêmicos)
         - [🏬 Instituição](#-instituição)
@@ -29,7 +29,7 @@
 
 # :bookmark_tabs: Tech Chalenge
 
-O Projeto Wells é uma aplicação que utiliza a arquitetura Clean Architecture para fornecer uma estrutura modular e organizada. Este README fornece informações sobre a estrutura do projeto, sua arquitetura, configurações do ambiente de desenvolvimento.
+O Projeto Book-Room é uma aplicação que utiliza a arquitetura Clean Architecture para fornecer uma estrutura modular e organizada. Este README fornece informações sobre a estrutura do projeto, sua arquitetura, configurações do ambiente de desenvolvimento.
 
 
 ## 🛠️ Linguagem e ferramentas
@@ -100,7 +100,7 @@ A Clean Architecture[^1] é baseada em alguns princípios fundamentais para gara
 
 ### Estrutura do Projeto
 
-A implementação da Clean Architecture no Projeto Wells segue a seguinte estrutura:
+A implementação da Clean Architecture no Projeto Book-Room segue a seguinte estrutura:
 
 - **Entidades e Casos de Uso:** O núcleo da aplicação contém as entidades de domínio e os casos de uso que representam as operações principais.
 
