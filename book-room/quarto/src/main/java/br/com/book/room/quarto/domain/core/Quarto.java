@@ -5,7 +5,8 @@ import java.math.BigDecimal;
 
 import br.com.book.room.quarto.domain.core.localidade.Localidade;
 import br.com.book.room.quarto.domain.core.predio.Predio;
+import br.com.book.room.quarto.domain.core.tipo.Tipo;
 
-public record Quarto(Integer id, Predio predio, Localidade localidade, Integer totalPessoas, Tipo tipo,
+public record Quarto(Long id, Predio predio, Localidade localidade, Integer totalPessoas, Tipo tipo,
 		BigDecimal valorDiaria, Integer quantidadeQuartos) implements Serializable {
 }

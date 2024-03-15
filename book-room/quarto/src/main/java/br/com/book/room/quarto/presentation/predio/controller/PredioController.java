@@ -26,9 +26,8 @@ public class PredioController implements PredioControllerSwagger {
 
 	@PostMapping
 	@Override
-	public ResponseEntity<PredioResponse> cadastrar(
-			@Validated(CreateInfo.class) @RequestBody
-			PredioRequest request, UriComponentsBuilder uriComponentsBuilder) {
+	public ResponseEntity<PredioResponse> cadastrar(@Validated(CreateInfo.class) @RequestBody PredioRequest request,
+			UriComponentsBuilder uriComponentsBuilder) {
 		var predio = predioService.cadastrarPredio(request.toDomain());
 		var uri = ApiRoutes.construirUriPredioPorId(predio.id());
 		return ResponseEntity.created(uri).body(PredioResponse.fromDomain(predio));
@@ -57,7 +56,8 @@ public class PredioController implements PredioControllerSwagger {
 
 	@PutMapping("/{id}")
 	@Override
-	public ResponseEntity<PredioResponse> alterarPredio(Long id, @Validated(UpdateInfo.class) @RequestBody PredioRequest request) {
+	public ResponseEntity<PredioResponse> alterarPredio(Long id,
+			@Validated(UpdateInfo.class) @RequestBody PredioRequest request) {
 		var predio = predioService.alterarPredio(id, request.toDomain());
 		return ResponseEntity.ok(PredioResponse.fromDomain(predio));
 	}

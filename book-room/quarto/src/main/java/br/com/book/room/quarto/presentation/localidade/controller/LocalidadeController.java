@@ -37,7 +37,8 @@ public class LocalidadeController implements LocalidadeControllerSwagger {
 
 	@PostMapping
 	@Override
-	public ResponseEntity<LocalidadeResponse> cadastrar(@Validated(CreateInfo.class) @RequestBody LocalidadeRequest request,
+	public ResponseEntity<LocalidadeResponse> cadastrar(
+			@Validated(CreateInfo.class) @RequestBody LocalidadeRequest request,
 			UriComponentsBuilder uriComponentsBuilder) {
 		log.info("Cadastrando localidade");
 		var localidade = localidadeService.cadastrarLocalidade(request.toDomain());
@@ -74,7 +75,7 @@ public class LocalidadeController implements LocalidadeControllerSwagger {
 	@PutMapping("/{id}")
 	@Override
 	public ResponseEntity<LocalidadeResponse> alterarLocalidade(@PathVariable Long id,
-																@Validated(UpdateInfo.class) @RequestBody LocalidadeRequest request) {
+			@Validated(UpdateInfo.class) @RequestBody LocalidadeRequest request) {
 		log.info("Alterando localidade por id");
 		var localidade = localidadeService.alterarLocalidade(id, request.toDomain());
 		return ResponseEntity.ok(LocalidadeResponse.fromResponse(localidade));
