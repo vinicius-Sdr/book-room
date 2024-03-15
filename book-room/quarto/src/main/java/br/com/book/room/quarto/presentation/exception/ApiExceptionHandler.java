@@ -1,7 +1,8 @@
 package br.com.book.room.quarto.presentation.exception;
 
-import br.com.book.room.quarto.applicaton.exception.BookRoomUniqueViolationException;
+import br.com.book.room.quarto.applicaton.exception.BookRoomDataIntegrityViolationException;
 import br.com.book.room.quarto.applicaton.exception.BookRoomEntityNotFoundException;
+import br.com.book.room.quarto.applicaton.exception.BookRoomUniqueViolationException;
 import br.com.book.room.quarto.applicaton.validacao.exception.ValidationException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -47,7 +48,7 @@ public class ApiExceptionHandler {
 					"Erro de leitura JSON: " + ex.getMostSpecificCause().getMessage()));
 	}
 
-	@ExceptionHandler(BookRoomUniqueViolationException.class)
+	@ExceptionHandler({ BookRoomUniqueViolationException.class, BookRoomDataIntegrityViolationException.class })
 	public ResponseEntity<ErrorMessage> uniqueViolationException(RuntimeException ex, HttpServletRequest request) {
 		log.error("Api Error - ", ex);
 		return ResponseEntity.status(HttpStatus.CONFLICT)

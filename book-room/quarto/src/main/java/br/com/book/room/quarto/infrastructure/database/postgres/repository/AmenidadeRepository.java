@@ -45,7 +45,14 @@ public interface AmenidadeRepository extends JpaRepository<AmenidadeEntity, Long
 
 	default void deleteAmenidadeById(Long id) {
 		var amenidade = findAmenidadeById(id);
-		deleteById(amenidade.id());
+		try {
+
+			deleteById(amenidade.id());
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new BookRoomUniqueViolationException(
+					"Amenidade não pode ser excluído pois está vinculado a outras tabelas", e);
+		}
 
 	}
 

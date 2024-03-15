@@ -2,6 +2,7 @@ package br.com.book.room.quarto.infrastructure.database.postgres.repository;
 
 import java.util.Optional;
 
+import br.com.book.room.quarto.applicaton.exception.BookRoomDataIntegrityViolationException;
 import br.com.book.room.quarto.applicaton.exception.BookRoomEntityNotFoundException;
 import br.com.book.room.quarto.applicaton.exception.BookRoomUniqueViolationException;
 import br.com.book.room.quarto.domain.core.localidade.Localidade;
@@ -45,7 +46,13 @@ public interface LocalidadeRepository extends JpaRepository<LocalidadeEntity, Lo
 
 	default void deleteLocalidadeById(Long id) {
 		var localidade = findLocalidadeById(id);
-		deleteById(localidade.id());
+		try {
+			deleteById(localidade.id());
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new BookRoomDataIntegrityViolationException(
+					"Localidade não pode ser excluído pois está vinculado a outras tabelas", e);
+		}
 	}
 
 	default Localidade alterarLocalidade(Long id, Localidade localidade) {
