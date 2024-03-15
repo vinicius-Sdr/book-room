@@ -7,10 +7,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -37,10 +33,10 @@ public class QuartoCamaEntity implements Serializable {
 	@EmbeddedId
 	private QuartoCamaEntityId id;
 
-	@MapsId("idQuarto")
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "id_quarto", nullable = false)
-	private QuartoEntity quarto;
+	// @MapsId("idQuarto")
+	// @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	// @JoinColumn(name = "id_quarto", nullable = false)
+	// private QuartoEntity quarto;
 
 	@NotNull
 	@Column(name = "quantidade", nullable = false)

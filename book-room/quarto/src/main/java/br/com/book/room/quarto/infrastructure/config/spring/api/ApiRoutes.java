@@ -1,6 +1,8 @@
 package br.com.book.room.quarto.infrastructure.config.spring.api;
 
 import java.net.URI;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -42,12 +44,22 @@ public final class ApiRoutes {
 		return construirUriPorId(TIPO_URI, id);
 	}
 
-	public static URI construirUriQuartoCamaPorId(Long id) {
-		return construirUriPorId(QUARTO_CAMA_URI, id);
+	public static URI construirUriQuartoCamaPorId(Map<String, Long> uriVariables) {
+
+		return construirUriPorId(TIPO_URI, uriVariables);
 	}
 
 	private static URI construirUriPorId(String recurso, Long id) {
 		return UriComponentsBuilder.fromPath(API + VERSAO + "/" + recurso).path("/{id}").buildAndExpand(id).toUri();
+	}
+
+	private static URI construirUriPorId(String recurso, Map<String, Long> uriVariables) {
+		String path = uriVariables.keySet().stream().map(key -> "/{" + key + "}").collect(Collectors.joining());
+
+		return UriComponentsBuilder.fromPath(API + VERSAO + "/" + recurso)
+			.path(path)
+			.buildAndExpand(uriVariables)
+			.toUri();
 	}
 
 }

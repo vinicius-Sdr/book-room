@@ -25,11 +25,11 @@ public class QuartoCamaEntityId implements Serializable {
 
 	@NotNull
 	@Column(name = "id_quarto", nullable = false)
-	private Integer idQuarto;
+	private Long idQuarto;
 
 	@NotNull
 	@Column(name = "tipo_cama", nullable = false)
-	private Integer tipoCama;
+	private Long tipoCama;
 
 	@Override
 	public boolean equals(Object o) {
