@@ -10,9 +10,9 @@ public class StringUtil {
 			return input;
 		}
 
-		return Arrays.stream(input.split("\\s+"))
-				.map(word -> Character.toUpperCase(word.charAt(0)) + word.substring(1))
-				.collect(Collectors.joining(" "));
+		return Arrays.stream(input.strip().split("\\s+"))
+			.map(word -> Character.toUpperCase(word.charAt(0)) + word.substring(1))
+			.collect(Collectors.joining(" "));
 	}
 
 	public static String trim(String input) {
@@ -20,7 +20,7 @@ public class StringUtil {
 			return input;
 		}
 
-		return org.apache.commons.lang3.StringUtils.trim(input);
+		return input.strip();
 	}
 
 }

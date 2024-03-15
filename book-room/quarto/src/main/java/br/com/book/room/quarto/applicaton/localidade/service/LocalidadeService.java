@@ -1,4 +1,4 @@
-package br.com.book.room.quarto.applicaton.localidade;
+package br.com.book.room.quarto.applicaton.localidade.service;
 
 import br.com.book.room.quarto.domain.core.localidade.Localidade;
 import org.springframework.data.domain.Page;

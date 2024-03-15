@@ -17,6 +17,8 @@ public final class ApiRoutes {
 
 	public static final String LOCALIDADE_URI = API + VERSAO + "/localidades";
 
+	public static final String PREDIO_URI = API + VERSAO + "/predios";
+
 	private ApiRoutes() {
 	}
 
@@ -26,6 +28,10 @@ public final class ApiRoutes {
 
 	public static URI construirUriLocalidadePorId(Long id) {
 		return construirUriPorId(LOCALIDADE_URI, id);
+	}
+
+	public static URI construirUriPredioPorId(Long id) {
+		return construirUriPorId(PREDIO_URI, id);
 	}
 
 	private static URI construirUriPorId(String recurso, Long id) {

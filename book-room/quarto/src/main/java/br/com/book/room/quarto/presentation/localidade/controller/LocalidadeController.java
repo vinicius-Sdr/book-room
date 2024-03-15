@@ -2,7 +2,7 @@ package br.com.book.room.quarto.presentation.localidade.controller;
 
 import static br.com.book.room.quarto.infrastructure.config.spring.api.ApiRoutes.LOCALIDADE_URI;
 
-import br.com.book.room.quarto.applicaton.localidade.LocalidadeService;
+import br.com.book.room.quarto.applicaton.localidade.service.LocalidadeService;
 import br.com.book.room.quarto.infrastructure.config.spring.api.ApiRoutes;
 import br.com.book.room.quarto.presentation.localidade.controller.swagger.LocalidadeControllerSwagger;
 import br.com.book.room.quarto.presentation.localidade.dto.request.LocalidadeRequest;
@@ -40,7 +40,7 @@ public class LocalidadeController implements LocalidadeControllerSwagger {
 		var localidade = localidadeService.cadastrarLocalidade(request.toDomain());
 		var uri = ApiRoutes.construirUriLocalidadePorId(localidade.id());
 
-		return ResponseEntity.created(uri).body(LocalidadeResponse.fromDomain(localidade));
+		return ResponseEntity.created(uri).body(LocalidadeResponse.fromResponse(localidade));
 	}
 
 	@GetMapping
@@ -49,7 +49,7 @@ public class LocalidadeController implements LocalidadeControllerSwagger {
 		log.info("Buscando todas as localidades");
 		var localidades = localidadeService.consultarLocalidades(pageable);
 
-		return ResponseEntity.ok(localidades.map(LocalidadeResponse::fromDomain));
+		return ResponseEntity.ok(localidades.map(LocalidadeResponse::fromResponse));
 	}
 
 	@GetMapping("/{id}")
@@ -57,7 +57,7 @@ public class LocalidadeController implements LocalidadeControllerSwagger {
 	public ResponseEntity<LocalidadeResponse> consultarLocalidadePorId(@PathVariable Long id) {
 		log.info("Buscando localidade por id");
 		var localidade = localidadeService.consultarLocalidadePorId(id);
-		return ResponseEntity.ok(LocalidadeResponse.fromDomain(localidade));
+		return ResponseEntity.ok(LocalidadeResponse.fromResponse(localidade));
 	}
 
 	@DeleteMapping("/{id}")
@@ -74,7 +74,7 @@ public class LocalidadeController implements LocalidadeControllerSwagger {
 			@RequestBody LocalidadeRequest request) {
 		log.info("Alterando localidade por id");
 		var localidade = localidadeService.alterarLocalidade(id, request.toDomain());
-		return ResponseEntity.ok(LocalidadeResponse.fromDomain(localidade));
+		return ResponseEntity.ok(LocalidadeResponse.fromResponse(localidade));
 	}
 
 }
