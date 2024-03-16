@@ -22,14 +22,20 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-
         <!-- version libs -->
-        <junit.version>5.10.2</junit.version>
-        <assertj-core.version>3.25.3</assertj-core.version>
         <springdoc.version>2.3.0</springdoc.version>
         <postgresql.version>42.3.9</postgresql.version>
-        <mapstruct.version>1.4.2.Final</mapstruct.version>
+
+        <!-- test -->
         <mockito.version>5.11.0</mockito.version>
+        <assertj-core.version>3.25.3</assertj-core.version>
+        <junit.version>5.10.2</junit.version>
+        <cucumber-java.version>7.15.0</cucumber-java.version>
+        <junit-platform-suite.version>1.10.1</junit-platform-suite.version>
+        <rest-assured-spring-mock.version>5.3.2</rest-assured-spring-mock.version>
+        <rest-assured.version>5.4.0</rest-assured.version>
+        <allure-junit5.version>2.25.0</allure-junit5.version>
+        <allure-rest-assured.version>2.24.0</allure-rest-assured.version>
     </properties>
 
     <modules>
@@ -63,6 +69,95 @@
                 <version>${postgresql.version}</version>
             </dependency>
 
+            <!--  Test -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj-core.version}</version>
+            </dependency>
+
+            <!-- cucumber -->
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-bom</artifactId>
+                <version>${cucumber-java.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>${cucumber-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-junit-platform-engine</artifactId>
+                <version>${cucumber-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-suite</artifactId>
+                <version>${junit-platform-suite.version}</version>
+            </dependency>
+
+            <!--rest-assured -->
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>spring-mock-mvc</artifactId>
+                <version>${rest-assured-spring-mock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>json-schema-validator</artifactId>
+                <version>${rest-assured-spring-mock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>rest-assured</artifactId>
+                <version>${rest-assured.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-xml</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-junit5</artifactId>
+                <version>${allure-junit5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-rest-assured</artifactId>
+                <version>${allure-rest-assured.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
