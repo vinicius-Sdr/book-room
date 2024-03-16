@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,19 +28,25 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @Setter
 @Entity
-@Table(name = "quarto_itens", schema = "book_room_quarto")
+@Table(name = "quarto_itens", schema = "book_room_quarto", indexes = { @Index(name = "quarto_id_item_tipo_item_key", columnList = "id_quarto, tipo_item", unique = true) })
 @EntityListeners(AuditingEntityListener.class)
 public class QuartoItemEntity implements Serializable {
 
 	private static final long serialVersionUID = -6941946706320602490L;
 
-	@EmbeddedId
-	private QuartoItemEntityId id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private Long id;
 
-	@MapsId("idQuarto")
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "id_quarto", nullable = false)
-	private QuartoEntity quarto;
+	@NotNull
+	@Column(name = "id_quarto", nullable = false)
+	private Long idQuarto;
+
+	@Size(max = 50)
+	@NotNull
+	@Column(name = "tipo_item", nullable = false, length = 50)
+	private String nomeItem;
 
 	@NotNull
 	@Column(name = "quantidade", nullable = false)

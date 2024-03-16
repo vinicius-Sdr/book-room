@@ -96,12 +96,13 @@ COMMENT ON COLUMN book_room_quarto.quarto.data_alteracao IS 'Data e hora da últ
 -- Tabela para armazenar informações sobre os móveis e itens presentes nos quartos
 CREATE TABLE book_room_quarto.quarto_itens
 (
-    id_quarto  INTEGER REFERENCES book_room_quarto.quarto (id) NOT NULL, -- Identificador do quarto
-    tipo_item  VARCHAR(50)                                     NOT NULL, -- TipoEntity de item (sofá, poltrona, frigobar, etc.)
-    quantidade INTEGER                                         NOT NULL, -- Quantidade do tipo de item
-    data_inclusao  TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora de inclusão do registro
-    data_alteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora da última alteração do registro
-    PRIMARY KEY (id_quarto, tipo_item),
+    id             SERIAL PRIMARY KEY,                  -- Identificador único
+    id_quarto      INTEGER REFERENCES book_room_quarto.quarto (id) NOT NULL, -- Identificador do quarto
+    tipo_item      VARCHAR(100)                                     NOT NULL, -- TipoEntity de item (sofá, poltrona, frigobar, etc.)
+    quantidade     INTEGER                                         NOT NULL, -- Quantidade do tipo de item
+    data_inclusao  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                      -- Data e hora de inclusão do registro
+    data_alteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                      -- Data e hora da última alteração do registro
+    UNIQUE (id_quarto, tipo_item),
     CONSTRAINT fk_quarto_itens_quarto FOREIGN KEY (id_quarto) REFERENCES book_room_quarto.quarto (id)
 );
 
@@ -114,15 +115,15 @@ COMMENT ON COLUMN book_room_quarto.quarto_itens.quantidade IS 'Quantidade do tip
 -- Tabela para armazenar informações sobre as camas nos quartos
 CREATE TABLE book_room_quarto.quarto_camas
 (
-    id_quarto  INTEGER REFERENCES book_room_quarto.quarto (id) NOT NULL, -- Identificador do quarto
-    tipo_cama  INTEGER REFERENCES book_room_quarto.tipo (id)   NOT NULL, -- TipoEntity de cama
-    quantidade INTEGER                                         NOT NULL, -- Quantidade de camas do mesmo tipo no quarto
-    descricao  TEXT,                                                     -- Descrição adicional das camas
-    data_inclusao  TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora de inclusão do registro
-    data_alteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora da última alteração do registro
-    PRIMARY KEY (id_quarto, tipo_cama),                                  -- Chave primária composta
+    id_quarto      INTEGER REFERENCES book_room_quarto.quarto (id) NOT NULL, -- Identificador do quarto
+    tipo_cama      INTEGER REFERENCES book_room_quarto.tipo (id)   NOT NULL, -- TipoEntity de cama
+    quantidade     INTEGER                                         NOT NULL, -- Quantidade de camas do mesmo tipo no quarto
+    descricao      TEXT,                                                     -- Descrição adicional das camas
+    data_inclusao  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                      -- Data e hora de inclusão do registro
+    data_alteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                      -- Data e hora da última alteração do registro
+    PRIMARY KEY (id_quarto, tipo_cama),                                      -- Chave primária composta
     CONSTRAINT fk_quarto_camas FOREIGN KEY (id_quarto) REFERENCES book_room_quarto.quarto (id),
-    UNIQUE (id_quarto, tipo_cama)                                        -- Garante que cada tipo de cama seja único dentro de um quarto
+    UNIQUE (id_quarto, tipo_cama)                                            -- Garante que cada tipo de cama seja único dentro de um quarto
 );
 
 COMMENT ON TABLE book_room_quarto.quarto_camas IS 'Tabela para armazenar informações sobre as camas nos quartos';
@@ -136,7 +137,7 @@ COMMENT ON COLUMN book_room_quarto.quarto_camas.descricao IS 'Descrição adicio
 CREATE TABLE book_room_quarto.amenidades
 (
     id             SERIAL PRIMARY KEY,                  -- Identificador único da amenidadeEntity
-    descricao      VARCHAR(255) UNIQUE NOT NULL,               -- Descrição da amenidadeEntity
+    descricao      VARCHAR(255) UNIQUE NOT NULL,        -- Descrição da amenidadeEntity
     data_inclusao  TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Data e hora de inclusão do registro
     data_alteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- Data e hora da última alteração do registro
 );
