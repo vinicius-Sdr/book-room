@@ -96,3 +96,11 @@ docker_run_postgres_quarto:
 docker_stop_postgres_quarto:
 	@echo "Running build of the book-room quarto (postgres) docker image..."
 	cd $(DIR)/docker &&  docker-compose -f docker-compose-postgres.yaml -p book-room-quarto-db --env-file env/.env-book-room-quarto-db down --remove-orphans --volumes --rmi all
+
+docker_run_all:
+	@echo "Running build of the book-room docker image..."
+	docker-compose -f docker-compose.yml up -d --force-recreate --remove-orphans
+
+docker_stop_all:
+	@echo "Running build of the book-room docker image..."
+	docker-compose -f docker-compose.yml -p book-room down --remove-orphans --volumes --rmi all
