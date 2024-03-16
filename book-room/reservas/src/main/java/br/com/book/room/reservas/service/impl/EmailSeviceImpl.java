@@ -7,18 +7,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailSeviceImpl {
-    private final JavaMailSender mailSender;
 
-    public EmailSeviceImpl(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
-    }
+	private final JavaMailSender mailSender;
 
-    public void sendEmail(Email email) {
-        var message = new SimpleMailMessage();
-        message.setFrom("noreply@email.com");
-        message.setTo(email.to());
-        message.setSubject(email.subject());
-        message.setText(email.body());
-        mailSender.send(message);
-    }
+	public EmailSeviceImpl(JavaMailSender mailSender) {
+		this.mailSender = mailSender;
+	}
+
+	public void sendEmail(Email email) {
+		var message = new SimpleMailMessage();
+		message.setFrom("noreply@email.com");
+		message.setTo(email.to());
+		message.setSubject(email.subject());
+		message.setText(email.body());
+		mailSender.send(message);
+	}
+
 }

@@ -1,6 +1,5 @@
 package br.com.book.room.quarto.applicaton.quarto;
 
-
 import br.com.book.room.quarto.domain.core.quarto.Quarto;
 import br.com.book.room.quarto.domain.core.quarto.QuartoRepositoryPort;
 import org.springframework.data.domain.Page;
@@ -39,6 +38,5 @@ public class QuartoServiceImpl implements QuartoService {
 	public Page<Quarto> consultarQuartos(Pageable pageable) {
 		return quartoRepository.findAllQuartos(pageable);
 	}
-
 
 }

@@ -14,11 +14,13 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class ExceptionHandlerController {
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidationErrors(MethodArgumentNotValidException exception) {
-        Map<String, String> errors = exception.getBindingResult().getFieldErrors()
-                .stream().collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
-        return new ResponseEntity<>(errors, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-    }
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<Map<String, String>> handleValidationErrors(MethodArgumentNotValidException exception) {
+		Map<String, String> errors = exception.getBindingResult()
+			.getFieldErrors()
+			.stream()
+			.collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
+		return new ResponseEntity<>(errors, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+	}
 
 }

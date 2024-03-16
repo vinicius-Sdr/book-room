@@ -1,7 +1,5 @@
 package br.com.book.room.clientes.mapper;
 
-
-
 import br.com.book.room.clientes.model.DTO.ClientDTO;
 import br.com.book.room.clientes.model.Client;
 import org.springframework.stereotype.Component;
@@ -11,34 +9,28 @@ import java.util.stream.Collectors;
 @Component
 public final class ClientMapper {
 
-    private ClientMapper() {
-    }
-    public static Client convertToUsuario(ClientDTO clientDTO) {
+	private ClientMapper() {
+	}
 
-        return new Client(
-                clientDTO.getName(),
-                clientDTO.getBirthDate(),
-                clientDTO.getCountry(),
-                clientDTO.getCPF(),
-                clientDTO.getPassport(),
-                clientDTO.getAddress(),
-                clientDTO.getCellphone(),
-                clientDTO.getEmail());
-    }
+	public static Client convertToUsuario(ClientDTO clientDTO) {
 
-//    public static UsuarioResponseDto convertToUsuarioResponseDto(
-//            Usuario usuario
-//    ) {
-//        return new UsuarioResponseDto(
-//                usuario.id(),
-//                usuario.username(),
-//                usuario.roles()
-//                        .stream()
-//                        .map(
-//                                Role::nome
-//                        ).collect(Collectors.toSet()),
-//                usuario.dataCriacao()
-//        );
-//    }
+		return new Client(clientDTO.getName(), clientDTO.getBirthDate(), clientDTO.getCountry(), clientDTO.getCPF(),
+				clientDTO.getPassport(), clientDTO.getAddress(), clientDTO.getCellphone(), clientDTO.getEmail());
+	}
+
+	// public static UsuarioResponseDto convertToUsuarioResponseDto(
+	// Usuario usuario
+	// ) {
+	// return new UsuarioResponseDto(
+	// usuario.id(),
+	// usuario.username(),
+	// usuario.roles()
+	// .stream()
+	// .map(
+	// Role::nome
+	// ).collect(Collectors.toSet()),
+	// usuario.dataCriacao()
+	// );
+	// }
 
 }

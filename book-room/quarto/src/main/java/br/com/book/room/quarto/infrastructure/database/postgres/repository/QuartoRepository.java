@@ -14,8 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface QuartoRepository extends JpaRepository<QuartoEntity, Long>, QuartoRepositoryPort {
 
-
-
 	default Quarto cadastrarQuarto(Quarto quarto) {
 		QuartoEntity savedQuarto = null;
 

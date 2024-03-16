@@ -32,7 +32,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Setter
 @Entity
 @Table(name = "quarto", schema = "book_room_quarto",
-		indexes = { @Index(name = "quarto_id_predio_tipo_key", columnList = "id_predio, tipo,id_localidade, identicacao", unique = true) })
+		indexes = { @Index(name = "quarto_id_predio_tipo_key",
+				columnList = "id_predio, tipo,id_localidade, identicacao", unique = true) })
 @EntityListeners(AuditingEntityListener.class)
 @EqualsAndHashCode(of = { "id" })
 public class QuartoEntity implements Serializable {
@@ -48,12 +49,12 @@ public class QuartoEntity implements Serializable {
 	private String identicacao;
 
 	@NotNull
-	@ManyToOne( optional = false)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "id_predio", nullable = false)
 	private PredioEntity predio;
 
 	@NotNull
-	@ManyToOne( optional = false)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "id_localidade", nullable = false)
 	private LocalidadeEntity localidade;
 
@@ -62,7 +63,7 @@ public class QuartoEntity implements Serializable {
 	private Integer totalPessoas;
 
 	@NotNull
-	@ManyToOne( optional = false)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "tipo", nullable = false)
 	private TipoEntity tipo;
 

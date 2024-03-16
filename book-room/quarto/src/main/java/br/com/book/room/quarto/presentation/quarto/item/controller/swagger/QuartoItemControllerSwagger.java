@@ -54,11 +54,12 @@ public interface QuartoItemControllerSwagger {
 			@ApiResponse(responseCode = "500", description = "Erro interno no servidor") })
 	ResponseEntity<QuartoItemResponse> alterarQuartoItem(Long id, QuartoItemRequest request);
 
-
-	@Operation(summary = "Listar todos os QuartosCama cadastrados", description = "Retorna uma lista com todos os QuartosCama cadastrados.",
+	@Operation(summary = "Listar todos os QuartosCama cadastrados",
+			description = "Retorna uma lista com todos os QuartosCama cadastrados.",
 			responses = { @ApiResponse(responseCode = "200", description = "Lista com todos os QuartosCama cadastrados",
 					content = @Content(mediaType = "application/json",
 							array = @ArraySchema(schema = @Schema(implementation = QuartoItemRequest.class)))) })
 	@PageableAsQueryParam
 	ResponseEntity<Page<QuartoItemResponse>> listarTodos(@Parameter(hidden = true) Pageable pageable);
+
 }

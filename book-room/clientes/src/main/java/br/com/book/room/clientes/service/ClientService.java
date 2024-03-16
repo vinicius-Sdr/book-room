@@ -6,17 +6,16 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-
 public interface ClientService {
 
-    Client createClient(ClientDTO clientDTO);
+	Client createClient(ClientDTO clientDTO);
 
-    List<Client> getAllClients();
+	List<Client> getAllClients();
 
-    Client findById(Long id);
+	Client findById(Long id);
 
-    ResponseEntity deleteClient(Long id);
+	ResponseEntity deleteClient(Long id);
 
-    Client editClient(Long id, ClientDTO clientDTO) throws Exception;
+	Client editClient(Long id, ClientDTO clientDTO) throws Exception;
 
 }

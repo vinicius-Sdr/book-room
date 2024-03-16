@@ -17,7 +17,7 @@ public final class QuartoMapper {
 			.valorDiaria(quarto.valorDiaria())
 			.quantidadeQuartos(quarto.quantidadeQuartos())
 			.tipo(TipoMapper.toEntity(quarto.tipo()))
-				.identicacao(quarto.identicacao())
+			.identicacao(quarto.identicacao())
 			.build();
 
 	}
@@ -25,9 +25,8 @@ public final class QuartoMapper {
 	public static Quarto toDomain(QuartoEntity savedQuarto) {
 
 		return new Quarto(savedQuarto.getId(), PredioMapper.toDomain(savedQuarto.getPredio()),
-				LocalidadeMapper.toDomain(savedQuarto.getLocalidade()), savedQuarto
-					.getIdenticacao(), savedQuarto.getTotalPessoas(),
-				TipoMapper.toDomain(savedQuarto.getTipo()), savedQuarto.getValorDiaria(),
+				LocalidadeMapper.toDomain(savedQuarto.getLocalidade()), savedQuarto.getIdenticacao(),
+				savedQuarto.getTotalPessoas(), TipoMapper.toDomain(savedQuarto.getTipo()), savedQuarto.getValorDiaria(),
 				savedQuarto.getQuantidadeQuartos());
 	}
 

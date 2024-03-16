@@ -1,6 +1,5 @@
 package br.com.book.room.quarto.applicaton.quarto;
 
-
 import br.com.book.room.quarto.domain.core.quarto.Quarto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

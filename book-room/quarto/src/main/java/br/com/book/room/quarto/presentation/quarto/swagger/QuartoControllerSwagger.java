@@ -1,6 +1,5 @@
 package br.com.book.room.quarto.presentation.quarto.swagger;
 
-
 import br.com.book.room.quarto.presentation.quarto.dto.request.QuartoRequest;
 import br.com.book.room.quarto.presentation.quarto.dto.response.QuartoResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -44,8 +43,7 @@ public interface QuartoControllerSwagger {
 			@ApiResponse(responseCode = "500", description = "Erro interno no servidor") })
 	ResponseEntity<Void> excluiQuarto(Long id);
 
-	@Operation(summary = "Alterar Quarto por ID",
-			description = "Altera um Quarto existente com base no ID fornecido.")
+	@Operation(summary = "Alterar Quarto por ID", description = "Altera um Quarto existente com base no ID fornecido.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Recurso alterado com sucesso",
 					content = @Content(mediaType = "application/json",
@@ -55,12 +53,12 @@ public interface QuartoControllerSwagger {
 			@ApiResponse(responseCode = "500", description = "Erro interno no servidor") })
 	ResponseEntity<QuartoResponse> alterarQuarto(Long id, QuartoRequest request);
 
-
 	@Operation(summary = "Listar todos os QuartosCama cadastrados",
 			description = "Retorna uma lista com todos os QuartosCama cadastrados.",
 			responses = { @ApiResponse(responseCode = "200", description = "Lista com todos os QuartosCama cadastrados",
 					content = @Content(mediaType = "application/json",
 							array = @ArraySchema(schema = @Schema(implementation = QuartoResponse.class)))) })
 	@PageableAsQueryParam
-    ResponseEntity<Page<QuartoResponse>> listarTodos(@Parameter(hidden = true) Pageable pageable);
+	ResponseEntity<Page<QuartoResponse>> listarTodos(@Parameter(hidden = true) Pageable pageable);
+
 }

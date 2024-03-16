@@ -12,13 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class ServicingDTO {
 
-    @NotBlank(message = "O nome do serviço deve ser preenchido")
-    private String serviceName;
+	@NotBlank(message = "O nome do serviço deve ser preenchido")
+	private String serviceName;
 
-    private String description;
+	private String description;
 
-    @NotNull(message = "O preço unitário do serviço não pode ser vázio")
-    private double price;
-
+	@NotNull(message = "O preço unitário do serviço não pode ser vázio")
+	private double price;
 
 }

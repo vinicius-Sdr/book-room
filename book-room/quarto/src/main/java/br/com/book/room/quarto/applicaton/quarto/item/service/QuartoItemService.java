@@ -15,4 +15,5 @@ public interface QuartoItemService {
 	QuartoItem consultarQuartoItemPorId(Long id);
 
 	Page<QuartoItem> consultarQuartosCama(Pageable pageable);
+
 }

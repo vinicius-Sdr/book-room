@@ -13,31 +13,33 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/reserva")
 public class ReservaController {
 
-    @Autowired
-    private ReservaService reservaService;
+	@Autowired
+	private ReservaService reservaService;
 
-    @PostMapping
-    public ResponseEntity saveReserva(@Valid @RequestBody ReservaDTO reservaDTO) {
-        return new ResponseEntity<>(reservaService.createReserva(reservaDTO), HttpStatus.CREATED);
-    }
+	@PostMapping
+	public ResponseEntity saveReserva(@Valid @RequestBody ReservaDTO reservaDTO) {
+		return new ResponseEntity<>(reservaService.createReserva(reservaDTO), HttpStatus.CREATED);
+	}
 
-    @GetMapping
-    public ResponseEntity getAllItens() {
-        return ResponseEntity.ok().body(reservaService.getAllReservas());
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity getReservaById(@Valid @PathVariable(name = "id") @NotNull Long id) {
-        return ResponseEntity.ok().body(reservaService.findById(id));
-    }
+	@GetMapping
+	public ResponseEntity getAllItens() {
+		return ResponseEntity.ok().body(reservaService.getAllReservas());
+	}
 
-    @PutMapping("/{id}")
-    public ResponseEntity editReserva(@Valid @PathVariable(name = "id") @NotNull Long id,
-                                      @Valid @RequestBody ReservaDTO reservaDTO) throws Exception {
-        return new ResponseEntity<>(reservaService.editReserva(id,reservaDTO), HttpStatus.CREATED);
-    }
+	@GetMapping("/{id}")
+	public ResponseEntity getReservaById(@Valid @PathVariable(name = "id") @NotNull Long id) {
+		return ResponseEntity.ok().body(reservaService.findById(id));
+	}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteReserva(@Valid @PathVariable(name = "id") @NotNull Long id){
-        return reservaService.deleteReserva(id);
-    }
+	@PutMapping("/{id}")
+	public ResponseEntity editReserva(@Valid @PathVariable(name = "id") @NotNull Long id,
+			@Valid @RequestBody ReservaDTO reservaDTO) throws Exception {
+		return new ResponseEntity<>(reservaService.editReserva(id, reservaDTO), HttpStatus.CREATED);
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity deleteReserva(@Valid @PathVariable(name = "id") @NotNull Long id) {
+		return reservaService.deleteReserva(id);
+	}
+
 }

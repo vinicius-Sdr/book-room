@@ -1,7 +1,5 @@
 package br.com.book.room.reservas.model;
 
-
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,40 +15,41 @@ import java.util.List;
 @NoArgsConstructor
 public class Reserva {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private int guests;
+	private int guests;
 
-    private LocalDateTime checkInDate;
+	private LocalDateTime checkInDate;
 
-    private LocalDateTime checkOutDate;
+	private LocalDateTime checkOutDate;
 
-    private Long clientId;
+	private Long clientId;
 
-    private Long roomId;
+	private Long roomId;
 
-    private Long locale;
+	private Long locale;
 
-    private Long building;
+	private Long building;
 
-    @ElementCollection
-    private List<Long> item;
+	@ElementCollection
+	private List<Long> item;
 
-    @ElementCollection
-    private List<Long> servicing;
+	@ElementCollection
+	private List<Long> servicing;
 
+	public Reserva(int guests, LocalDateTime checkInDate, LocalDateTime checkOutDate, Long clientId, Long roomId,
+			Long locale, Long building, List<Long> item, List<Long> servicing) {
+		this.guests = guests;
+		this.checkInDate = checkInDate;
+		this.checkOutDate = checkOutDate;
+		this.clientId = clientId;
+		this.roomId = roomId;
+		this.locale = locale;
+		this.building = building;
+		this.item = item;
+		this.servicing = servicing;
+	}
 
-    public Reserva(int guests, LocalDateTime checkInDate, LocalDateTime checkOutDate, Long clientId, Long roomId, Long locale, Long building, List<Long> item, List<Long> servicing) {
-        this.guests = guests;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
-        this.clientId = clientId;
-        this.roomId = roomId;
-        this.locale = locale;
-        this.building = building;
-        this.item = item;
-        this.servicing = servicing;
-    }
 }

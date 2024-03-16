@@ -9,9 +9,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record LocalidadeResponse(
 
-
-		Long id, String nome, String ruaAv, String numero, String cep, String cidade,
-		String estado,@JsonInclude(JsonInclude.Include.NON_EMPTY) Set<AmenidadesLocalidadeResponse> amenidades) implements LocalidadeResponseSwagger {
+		Long id, String nome, String ruaAv, String numero, String cep, String cidade, String estado,
+		@JsonInclude(JsonInclude.Include.NON_EMPTY) Set<AmenidadesLocalidadeResponse> amenidades)
+		implements
+			LocalidadeResponseSwagger {
 
 	public static LocalidadeResponse fromResponse(Localidade localidade) {
 

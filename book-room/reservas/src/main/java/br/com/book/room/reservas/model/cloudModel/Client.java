@@ -10,23 +10,22 @@ import lombok.NoArgsConstructor;
 @Data
 public class Client {
 
-    private Long id;
+	private Long id;
 
-    private String name;
+	private String name;
 
-    private String birthDate;
+	private String birthDate;
 
-    private String country;
+	private String country;
 
-    private String cpf;
+	private String cpf;
 
-    private String passport;
+	private String passport;
 
-    private String address;
+	private String address;
 
-    private String cellphone;
+	private String cellphone;
 
-    private String email;
-
+	private String email;
 
 }

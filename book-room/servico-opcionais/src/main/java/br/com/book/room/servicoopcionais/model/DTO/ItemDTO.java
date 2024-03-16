@@ -12,13 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class ItemDTO {
 
-    @NotBlank(message = "O nome do item de consumo deve ser preenchido")
-    private String itemName;
+	@NotBlank(message = "O nome do item de consumo deve ser preenchido")
+	private String itemName;
 
-    private String description;
+	private String description;
 
-    @NotNull(message = "O preço unitário do item não pode ser vázio")
-    private double price;
-
+	@NotNull(message = "O preço unitário do item não pode ser vázio")
+	private double price;
 
 }
