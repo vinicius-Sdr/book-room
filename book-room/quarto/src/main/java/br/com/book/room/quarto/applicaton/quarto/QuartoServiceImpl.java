@@ -3,6 +3,8 @@ package br.com.book.room.quarto.applicaton.quarto;
 
 import br.com.book.room.quarto.domain.core.quarto.Quarto;
 import br.com.book.room.quarto.domain.core.quarto.QuartoRepositoryPort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public class QuartoServiceImpl implements QuartoService {
 
@@ -32,5 +34,11 @@ public class QuartoServiceImpl implements QuartoService {
 	public Quarto consultarQuartoPorId(Long id) {
 		return quartoRepository.findQuartoById(id);
 	}
+
+	@Override
+	public Page<Quarto> consultarQuartos(Pageable pageable) {
+		return quartoRepository.findAllQuartos(pageable);
+	}
+
 
 }

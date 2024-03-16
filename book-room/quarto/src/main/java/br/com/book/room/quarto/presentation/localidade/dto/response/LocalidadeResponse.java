@@ -4,9 +4,14 @@ import java.util.Set;
 
 import br.com.book.room.quarto.domain.core.localidade.Localidade;
 import br.com.book.room.quarto.presentation.localidade.dto.swagger.LocalidadeResponseSwagger;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-public record LocalidadeResponse(Long id, String nome, String ruaAv, String numero, String cep, String cidade,
-		String estado, Set<AmenidadesLocalidadeResponse> amenidades) implements LocalidadeResponseSwagger {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public record LocalidadeResponse(
+
+
+		Long id, String nome, String ruaAv, String numero, String cep, String cidade,
+		String estado,@JsonInclude(JsonInclude.Include.NON_EMPTY) Set<AmenidadesLocalidadeResponse> amenidades) implements LocalidadeResponseSwagger {
 
 	public static LocalidadeResponse fromResponse(Localidade localidade) {
 

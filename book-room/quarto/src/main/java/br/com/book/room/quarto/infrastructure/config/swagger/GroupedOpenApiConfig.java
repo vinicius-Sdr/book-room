@@ -47,4 +47,10 @@ public class GroupedOpenApiConfig {
 		return GroupedOpenApi.builder().group("QuartoItem").pathsToMatch(paths).build();
 	}
 
+	@Bean
+	public GroupedOpenApi quartoOpenApi() {
+		String[] paths = { String.format("/%s%s", ApiRoutes.QUARTO_URI, PATH_POSFIXO) };
+		return GroupedOpenApi.builder().group("Quarto").pathsToMatch(paths).build();
+	}
+
 }
