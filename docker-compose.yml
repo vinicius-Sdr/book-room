@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  # Serviço de Quarto
+  ## Serviço de Quarto
   book-room-quarto:
     container_name: book-room-quarto
     image: book-room/book-room-quarto:latest
@@ -37,10 +37,10 @@ services:
           cpus: '0.25'
           memory: 64M
 
-#  ## Serviço de cliente
+  ## Serviço de cliente
   book-room-cliente:
     container_name: book-room-cliente
-    image: book-room/book-room-quarto:latest
+    image: book-room/book-room-cliente:latest
     ports:
       - "8080:8080"
     env_file:
