@@ -56,7 +56,7 @@ Ao iniciar o módulo será disponibilizado os seguintes endpoints:
 
 ```bash
 curl -X 'GET' \
-  'http://127.0.0.1:8082/api/v1/reserva' \
+  'http://localhost:8082/api/v1/reserva' \
   -H 'accept: */*'
 ```
 
@@ -65,7 +65,7 @@ curl -X 'GET' \
 ```bash
 *Substitua {id} pelo ID do Reserva que você deseja consultar.*
 curl -X 'GET' \
-  'http://127.0.0.1:8082/api/v1/reserva/{id}' \
+  'http://localhost:8082/api/v1/reserva/{id}' \
   -H 'accept: */*'
 ```
 
@@ -75,7 +75,7 @@ curl -X 'GET' \
 
 ```bash
 curl -X 'DELETE' \
-  'http://127.0.0.1:8082/api/v1/reserva/{id}' \
+  'http://localhost:8082/api/v1/reserva/{id}' \
   -H 'accept: */*'
 ```
 
@@ -85,7 +85,7 @@ curl -X 'DELETE' \
 
 ```bash
 curl -X 'PUT' \
-  'http://127.0.0.1:8082/api/v1/reserva/{id}' \
+  'http://localhost:8082/api/v1/reserva/{id}' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{

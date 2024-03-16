@@ -36,7 +36,7 @@ Ao iniciar o módulo será disponibilizado os seguintes endpoints:
 
 ```bash
 curl -X 'POST' \
-  'http://127.0.0.1:8080/api/v1/client' \
+  'http://localhost:8080/api/v1/client' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -55,7 +55,7 @@ curl -X 'POST' \
 
 ```bash
 curl -X 'GET' \
-  'http://127.0.0.1:8080/api/v1/client' \
+  'http://localhost:8080/api/v1/client' \
   -H 'accept: */*'
 ```
 
@@ -64,7 +64,7 @@ curl -X 'GET' \
 ```bash
 *Substitua {id} pelo ID do cliente que você deseja consultar.*
 curl -X 'GET' \
-  'http://127.0.0.1:8080/api/v1/client/{id}' \
+  'http://localhost:8080/api/v1/client/{id}' \
   -H 'accept: */*'
 ```
 
@@ -74,7 +74,7 @@ curl -X 'GET' \
 
 ```bash
 curl -X 'DELETE' \
-  'http://127.0.0.1:8080/api/v1/client/{id}' \
+  'http://localhost:8080/api/v1/client/{id}' \
   -H 'accept: */*'
 ```
 
@@ -84,7 +84,7 @@ curl -X 'DELETE' \
 
 ```bash
 curl -X 'PUT' \
-  'http://127.0.0.1:8080/api/v1/client/{id}' \
+  'http://localhost:8080/api/v1/client/{id}' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
