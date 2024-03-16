@@ -14,7 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface QuartoItemRepository extends JpaRepository<QuartoItemEntity, Long>, QuartoItemRepositoryPort {
 
-
 	default QuartoItem cadastrarQuartoItem(QuartoItem quartoItem) {
 		QuartoItemEntity savedQuartoItem = null;
 
@@ -35,7 +34,7 @@ public interface QuartoItemRepository extends JpaRepository<QuartoItemEntity, Lo
 
 	default QuartoItem findQuartoItemById(Long id) {
 		QuartoItemEntity entity = findById(id)
-				.orElseThrow(() -> new BookRoomEntityNotFoundException("Item não encontrado"));
+			.orElseThrow(() -> new BookRoomEntityNotFoundException("Item não encontrado"));
 		return QuartoItemMapper.toDomain(entity);
 	}
 
@@ -53,6 +52,7 @@ public interface QuartoItemRepository extends JpaRepository<QuartoItemEntity, Lo
 
 	default void deleteQuartoItemById(Long id) {
 		try {
+			findQuartoItemById(id);
 			deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
@@ -63,11 +63,10 @@ public interface QuartoItemRepository extends JpaRepository<QuartoItemEntity, Lo
 
 	default QuartoItem alterarQuartoItem(Long id, QuartoItem quartoItem) {
 		QuartoItemEntity entity = findById(id)
-				.orElseThrow(() -> new BookRoomEntityNotFoundException("Item não encontrado"));
+			.orElseThrow(() -> new BookRoomEntityNotFoundException("Item não encontrado"));
 		try {
-			entity = QuartoItemMapper.updateEntityFromDomain(quartoItem, entity);
-			QuartoItemEntity savedEntity = save(entity);
-			return QuartoItemMapper.toDomain(savedEntity);
+			entity = save(QuartoItemMapper.updateEntityFromDomain(quartoItem, entity));
+
 		}
 		catch (jakarta.persistence.EntityNotFoundException e) {
 			throw new BookRoomEntityNotFoundException("Item não encontrado", e);
@@ -75,6 +74,7 @@ public interface QuartoItemRepository extends JpaRepository<QuartoItemEntity, Lo
 		catch (DataIntegrityViolationException e) {
 			throw new BookRoomUniqueViolationException("Item já cadastrado", e);
 		}
+		return QuartoItemMapper.toDomain(entity);
 	}
 
 }

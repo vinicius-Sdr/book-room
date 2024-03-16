@@ -23,11 +23,12 @@ public final class QuartoItemMapper {
 	}
 
 	public static QuartoItemEntity updateEntityFromDomain(QuartoItem quartoItem, QuartoItemEntity entity) {
-		return QuartoItemEntity.builder()
-			.idQuarto(quartoItem.idQuarto())
-			.nomeItem(quartoItem.nomeItem())
-			.quantidade(quartoItem.quantidade())
-			.build();
+		entity.setQuantidade(quartoItem.quantidade());
+
+		if (!quartoItem.nomeItem().equalsIgnoreCase(entity.getNomeItem()))
+			entity.setNomeItem(quartoItem.nomeItem());
+
+		return entity;
 	}
 
 }

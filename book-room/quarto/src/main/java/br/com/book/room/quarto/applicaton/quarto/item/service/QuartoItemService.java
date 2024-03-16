@@ -6,4 +6,9 @@ public interface QuartoItemService {
 
 	QuartoItem cadastrarQuartoItem(QuartoItem quartoItem);
 
+	QuartoItem alterarQuartoItem(Long id, QuartoItem quartoItem);
+
+	void deletarQuartoItem(Long id);
+
+	QuartoItem consultarQuartoItemPorId(Long id);
 }
