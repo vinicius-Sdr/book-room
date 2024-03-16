@@ -55,6 +55,12 @@
 			<artifactId>liquibase-core</artifactId>
 		</dependency>
 
+		<!-- Cloud -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
 		<!-- Postgres -->
 		<dependency>
 			<groupId>org.postgresql</groupId>

@@ -21,3 +21,6 @@ spring:
   profiles:
     active: ${PROFILE_ENVIRONMENT:dev}
     include: actuator, springdoc
+
+server:
+  port: ${PORT:}
