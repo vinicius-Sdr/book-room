@@ -1,3 +1,6 @@
+server:
+  port: ${PORT:8083}
+
 spring:
   application:
     name: @project.name@
@@ -21,6 +24,3 @@ spring:
   profiles:
     active: ${PROFILE_ENVIRONMENT:dev}
     include: actuator, springdoc
-
-server:
-  port: ${PORT:}

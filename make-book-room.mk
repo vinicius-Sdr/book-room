@@ -69,11 +69,11 @@ docker_build_servico_opcionais: java_build
 docker_build_clientes: java_build
 	@echo "Running build of the book-room (clientes) docker image..."
 	docker build \
-		-f $(DIR)/servico-clientes/Dockerfile \
+		-f $(DIR)/clientes/Dockerfile \
 		--build-arg VERSION=$(DOCKER_VERSION_LABEL_IMAGE) \
 		--build-arg JAR_FILE=$(DIR)/clientes/target/clientes-1.0-SNAPSHOT.jar \
-		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-servico-clientes:$(DOCKER_VERSION_LABEL_IMAGE) \
-		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-servico-clientes:latest .
+		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-clientes:$(DOCKER_VERSION_LABEL_IMAGE) \
+		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-clientes:latest .
 
 docker_build_reservas: java_build
 	@echo "Running build of the book-room (reservas) docker image..."
