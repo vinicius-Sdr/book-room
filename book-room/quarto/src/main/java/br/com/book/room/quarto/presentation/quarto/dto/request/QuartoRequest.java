@@ -8,14 +8,14 @@ import br.com.book.room.quarto.domain.core.quarto.Quarto;
 import br.com.book.room.quarto.domain.core.tipo.Tipo;
 import br.com.book.room.quarto.presentation.quarto.dto.swagger.QuartoRequestSwagger;
 
-public record QuartoRequest(Long idPredio, Long idLocalidade, Long idTipo, Integer totalPessoas, BigDecimal valorDiaria,
+public record QuartoRequest(Long idPredio, Long idLocalidade, Long idTipo,String identicacao, Integer totalPessoas, BigDecimal valorDiaria,
 		Integer quantidadeQuartos
 
 ) implements QuartoRequestSwagger {
 
 	public Quarto fromQuartoDto() {
 
-		return new Quarto(null, new Predio(idPredio), new Localidade(idLocalidade), totalPessoas, new Tipo(idTipo),
+		return new Quarto(null, new Predio(idPredio), new Localidade(idLocalidade), identicacao ,totalPessoas, new Tipo(idTipo),
 				valorDiaria, quantidadeQuartos);
 	}
 }

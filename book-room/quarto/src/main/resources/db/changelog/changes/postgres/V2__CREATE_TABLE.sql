@@ -71,6 +71,7 @@ CREATE TABLE book_room_quarto.quarto
     id_localidade      INTEGER REFERENCES book_room_quarto.localidade (id) NOT NULL, -- LocalidadeEntity na qual o quarto está situado
     total_pessoas      INTEGER                                             NOT NULL, -- Capacidade total de pessoas no quarto
     tipo               INTEGER REFERENCES book_room_quarto.tipo (id)       NOT NULL, -- Componente de tipo
+    identicacao        VARCHAR(255)                                        NOT NULL, -- identicacao do quarto
     valor_diaria       DECIMAL(10, 2)                                      NOT NULL, -- Valor da diária do quarto
     quantidade_quartos INTEGER                                             NOT NULL, -- Quantidade de quartos do mesmo tipo
     data_inclusao      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                          -- Data e hora de inclusão do registro
@@ -78,7 +79,7 @@ CREATE TABLE book_room_quarto.quarto
     CONSTRAINT fk_quarto_predio FOREIGN KEY (id_predio) REFERENCES book_room_quarto.predio (id),
     CONSTRAINT fk_quarto_localidade FOREIGN KEY (id_localidade) REFERENCES book_room_quarto.localidade (id),
     CONSTRAINT fk_quarto_tipo FOREIGN KEY (tipo) REFERENCES book_room_quarto.tipo (id),
-    UNIQUE (id_predio, tipo, id_localidade)                                                         -- Garante que cada tipo de quarto seja único dentro de um prédio
+    UNIQUE (id_predio, tipo, id_localidade, identicacao)                                                         -- Garante que cada tipo de quarto seja único dentro de um prédio
 );
 
 COMMENT ON TABLE book_room_quarto.quarto IS 'Tabela para armazenar informações sobre os quartos';
@@ -92,6 +93,7 @@ COMMENT ON COLUMN book_room_quarto.quarto.valor_diaria IS 'Valor da diária do q
 COMMENT ON COLUMN book_room_quarto.quarto.quantidade_quartos IS 'Quantidade de quartos do mesmo tipo';
 COMMENT ON COLUMN book_room_quarto.quarto.data_inclusao IS 'Data e hora de inclusão do registro';
 COMMENT ON COLUMN book_room_quarto.quarto.data_alteracao IS 'Data e hora da última alteração do registro';
+comment on column book_room_quarto.quarto.identicacao IS 'identicacao do quarto';
 
 -- Tabela para armazenar informações sobre os móveis e itens presentes nos quartos
 CREATE TABLE book_room_quarto.quarto_itens

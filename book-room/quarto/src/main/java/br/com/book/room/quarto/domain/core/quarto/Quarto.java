@@ -7,6 +7,6 @@ import br.com.book.room.quarto.domain.core.localidade.Localidade;
 import br.com.book.room.quarto.domain.core.predio.Predio;
 import br.com.book.room.quarto.domain.core.tipo.Tipo;
 
-public record Quarto(Long id, Predio predio, Localidade localidade, Integer totalPessoas, Tipo tipo,
+public record Quarto(Long id, Predio predio, Localidade localidade, String identicacao, Integer totalPessoas, Tipo tipo,
 		BigDecimal valorDiaria, Integer quantidadeQuartos) implements Serializable {
 }

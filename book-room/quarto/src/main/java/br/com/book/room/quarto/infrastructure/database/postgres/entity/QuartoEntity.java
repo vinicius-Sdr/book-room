@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,7 +32,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Setter
 @Entity
 @Table(name = "quarto", schema = "book_room_quarto",
-		indexes = { @Index(name = "quarto_id_predio_tipo_key", columnList = "id_predio, tipo,id_localidade", unique = true) })
+		indexes = { @Index(name = "quarto_id_predio_tipo_key", columnList = "id_predio, tipo,id_localidade, identicacao", unique = true) })
 @EntityListeners(AuditingEntityListener.class)
 @EqualsAndHashCode(of = { "id" })
 public class QuartoEntity implements Serializable {
@@ -45,13 +44,16 @@ public class QuartoEntity implements Serializable {
 	@Column(name = "id", nullable = false)
 	private Long id;
 
+	@Column(name = "identicacao", nullable = false)
+	private String identicacao;
+
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne( optional = false)
 	@JoinColumn(name = "id_predio", nullable = false)
 	private PredioEntity predio;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne( optional = false)
 	@JoinColumn(name = "id_localidade", nullable = false)
 	private LocalidadeEntity localidade;
 
@@ -60,7 +62,7 @@ public class QuartoEntity implements Serializable {
 	private Integer totalPessoas;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne( optional = false)
 	@JoinColumn(name = "tipo", nullable = false)
 	private TipoEntity tipo;
 
