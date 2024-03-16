@@ -15,6 +15,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,6 +32,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 		indexes = { @Index(name = "amenidades_descricao_key", columnList = "descricao", unique = true) })
 @EntityListeners(AuditingEntityListener.class)
 @Builder(toBuilder = true)
+@EqualsAndHashCode(of = { "id" })
 public class AmenidadeEntity implements Serializable {
 
 	private static final long serialVersionUID = 2918156029573710229L;

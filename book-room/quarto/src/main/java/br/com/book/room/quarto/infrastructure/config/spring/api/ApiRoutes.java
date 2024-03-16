@@ -27,6 +27,8 @@ public final class ApiRoutes {
 
 	public static final String QUARTO_ITEM_URI = API + VERSAO + "/quarto-itens";
 
+	public static final String QUARTO_URI = API + VERSAO + "/quartos";
+
 	private ApiRoutes() {
 	}
 
@@ -54,6 +56,11 @@ public final class ApiRoutes {
 	public static URI construirUriQuartoItensPorId(Long id) {
 
 		return construirUriPorId(QUARTO_ITEM_URI, id);
+	}
+
+	public static URI construirUriQuartoPorId(Long id) {
+
+		return construirUriPorId(QUARTO_URI, id);
 	}
 
 	private static URI construirUriPorId(String recurso, Long id) {

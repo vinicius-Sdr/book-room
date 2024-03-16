@@ -28,7 +28,7 @@ public final class QuartoItemMapper {
 		if (!quartoItem.nomeItem().equalsIgnoreCase(entity.getNomeItem()))
 			entity.setNomeItem(quartoItem.nomeItem());
 
-		if(!quartoItem.idQuarto().equals(entity.getIdQuarto()))
+		if (!quartoItem.idQuarto().equals(entity.getIdQuarto()))
 			entity.setIdQuarto(quartoItem.idQuarto());
 
 		return entity;

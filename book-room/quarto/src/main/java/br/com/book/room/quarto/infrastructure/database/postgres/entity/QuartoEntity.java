@@ -18,6 +18,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,7 +26,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -34,6 +35,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "quarto", schema = "book_room_quarto",
 		indexes = { @Index(name = "quarto_id_predio_tipo_key", columnList = "id_predio, tipo", unique = true) })
 @EntityListeners(AuditingEntityListener.class)
+@EqualsAndHashCode(of = { "id" })
 public class QuartoEntity implements Serializable {
 
 	private static final long serialVersionUID = -2853837012401991599L;

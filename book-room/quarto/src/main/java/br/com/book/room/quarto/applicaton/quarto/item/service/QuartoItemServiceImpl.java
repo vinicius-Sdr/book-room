@@ -5,28 +5,31 @@ import br.com.book.room.quarto.domain.core.quarto.item.QuartoItemRepositoryPort;
 
 public class QuartoItemServiceImpl implements QuartoItemService {
 
-    private final QuartoItemRepositoryPort quartoItemRepository;
-    @Override
-    public QuartoItem cadastrarQuartoItem(QuartoItem quartoItem) {
-        return quartoItemRepository.cadastrarQuartoItem(quartoItem);
-    }
-    public QuartoItemServiceImpl(QuartoItemRepositoryPort quartoItemRepository) {
-        this.quartoItemRepository = quartoItemRepository;
-    }
+	private final QuartoItemRepositoryPort quartoItemRepository;
 
 	@Override
-    public QuartoItem alterarQuartoItem(Long id, QuartoItem quartoItem) {
+	public QuartoItem cadastrarQuartoItem(QuartoItem quartoItem) {
+		return quartoItemRepository.cadastrarQuartoItem(quartoItem);
+	}
 
-        return quartoItemRepository.alterarQuartoItem(id, quartoItem);
-    }
+	public QuartoItemServiceImpl(QuartoItemRepositoryPort quartoItemRepository) {
+		this.quartoItemRepository = quartoItemRepository;
+	}
 
-    @Override
-    public void deletarQuartoItem(Long id) {
-        quartoItemRepository.deleteQuartoItemById(id);
-    }
+	@Override
+	public QuartoItem alterarQuartoItem(Long id, QuartoItem quartoItem) {
 
-    @Override
-    public QuartoItem consultarQuartoItemPorId(Long id) {
-        return quartoItemRepository.findQuartoItemById(id);
-    }
+		return quartoItemRepository.alterarQuartoItem(id, quartoItem);
+	}
+
+	@Override
+	public void deletarQuartoItem(Long id) {
+		quartoItemRepository.deleteQuartoItemById(id);
+	}
+
+	@Override
+	public QuartoItem consultarQuartoItemPorId(Long id) {
+		return quartoItemRepository.findQuartoItemById(id);
+	}
+
 }

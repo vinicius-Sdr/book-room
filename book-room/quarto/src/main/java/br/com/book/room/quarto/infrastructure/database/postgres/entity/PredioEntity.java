@@ -18,6 +18,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,7 +26,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -34,6 +35,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "predio", schema = "book_room_quarto",
 		indexes = { @Index(name = "predio_id_localidade_nome_key", columnList = "id_localidade, nome", unique = true) })
 @EntityListeners(AuditingEntityListener.class)
+@EqualsAndHashCode(of = { "id" })
 public class PredioEntity implements Serializable {
 
 	private static final long serialVersionUID = -717537128904236628L;

@@ -11,4 +11,5 @@ public interface QuartoItemService {
 	void deletarQuartoItem(Long id);
 
 	QuartoItem consultarQuartoItemPorId(Long id);
+
 }

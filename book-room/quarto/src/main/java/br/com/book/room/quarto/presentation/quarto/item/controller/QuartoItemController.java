@@ -29,47 +29,47 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequiredArgsConstructor
 public class QuartoItemController implements QuartoItemControllerSwagger {
 
-    private final QuartoItemService quartoItemService;
+	private final QuartoItemService quartoItemService;
 
-    @PostMapping
-    @Override
-    public ResponseEntity<QuartoItemResponse> cadastrar(
-            @Validated(CreateInfo.class) @RequestBody QuartoItemRequest request,
-            UriComponentsBuilder uriComponentsBuilder) {
-        log.info("Cadastrando quarto item");
+	@PostMapping
+	@Override
+	public ResponseEntity<QuartoItemResponse> cadastrar(
+			@Validated(CreateInfo.class) @RequestBody QuartoItemRequest request,
+			UriComponentsBuilder uriComponentsBuilder) {
+		log.info("Cadastrando quarto item");
 
-        var quartoItem = quartoItemService.cadastrarQuartoItem(request.fromQuartoItemDto());
-        URI uri = uriComponentsBuilder.path(ApiRoutes.QUARTO_ITEM_URI + "/{id}")
-                .buildAndExpand(quartoItem.id()).toUri();
+		var quartoItem = quartoItemService.cadastrarQuartoItem(request.fromQuartoItemDto());
+		URI uri = ApiRoutes.construirUriQuartoItensPorId(quartoItem.id());
 
-        return ResponseEntity.created(uri).body(QuartoItemResponse.fromQuartoItemResponse(quartoItem));
-    }
+		return ResponseEntity.created(uri).body(QuartoItemResponse.fromQuartoItemResponse(quartoItem));
+	}
 
-    @GetMapping("/{id}")
-    @Override
-    public ResponseEntity<QuartoItemResponse> consultarQuartoItemPorId(@PathVariable Long id) {
-        log.info("Buscando quarto item por id");
-        var quartoItem = quartoItemService.consultarQuartoItemPorId(id);
+	@GetMapping("/{id}")
+	@Override
+	public ResponseEntity<QuartoItemResponse> consultarQuartoItemPorId(@PathVariable Long id) {
+		log.info("Buscando quarto item por id");
+		var quartoItem = quartoItemService.consultarQuartoItemPorId(id);
 
-        return ResponseEntity.ok(QuartoItemResponse.fromQuartoItemResponse(quartoItem));
-    }
+		return ResponseEntity.ok(QuartoItemResponse.fromQuartoItemResponse(quartoItem));
+	}
 
-    @DeleteMapping("/{id}")
-    @Override
-    public ResponseEntity<Void> excluiQuartoItem(@PathVariable Long id) {
-        log.info("Excluindo quarto item");
-        quartoItemService.deletarQuartoItem(id);
+	@DeleteMapping("/{id}")
+	@Override
+	public ResponseEntity<Void> excluiQuartoItem(@PathVariable Long id) {
+		log.info("Excluindo quarto item");
+		quartoItemService.deletarQuartoItem(id);
 
-        return ResponseEntity.noContent().build();
-    }
+		return ResponseEntity.noContent().build();
+	}
 
-    @PatchMapping("/{id}")
-    @Override
-    public ResponseEntity<QuartoItemResponse> alterarQuartoItem(@PathVariable Long id,
-                                                                @Validated(UpdateInfo.class) @RequestBody QuartoItemRequest request) {
-        log.info("Alterando quarto item");
-        var quartoItem = quartoItemService.alterarQuartoItem(id, request.fromQuartoItemDto());
+	@PatchMapping("/{id}")
+	@Override
+	public ResponseEntity<QuartoItemResponse> alterarQuartoItem(@PathVariable Long id,
+			@Validated(UpdateInfo.class) @RequestBody QuartoItemRequest request) {
+		log.info("Alterando quarto item");
+		var quartoItem = quartoItemService.alterarQuartoItem(id, request.fromQuartoItemDto());
 
-        return ResponseEntity.ok(QuartoItemResponse.fromQuartoItemResponse(quartoItem));
-    }
+		return ResponseEntity.ok(QuartoItemResponse.fromQuartoItemResponse(quartoItem));
+	}
+
 }

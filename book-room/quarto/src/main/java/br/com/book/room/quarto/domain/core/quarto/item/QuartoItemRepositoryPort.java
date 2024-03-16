@@ -5,15 +5,16 @@ import org.springframework.data.domain.Pageable;
 
 public interface QuartoItemRepositoryPort {
 
-    QuartoItem cadastrarQuartoItem(QuartoItem quartoItem);
+	QuartoItem cadastrarQuartoItem(QuartoItem quartoItem);
 
-    Page<QuartoItem> findAllQuartoItems(Pageable pageable);
+	Page<QuartoItem> findAllQuartoItems(Pageable pageable);
 
-    QuartoItem findQuartoItemById(Long id);
+	QuartoItem findQuartoItemById(Long id);
 
-    QuartoItem saveQuartoItem(QuartoItem quartoItem);
+	QuartoItem saveQuartoItem(QuartoItem quartoItem);
 
-    void deleteQuartoItemById(Long id);
+	void deleteQuartoItemById(Long id);
 
-    QuartoItem alterarQuartoItem(Long id, QuartoItem quartoItem);
+	QuartoItem alterarQuartoItem(Long id, QuartoItem quartoItem);
+
 }
