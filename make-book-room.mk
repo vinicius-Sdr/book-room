@@ -20,6 +20,8 @@ DOCKER_NAMESPACE = book-room
 # List of all Maven targets
 MAVEN_TARGETS = java_build java_install
 
+DOCKER_TARGETS = docker_build_quarto docker_build_servico_opcionais docker_build_clientes docker_build_reservas
+
 # Check for dependencies
 CHECK_MAVEN := $(shell command -v mvn 2> /dev/null)
 
@@ -52,8 +54,8 @@ docker_build_quarto: java_build
 		-f $(DIR)/quarto/Dockerfile \
 		--build-arg VERSION=$(DOCKER_VERSION_LABEL_IMAGE) \
 		--build-arg JAR_FILE=$(DIR)/quarto/target/quarto-1.0-SNAPSHOT.jar \
-		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):$(DOCKER_VERSION_LABEL_IMAGE) \
-		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):latest .
+		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-quarto:$(DOCKER_VERSION_LABEL_IMAGE) \
+		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-quarto:latest .
 
 docker_build_servico_opcionais: java_build
 	@echo "Running build of the book-room (servico-opcionais) docker image..."
@@ -61,17 +63,17 @@ docker_build_servico_opcionais: java_build
 		-f $(DIR)/servico-opcionais/Dockerfile \
 		--build-arg VERSION=$(DOCKER_VERSION_LABEL_IMAGE) \
 		--build-arg JAR_FILE=$(DIR)/servico-opcionais/target/servico-opcionais-1.0-SNAPSHOT.jar \
-		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):$(DOCKER_VERSION_LABEL_IMAGE) \
-		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):latest .
+		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-servico-opcionais:$(DOCKER_VERSION_LABEL_IMAGE) \
+		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-servico-opcionais:latest .
 
 docker_build_clientes: java_build
 	@echo "Running build of the book-room (clientes) docker image..."
 	docker build \
-		-f $(DIR)/servico-opcionais/Dockerfile \
+		-f $(DIR)/servico-clientes/Dockerfile \
 		--build-arg VERSION=$(DOCKER_VERSION_LABEL_IMAGE) \
 		--build-arg JAR_FILE=$(DIR)/clientes/target/clientes-1.0-SNAPSHOT.jar \
-		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):$(DOCKER_VERSION_LABEL_IMAGE) \
-		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):latest .
+		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-servico-clientes:$(DOCKER_VERSION_LABEL_IMAGE) \
+		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-servico-clientes:latest .
 
 docker_build_reservas: java_build
 	@echo "Running build of the book-room (reservas) docker image..."
@@ -79,8 +81,11 @@ docker_build_reservas: java_build
 		-f $(DIR)/reservas/Dockerfile \
 		--build-arg VERSION=$(DOCKER_VERSION_LABEL_IMAGE) \
 		--build-arg JAR_FILE=$(DIR)/reservas/target/reservas-1.0-SNAPSHOT.jar \
-		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):$(DOCKER_VERSION_LABEL_IMAGE) \
-		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):latest .
+		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-reservas:$(DOCKER_VERSION_LABEL_IMAGE) \
+		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME)-reservas:latest .
+
+docker_build_all: $(DOCKER_TARGETS)
+	@echo "All docker images built successfully."
 
 # subir container postgres book-room quarto
 docker_run_postgres_quarto:

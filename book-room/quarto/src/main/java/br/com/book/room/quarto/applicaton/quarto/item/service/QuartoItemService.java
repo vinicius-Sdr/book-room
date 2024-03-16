@@ -1,6 +1,8 @@
 package br.com.book.room.quarto.applicaton.quarto.item.service;
 
 import br.com.book.room.quarto.domain.core.quarto.item.QuartoItem;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface QuartoItemService {
 
@@ -12,4 +14,5 @@ public interface QuartoItemService {
 
 	QuartoItem consultarQuartoItemPorId(Long id);
 
+	Page<QuartoItem> consultarQuartosCama(Pageable pageable);
 }

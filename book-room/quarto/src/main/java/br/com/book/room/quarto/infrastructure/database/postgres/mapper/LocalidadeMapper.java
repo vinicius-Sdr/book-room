@@ -10,6 +10,9 @@ import br.com.book.room.quarto.infrastructure.database.postgres.entity.Localidad
 public class LocalidadeMapper {
 
 	public static Localidade toDomain(LocalidadeEntity entity) {
+		if(entity == null) {
+			return null;
+		}
 		Set<AmenidadesLocalidade> amenidades = entity.getAmenidades()
 			.stream()
 			.map(AmenidadesLocalidadeMapper::toDomain)
@@ -20,6 +23,10 @@ public class LocalidadeMapper {
 	}
 
 	public static LocalidadeEntity toEntity(Localidade localidade) {
+		if(localidade == null) {
+			return null;
+		}
+
 		return LocalidadeEntity.builder()
 			.id(localidade.id())
 			.nome(localidade.nome())

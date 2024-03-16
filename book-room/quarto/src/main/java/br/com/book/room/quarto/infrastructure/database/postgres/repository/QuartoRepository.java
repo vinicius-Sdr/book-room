@@ -5,16 +5,16 @@ import br.com.book.room.quarto.applicaton.exception.BookRoomEntityNotFoundExcept
 import br.com.book.room.quarto.applicaton.exception.BookRoomUniqueViolationException;
 import br.com.book.room.quarto.domain.core.quarto.Quarto;
 import br.com.book.room.quarto.domain.core.quarto.QuartoRepositoryPort;
-
 import br.com.book.room.quarto.infrastructure.database.postgres.entity.QuartoEntity;
 import br.com.book.room.quarto.infrastructure.database.postgres.mapper.QuartoMapper;
-
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface QuartoRepository extends JpaRepository<QuartoEntity, Long>, QuartoRepositoryPort {
+
+
 
 	default Quarto cadastrarQuarto(Quarto quarto) {
 		QuartoEntity savedQuarto = null;

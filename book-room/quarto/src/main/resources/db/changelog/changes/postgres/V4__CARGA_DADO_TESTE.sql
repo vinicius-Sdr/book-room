@@ -168,14 +168,14 @@ INSERT INTO book_room_quarto.predio (id_localidade, nome)
 VALUES (1, 'Casa Principal');
 
 -- Inserir informações sobre quartos
-INSERT INTO book_room_quarto.quarto (id_predio, id_localidade, total_pessoas, tipo, valor_diaria, quantidade_quartos)
+INSERT INTO book_room_quarto.quarto (id_predio, id_localidade, total_pessoas, tipo, valor_diaria, quantidade_quartos, identicacao)
 VALUES
-    (1, 1, 4, 1, 350.00, 20), -- Standard Simples
-    (1, 1, 4, 2, 450.00, 15), -- Standard Duplo
-    (1, 1, 2, 3, 550.00, 20), -- Luxo Simples
-    (1, 1, 4, 4, 650.00, 15), -- Luxo Duplo
-    (1, 1, 2, 5, 850.00, 10), -- Premium Simples
-    (1, 1, 4, 6, 950.00, 10); -- Premium Duplo
+    (1, 1, 4, 1, 350.00, 20,'205'), -- Standard Simples
+    (1, 1, 4, 2, 450.00, 15,'206'), -- Standard Duplo
+    (1, 1, 2, 3, 550.00, 20,'207'), -- Luxo Simples
+    (1, 1, 4, 4, 650.00, 15,'208'), -- Luxo Duplo
+    (1, 1, 2, 5, 850.00, 10,'209'), -- Premium Simples
+    (1, 1, 4, 6, 950.00, 10,'210'); -- Premium Duplo
 
 -- Inserir informações sobre itens presentes nos quartos
 INSERT INTO book_room_quarto.quarto_itens (id_quarto, tipo_item, quantidade)
