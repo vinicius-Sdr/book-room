@@ -28,9 +28,9 @@
 
         <!-- test -->
         <mockito.version>5.11.0</mockito.version>
-<<<<<<< HEAD
+
         <cloud.version>4.1.0</cloud.version>
-=======
+
         <assertj-core.version>3.25.3</assertj-core.version>
         <junit.version>5.10.2</junit.version>
         <cucumber-java.version>7.15.0</cucumber-java.version>
@@ -39,7 +39,6 @@
         <rest-assured.version>5.4.0</rest-assured.version>
         <allure-junit5.version>2.25.0</allure-junit5.version>
         <allure-rest-assured.version>2.24.0</allure-rest-assured.version>
->>>>>>> main
     </properties>
 
     <modules>
@@ -73,7 +72,6 @@
                 <version>${postgresql.version}</version>
             </dependency>
 
-<<<<<<< HEAD
             <!--  Spring Cloud  -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -81,7 +79,6 @@
                 <version>${cloud.version}</version>
             </dependency>
 
-=======
             <!--  Test -->
             <dependency>
                 <groupId>org.junit</groupId>
@@ -171,7 +168,6 @@
                 <artifactId>allure-rest-assured</artifactId>
                 <version>${allure-rest-assured.version}</version>
             </dependency>
->>>>>>> main
         </dependencies>
     </dependencyManagement>
 

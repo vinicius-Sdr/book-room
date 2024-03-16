@@ -42,5 +42,15 @@ public class Reserva {
     private List<Long> servicing;
 
 
-
+    public Reserva(int guests, LocalDateTime checkInDate, LocalDateTime checkOutDate, Long clientId, Long roomId, Long locale, Long building, List<Long> item, List<Long> servicing) {
+        this.guests = guests;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.clientId = clientId;
+        this.roomId = roomId;
+        this.locale = locale;
+        this.building = building;
+        this.item = item;
+        this.servicing = servicing;
+    }
 }

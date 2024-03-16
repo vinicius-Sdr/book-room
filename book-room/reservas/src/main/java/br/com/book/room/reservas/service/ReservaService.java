@@ -19,6 +19,6 @@ public interface ReservaService {
 
     ResponseEntity deleteReserva(Long id);
 
-    Reserva editReserva(Long id, ReservaDTO clientDTO) throws Exception;
+    Reserva editReserva(Long id, ReservaDTO reservaDTO) throws Exception;
 
 }

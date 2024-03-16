@@ -4,14 +4,11 @@ package br.com.book.room.clientes.mapper;
 
 import br.com.book.room.clientes.model.DTO.ClientDTO;
 import br.com.book.room.clientes.model.Client;
-import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
 @Component
-@Mapper(componentModel="spring", unmappedTargetPolicy = ReportingPolicy.WARN)
 public final class ClientMapper {
 
     private ClientMapper() {
