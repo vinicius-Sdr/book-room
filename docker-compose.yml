@@ -1,16 +1,17 @@
 version: '3.8'
 services:
-  book-room:
+  # Serviço de Quarto
+  book-room-quarto:
     container_name: book-room-quarto
     image: book-room/book-room-quarto:latest
     ports:
       - "8081:8081"
     env_file:
-      - /docker/env/.env-book-room-quarto
+      - /book-room/docker/env/.env-book-room-quarto
     depends_on:
       - book-room-quarto-db
     networks:
-      - book-room-quarto-db
+      - book-room-quarto-db-net
     deploy:
       resources:
         limits:
@@ -24,9 +25,46 @@ services:
     container_name: book-room-quarto-db
     image: postgres:latest
     env_file:
-      - /docker/env/.env-book-room-quarto-db
+      -  /book-room/docker/env/.env-book-room-quarto-db
     networks:
-      - book-room-quarto-db
+      - book-room-quarto-db-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1024M
+        reservations:
+          cpus: '0.25'
+          memory: 64M
+
+#  ## Serviço de cliente
+  book-room-cliente:
+    container_name: book-room-cliente
+    image: book-room/book-room-quarto:latest
+    ports:
+      - "8080:8080"
+    env_file:
+      - /book-room/docker/env/.env-book-room-quarto
+    depends_on:
+      -  book-room-cliente-db
+    networks:
+      - book-room-cliente-db-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1024M
+        reservations:
+          cpus: '0.25'
+          memory: 64M
+
+  book-room-cliente-db:
+    container_name: book-room-cliente-db
+    image: postgres:latest
+    env_file:
+      - /book-room/docker/env/.env-book-room-cliente-db
+    networks:
+      - book-room-cliente-db-net
     deploy:
       resources:
         limits:
@@ -37,4 +75,5 @@ services:
           memory: 64M
 
 networks:
-  book-room-quarto-db:
+  book-room-quarto-db-net:
+  book-room-cliente-db-net:
