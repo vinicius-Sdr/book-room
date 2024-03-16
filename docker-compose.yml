@@ -44,7 +44,7 @@ services:
     ports:
       - "8080:8080"
     env_file:
-      - /book-room/docker/env/.env-book-room-quarto
+      - /book-room/docker/env/.env-book-room-cliente
     depends_on:
       -  book-room-cliente-db
     networks:
