@@ -37,6 +37,7 @@ public final class QuartoMapper {
 		entity.setTotalPessoas(quarto.totalPessoas());
 		entity.setValorDiaria(quarto.valorDiaria());
 		entity.setQuantidadeQuartos(quarto.quantidadeQuartos());
+		entity.setIdenticacao(quarto.identicacao());
 
 		var tipo = TipoMapper.toEntity(quarto.tipo());
 

@@ -11,6 +11,8 @@ import br.com.book.room.quarto.presentation.validation.CreateInfo;
 import br.com.book.room.quarto.presentation.validation.UpdateInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -69,6 +71,15 @@ public class QuartoController implements QuartoControllerSwagger {
 		var quarto = quartoService.alterarQuarto(id, request.fromQuartoDto());
 
 		return ResponseEntity.ok(QuartoResponse.fromQuartoResponse(quarto));
+	}
+
+	@GetMapping
+	@Override
+	public ResponseEntity<Page<QuartoResponse>> listarTodos(Pageable pageable) {
+		log.info("Buscando todos os quartos ");
+		var page = quartoService.consultarQuartos(pageable).map(QuartoResponse::fromQuartoResponse);
+
+		return ResponseEntity.ok(page);
 	}
 
 }

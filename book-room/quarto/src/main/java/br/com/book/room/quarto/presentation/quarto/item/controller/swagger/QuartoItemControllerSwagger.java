@@ -3,11 +3,16 @@ package br.com.book.room.quarto.presentation.quarto.item.controller.swagger;
 import br.com.book.room.quarto.presentation.quarto.item.dto.request.QuartoItemRequest;
 import br.com.book.room.quarto.presentation.quarto.item.dto.response.QuartoItemResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -49,4 +54,11 @@ public interface QuartoItemControllerSwagger {
 			@ApiResponse(responseCode = "500", description = "Erro interno no servidor") })
 	ResponseEntity<QuartoItemResponse> alterarQuartoItem(Long id, QuartoItemRequest request);
 
+
+	@Operation(summary = "Listar todos os QuartosCama cadastrados", description = "Retorna uma lista com todos os QuartosCama cadastrados.",
+			responses = { @ApiResponse(responseCode = "200", description = "Lista com todos os QuartosCama cadastrados",
+					content = @Content(mediaType = "application/json",
+							array = @ArraySchema(schema = @Schema(implementation = QuartoItemRequest.class)))) })
+	@PageableAsQueryParam
+	ResponseEntity<Page<QuartoItemResponse>> listarTodos(@Parameter(hidden = true) Pageable pageable);
 }
