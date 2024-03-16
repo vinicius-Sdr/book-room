@@ -28,7 +28,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @Setter
 @Entity
-@Table(name = "quarto_itens", schema = "book_room_quarto", indexes = { @Index(name = "quarto_id_item_tipo_item_key", columnList = "id_quarto, tipo_item", unique = true) })
+@Table(name = "quarto_itens", schema = "book_room_quarto",
+		indexes = { @Index(name = "quarto_id_item_tipo_item_key", columnList = "id_quarto, tipo_item", unique = true) })
 @EntityListeners(AuditingEntityListener.class)
 public class QuartoItemEntity implements Serializable {
 

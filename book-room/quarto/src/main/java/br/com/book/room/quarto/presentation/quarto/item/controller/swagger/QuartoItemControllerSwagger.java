@@ -7,7 +7,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public interface QuartoItemControllerSwagger {
 
-    ResponseEntity<QuartoItemResponse> cadastrar(
-            QuartoItemRequest request,
-            UriComponentsBuilder uriComponentsBuilder);
+	ResponseEntity<QuartoItemResponse> cadastrar(QuartoItemRequest request, UriComponentsBuilder uriComponentsBuilder);
+
 }

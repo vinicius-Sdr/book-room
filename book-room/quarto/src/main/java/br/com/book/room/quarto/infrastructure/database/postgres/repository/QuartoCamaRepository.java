@@ -26,7 +26,8 @@ public interface QuartoCamaRepository
 
 	default QuartoCama findQuartoCamaById(Long idQuarto, Long idTipoCama) {
 		var id = new QuartoCamaEntityId(idQuarto, idTipoCama);
-		QuartoCamaEntity entity = findById(id).orElseThrow(() -> new BookRoomEntityNotFoundException(QUARTO_CAMA_NAO_ENCONTRADO));
+		QuartoCamaEntity entity = findById(id)
+			.orElseThrow(() -> new BookRoomEntityNotFoundException(QUARTO_CAMA_NAO_ENCONTRADO));
 		return QuartoCamaMapper.toDomain(entity);
 	}
 
@@ -48,14 +49,16 @@ public interface QuartoCamaRepository
 			deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new BookRoomUniqueViolationException("QuartoCama não pode ser excluído pois está vinculado a outras tabelas", e);
+			throw new BookRoomUniqueViolationException(
+					"QuartoCama não pode ser excluído pois está vinculado a outras tabelas", e);
 		}
 	}
 
 	default QuartoCama alterarQuartoCama(Long idQuarto, Long idTipoCama, QuartoCama quartoCama) {
 		var id = new QuartoCamaEntityId(idQuarto, idTipoCama);
 
-		QuartoCamaEntity entity = findById(id).orElseThrow(() -> new BookRoomEntityNotFoundException(QUARTO_CAMA_NAO_ENCONTRADO));
+		QuartoCamaEntity entity = findById(id)
+			.orElseThrow(() -> new BookRoomEntityNotFoundException(QUARTO_CAMA_NAO_ENCONTRADO));
 		try {
 			entity = QuartoCamaMapper.updateEntityFromDomain(quartoCama, entity);
 			QuartoCamaEntity savedEntity = save(entity);

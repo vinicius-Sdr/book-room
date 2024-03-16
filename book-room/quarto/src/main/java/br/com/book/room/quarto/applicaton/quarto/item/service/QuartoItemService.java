@@ -4,5 +4,6 @@ import br.com.book.room.quarto.domain.core.quarto.item.QuartoItem;
 
 public interface QuartoItemService {
 
-    QuartoItem cadastrarQuartoItem(QuartoItem quartoItem);
+	QuartoItem cadastrarQuartoItem(QuartoItem quartoItem);
+
 }

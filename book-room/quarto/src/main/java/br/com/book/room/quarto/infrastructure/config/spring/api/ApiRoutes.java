@@ -51,9 +51,9 @@ public final class ApiRoutes {
 		return construirUriPorId(TIPO_URI, uriVariables);
 	}
 
-	public static URI construirUriQuartoItensPorId(Map<String, Long> uriVariables) {
+	public static URI construirUriQuartoItensPorId(Long id) {
 
-		return construirUriPorId(QUARTO_ITEM_URI, uriVariables);
+		return construirUriPorId(QUARTO_ITEM_URI, id);
 	}
 
 	private static URI construirUriPorId(String recurso, Long id) {

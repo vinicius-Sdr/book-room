@@ -17,6 +17,7 @@ import br.com.book.room.quarto.domain.core.amenidadelocalidade.AmenidadesLocalid
 import br.com.book.room.quarto.domain.core.localidade.LocalidadeRepositoryPort;
 import br.com.book.room.quarto.domain.core.predio.PredioRepositoryPort;
 import br.com.book.room.quarto.domain.core.quarto.cama.QuartoCamaRepositoryPort;
+import br.com.book.room.quarto.domain.core.quarto.item.QuartoItemRepositoryPort;
 import br.com.book.room.quarto.domain.core.tipo.TipoRepositoryPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -67,8 +68,8 @@ public class CoreConfig {
 	}
 
 	@Bean
-	QuartoItemService 	quartoItemService() {
-		return new QuartoItemServiceImpl();
+	QuartoItemService quartoItemService(QuartoItemRepositoryPort quartoItemRepository) {
+		return new QuartoItemServiceImpl(quartoItemRepository);
 	}
 
 }
