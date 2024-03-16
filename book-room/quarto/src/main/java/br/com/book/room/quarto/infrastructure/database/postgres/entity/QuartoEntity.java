@@ -33,7 +33,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Setter
 @Entity
 @Table(name = "quarto", schema = "book_room_quarto",
-		indexes = { @Index(name = "quarto_id_predio_tipo_key", columnList = "id_predio, tipo", unique = true) })
+		indexes = { @Index(name = "quarto_id_predio_tipo_key", columnList = "id_predio, tipo,id_localidade", unique = true) })
 @EntityListeners(AuditingEntityListener.class)
 @EqualsAndHashCode(of = { "id" })
 public class QuartoEntity implements Serializable {

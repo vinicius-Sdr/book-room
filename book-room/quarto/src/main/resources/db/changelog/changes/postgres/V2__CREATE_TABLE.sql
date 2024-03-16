@@ -78,7 +78,7 @@ CREATE TABLE book_room_quarto.quarto
     CONSTRAINT fk_quarto_predio FOREIGN KEY (id_predio) REFERENCES book_room_quarto.predio (id),
     CONSTRAINT fk_quarto_localidade FOREIGN KEY (id_localidade) REFERENCES book_room_quarto.localidade (id),
     CONSTRAINT fk_quarto_tipo FOREIGN KEY (tipo) REFERENCES book_room_quarto.tipo (id),
-    UNIQUE (id_predio, tipo)                                                         -- Garante que cada tipo de quarto seja único dentro de um prédio
+    UNIQUE (id_predio, tipo, id_localidade)                                                         -- Garante que cada tipo de quarto seja único dentro de um prédio
 );
 
 COMMENT ON TABLE book_room_quarto.quarto IS 'Tabela para armazenar informações sobre os quartos';

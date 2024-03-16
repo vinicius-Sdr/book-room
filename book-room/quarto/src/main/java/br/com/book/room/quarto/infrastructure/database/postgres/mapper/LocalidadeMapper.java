@@ -20,6 +20,10 @@ public class LocalidadeMapper {
 	}
 
 	public static LocalidadeEntity toEntity(Localidade localidade) {
+		if(localidade == null) {
+			return null;
+		}
+
 		return LocalidadeEntity.builder()
 			.id(localidade.id())
 			.nome(localidade.nome())

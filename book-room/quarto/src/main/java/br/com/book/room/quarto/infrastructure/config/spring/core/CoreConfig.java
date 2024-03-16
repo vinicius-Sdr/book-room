@@ -6,6 +6,8 @@ import br.com.book.room.quarto.applicaton.localidade.service.LocalidadeService;
 import br.com.book.room.quarto.applicaton.localidade.service.LocalidadeServiceImpl;
 import br.com.book.room.quarto.applicaton.predio.service.PredioService;
 import br.com.book.room.quarto.applicaton.predio.service.PredioServiceImpl;
+import br.com.book.room.quarto.applicaton.quarto.QuartoService;
+import br.com.book.room.quarto.applicaton.quarto.QuartoServiceImpl;
 import br.com.book.room.quarto.applicaton.quarto.cama.service.QuartoCamaService;
 import br.com.book.room.quarto.applicaton.quarto.cama.service.QuartoCamaServiceImpl;
 import br.com.book.room.quarto.applicaton.quarto.item.service.QuartoItemService;
@@ -16,6 +18,7 @@ import br.com.book.room.quarto.domain.core.amenidade.AmenidadeRepositoryPort;
 import br.com.book.room.quarto.domain.core.amenidadelocalidade.AmenidadesLocalidadeRepositoryPort;
 import br.com.book.room.quarto.domain.core.localidade.LocalidadeRepositoryPort;
 import br.com.book.room.quarto.domain.core.predio.PredioRepositoryPort;
+import br.com.book.room.quarto.domain.core.quarto.QuartoRepositoryPort;
 import br.com.book.room.quarto.domain.core.quarto.cama.QuartoCamaRepositoryPort;
 import br.com.book.room.quarto.domain.core.quarto.item.QuartoItemRepositoryPort;
 import br.com.book.room.quarto.domain.core.tipo.TipoRepositoryPort;
@@ -70,6 +73,11 @@ public class CoreConfig {
 	@Bean
 	QuartoItemService quartoItemService(QuartoItemRepositoryPort quartoItemRepository) {
 		return new QuartoItemServiceImpl(quartoItemRepository);
+	}
+
+	@Bean
+	QuartoService quartoService(QuartoRepositoryPort quartoRepository) {
+		return new QuartoServiceImpl(quartoRepository);
 	}
 
 }
