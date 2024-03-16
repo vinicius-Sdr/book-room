@@ -29,7 +29,11 @@ public class Reserva {
 
     private Long clientId;
 
-    //private Room roomId;
+    private Long roomId;
+
+    private Long locale;
+
+    private Long building;
 
     @ElementCollection
     private List<Long> item;

@@ -18,7 +18,6 @@ public class ReservaController {
 
     @PostMapping
     public ResponseEntity saveReserva(@Valid @RequestBody ReservaDTO reservaDTO) {
-
         return new ResponseEntity<>(reservaService.createReserva(reservaDTO), HttpStatus.CREATED);
     }
 
@@ -34,14 +33,11 @@ public class ReservaController {
     @PutMapping("/{id}")
     public ResponseEntity editReserva(@Valid @PathVariable(name = "id") @NotNull Long id,
                                       @Valid @RequestBody ReservaDTO reservaDTO) throws Exception {
-
         return new ResponseEntity<>(reservaService.editReserva(id,reservaDTO), HttpStatus.CREATED);
-
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteReserva(@Valid @PathVariable(name = "id") @NotNull Long id){
         return reservaService.deleteReserva(id);
     }
-
 }
