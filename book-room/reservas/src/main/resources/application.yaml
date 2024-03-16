@@ -12,7 +12,7 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   liquibase:
-    enabled: true
+    enabled: false
     change-log: classpath:/db/changelog/db.changelog-master.xml
 
   jpa:
@@ -23,3 +23,15 @@ spring:
   profiles:
     active: ${PROFILE_ENVIRONMENT:dev}
     include: actuator, springdoc
+
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    port: 587
+    username: d30f04c1bd0a63
+    password: 56a421801f7c56
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

@@ -29,6 +29,9 @@
         
         <!-- test -->
         <mockito.version>5.11.0</mockito.version>
+
+        <cloud.version>4.1.0</cloud.version>
+
         <assertj-core.version>3.25.3</assertj-core.version>
         <junit.version>5.10.2</junit.version>
         <cucumber-java.version>7.15.0</cucumber-java.version>
@@ -68,6 +71,13 @@
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
+            </dependency>
+
+            <!--  Spring Cloud  -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${cloud.version}</version>
             </dependency>
 
             <!--  Test -->
