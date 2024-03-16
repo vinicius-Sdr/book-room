@@ -20,6 +20,8 @@ DOCKER_NAMESPACE = book-room
 # List of all Maven targets
 MAVEN_TARGETS = java_build java_install
 
+DOCKER_TARGETS = docker_build_quarto docker_build_servico_opcionais docker_build_clientes docker_build_reservas
+
 # Check for dependencies
 CHECK_MAVEN := $(shell command -v mvn 2> /dev/null)
 
@@ -81,6 +83,9 @@ docker_build_reservas: java_build
 		--build-arg JAR_FILE=$(DIR)/reservas/target/reservas-1.0-SNAPSHOT.jar \
 		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):$(DOCKER_VERSION_LABEL_IMAGE) \
 		-t $(DOCKER_NAMESPACE)/$(PROJECT_NAME):latest .
+
+docker_build_all: $(DOCKER_TARGETS)
+	@echo "All docker images built successfully."
 
 # subir container postgres book-room quarto
 docker_run_postgres_quarto:
